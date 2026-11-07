@@ -49,7 +49,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .header.is-overlay { background: linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.12)); }
 .header.is-solid { background: var(--ink); border-bottom-color: #262626; }
-.header-left { display: flex; align-items: center; gap: 10px; }
+.header-left { display: flex; align-items: center; gap: 10px; padding-left: 8px; }
 .brand img { display: block; width: 150px; height: auto; }
 
 /* ANNOUNCEMENT */
@@ -122,14 +122,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .hero-link svg { transition: transform .2s; }
 /* phone: Discover sits in the open red to the left of KIT */
-.hero-copy .hero-link { position: absolute; left: 6cqw; bottom: 8cqw; font-size: 4.2cqw; }
+.hero-copy .hero-link { position: absolute; left: 6cqw; bottom: 8cqw; font-size: 7.6cqw; letter-spacing: .03em; gap: 1.6cqw; line-height: 1; }
 @media (min-width: 900px) {
   .hero { position: relative; }
   .hero-frame { position: static; }
   /* Desktop: wordmark in the open red to the left of the art */
   .hero-copy { position: absolute; left: 0; bottom: 0; margin: 0; padding: 0 0 56px 56px; align-items: flex-start; gap: 22px; }
   .hero-mark img { translate: none; width: min(26vw, 420px); filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .28)); }
-  .hero-copy .hero-link { position: static; font-size: 19px; gap: 12px; }
+  .hero-copy .hero-link { position: static; font-size: 40px; letter-spacing: .03em; gap: 10px; }
 }
 .hero-link:hover svg { transform: translateX(4px); }
 .kicker { font-family: var(--body); font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; font-size: 13px; margin: 0 0 10px; }
