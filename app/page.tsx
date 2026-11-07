@@ -12,25 +12,23 @@ export default function Home() {
       <section className="hero">
         <div className="hero-frame">
           <Image
-            src="/hero.png"
+            src="/hero.webp"
             alt="An engraved hand levitating an It Flew! can"
             width={1049}
             height={1399}
             priority
-            quality={100}
-            sizes="(min-width: 700px) 675px, 100vw"
+            unoptimized
             className="hero-img"
           />
           <div className="hero-copy">
             <h1 className="hero-mark">
               <Image
-                src="/itk-wordmark.png"
+                src="/itk-wordmark.webp"
                 alt="Invisible Thread Kit"
                 width={954}
                 height={972}
                 priority
-                quality={100}
-                sizes="(min-width: 900px) 420px, 64vw"
+                unoptimized
               />
             </h1>
             <Link href="/products/itr" className="hero-link">

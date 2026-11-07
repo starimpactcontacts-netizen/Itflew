@@ -43,6 +43,13 @@ export default function Header() {
           <Image src="/wordmark-white.png" alt="It Flew!" width={672} height={140} priority />
         </Link>
       </div>
+      <div className="header-right">
+      <Link href="/track" className="icon-btn" aria-label="Track your order" onClick={() => setMenu(false)}>
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+        </svg>
+      </Link>
       <button className="icon-btn cart-btn" aria-label={`Bag, ${qty} items`} onClick={() => setOpen(true)}>
         <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
           <path d="M5 8h14l-1.2 12H6.2z" />
@@ -50,12 +57,14 @@ export default function Header() {
         </svg>
         {qty > 0 && <span className="badge">{qty}</span>}
       </button>
+      </div>
 
       {menu && (
         <div className="menu">
           <Link href="/products/itr" onClick={() => setMenu(false)}>Shop the ITR</Link>
           <Link href="/#how" onClick={() => setMenu(false)}>How it works</Link>
           <Link href="/#list" onClick={() => setMenu(false)}>Join the list</Link>
+          <Link href="/track" onClick={() => setMenu(false)}>Track order</Link>
         </div>
       )}
     </header>

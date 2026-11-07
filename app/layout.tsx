@@ -35,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/products/itr">Shop</Link>
               <Link href="/#how">How it works</Link>
               <Link href="/#list">Join the list</Link>
+              <Link href="/track">Track order</Link>
             </nav>
             <p className="muted small">© {new Date().getFullYear()} It Flew! — A magician never reveals. We just sell the reel.</p>
           </footer>

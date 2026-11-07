@@ -231,3 +231,34 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 24px; margin: 20px 0; font-family: var(--display); font-size: 24px; text-transform: uppercase; }
 .footer nav a:hover { color: var(--red-bright); }
 .row .atc { margin-top: 0; }
+
+.header-right { display: flex; align-items: center; gap: 2px; }
+
+/* TRACK ORDER */
+.track { max-width: 560px; margin: 0 auto; padding: 40px 20px 96px; }
+.track-title { font-size: clamp(64px, 16vw, 112px); margin-bottom: 12px; }
+.track-form { display: grid; gap: 16px; margin-top: 28px; }
+.track-form label { display: grid; gap: 6px; }
+.track-form label span { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.track-form input {
+  padding: 14px 16px; font: inherit; font-size: 18px; color: var(--ink);
+  background: var(--cream); border: 2px solid var(--cream); border-radius: 0;
+}
+.track-form input:focus { outline: 3px solid var(--red-bright); outline-offset: 2px; }
+.track-result { margin-top: 36px; border: 1px solid #2a2a2f; padding: 24px; display: grid; gap: 20px; }
+.track-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap; }
+.track-head .kicker { margin: 0; }
+.track-num { font-size: 48px; }
+.track-cancel { color: var(--red-bright); font-weight: 600; margin: 0; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.timeline li { position: relative; display: flex; align-items: center; gap: 14px; padding: 10px 0; color: var(--muted); }
+.timeline li:not(:last-child)::after {
+  content: ""; position: absolute; left: 7px; top: 30px; height: calc(100% - 20px); width: 2px; background: #2a2a2f;
+}
+.timeline .dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #3a3a40; background: var(--ink); flex: none; }
+.timeline li.done { color: var(--cream); }
+.timeline li.done .dot { background: var(--red-bright); border-color: var(--red-bright); }
+.timeline li.done:not(:last-child)::after { background: var(--red-bright); }
+.timeline li[aria-current="step"] { font-weight: 700; }
+.track-ship { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.track-ship .btn { font-size: 20px; padding: 8px 16px 6px; }
