@@ -11,15 +11,27 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-frame">
+          <div className="hero-art">
           <Image
             src="/hero.webp"
             alt="An engraved hand levitating an It Flew! can"
-            width={1049}
-            height={1399}
+            width={1042}
+            height={1389}
             priority
             unoptimized
             className="hero-img"
           />
+          {/* the can floats on its own layer: falls, gets caught by the invisible strings, rises */}
+          <Image
+            src="/hero-can.webp"
+            alt=""
+            width={346}
+            height={485}
+            priority
+            unoptimized
+            className="hero-can"
+          />
+          </div>
           <div className="hero-copy">
             <h1 className="hero-mark">
               <Image
