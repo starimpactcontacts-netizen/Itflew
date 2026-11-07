@@ -107,12 +107,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @media (max-width: 480px) { .hero-img { -webkit-mask-image: none; mask-image: none; } }
 /* Phone: wordmark sits under the can, its thread line rising up toward it */
 .hero-copy {
-  position: relative; margin-top: -36cqw; padding: 0 6cqw 9cqw;
+  position: relative; margin-top: -48.8cqw; padding: 0 6cqw 6cqw;
   display: flex; flex-direction: column; align-items: center; gap: 3cqw; text-align: center;
 }
 .hero-mark { margin: 0; line-height: 0; }
 .hero-mark img {
-  display: block; width: 64cqw; height: auto;
+  display: block; width: 56cqw; height: auto;
+  translate: 4.69cqw 0; /* lines the thread up with the can's white strip */
   filter: drop-shadow(0 1.2cqw 2.4cqw rgba(0, 0, 0, .28));
 }
 .hero-link {
@@ -120,13 +121,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
   font-family: var(--display); font-size: 4.6cqw; letter-spacing: .2em; text-transform: uppercase; color: var(--cream);
 }
 .hero-link svg { transition: transform .2s; }
+/* phone: Discover sits in the open red to the left of KIT */
+.hero-copy .hero-link { position: absolute; left: 6cqw; bottom: 8cqw; font-size: 4.2cqw; }
 @media (min-width: 900px) {
   .hero { position: relative; }
   .hero-frame { position: static; }
   /* Desktop: wordmark in the open red to the left of the art */
   .hero-copy { position: absolute; left: 0; bottom: 0; margin: 0; padding: 0 0 56px 56px; align-items: flex-start; gap: 22px; }
-  .hero-mark img { width: min(26vw, 420px); filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .28)); }
-  .hero-link { font-size: 19px; gap: 12px; }
+  .hero-mark img { translate: none; width: min(26vw, 420px); filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .28)); }
+  .hero-copy .hero-link { position: static; font-size: 19px; gap: 12px; }
 }
 .hero-link:hover svg { transform: translateX(4px); }
 .kicker { font-family: var(--body); font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; font-size: 13px; margin: 0 0 10px; }
