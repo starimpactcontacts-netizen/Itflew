@@ -52,7 +52,7 @@ export default function Home() {
       <section className="section dark">
         <h2 className="display section-title">The Reel</h2>
         <div className="product-card">
-          <Link href="/products/itr" className="product-img grain">
+          <Link href="/products/itr" className="product-img">
             <Reel />
             <span className="tag">New</span>
           </Link>

@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <footer className="footer">
             <Link href="/" aria-label="It Flew! home">
-              <Image src="/wordmark-cream.png" alt="It Flew!" width={672} height={140} className="footer-mark" />
+              <Image src="/wordmark-white.png" alt="It Flew!" width={672} height={140} className="footer-mark" />
             </Link>
             <nav>
               <Link href="/products/itr">Shop</Link>

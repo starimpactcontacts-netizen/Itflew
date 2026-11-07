@@ -40,7 +40,7 @@ export default function Header() {
           )}
         </button>
         <Link href="/" className="brand" aria-label="It Flew! home" onClick={() => setMenu(false)}>
-          <Image src="/wordmark-cream.png" alt="It Flew!" width={672} height={140} priority />
+          <Image src="/wordmark-white.png" alt="It Flew!" width={672} height={140} priority />
         </Link>
       </div>
       <button className="icon-btn cart-btn" aria-label={`Bag, ${qty} items`} onClick={() => setOpen(true)}>
