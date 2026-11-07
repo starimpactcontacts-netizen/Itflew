@@ -104,11 +104,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
   mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
 }
 @media (max-width: 480px) { .hero-img { -webkit-mask-image: none; mask-image: none; } }
+/* Phone: wordmark sits under the can, its thread line rising up toward it */
 .hero-copy {
-  position: absolute; left: 0; right: 0; bottom: 0; padding: 0 6cqw 6cqw;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 4cqw; text-align: left;
+  position: relative; margin-top: -43cqw; padding: 0 6cqw 9cqw;
+  display: flex; flex-direction: column; align-items: center; gap: 3cqw; text-align: center;
 }
-.hero-copy .hero-title { font-size: 11cqw; line-height: .9; letter-spacing: 0; text-shadow: 0 2px 18px rgba(0,0,0,.25); }
+.hero-mark { margin: 0; line-height: 0; }
+.hero-mark img {
+  display: block; width: 64cqw; height: auto;
+  filter: drop-shadow(0 1.2cqw 2.4cqw rgba(0, 0, 0, .28));
+}
 .hero-link {
   display: inline-flex; align-items: center; gap: 2.5cqw;
   font-family: var(--display); font-size: 6.4cqw; letter-spacing: .04em; text-transform: uppercase; color: var(--cream);
@@ -117,8 +122,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @media (min-width: 900px) {
   .hero { position: relative; }
   .hero-frame { position: static; }
-  .hero-copy { padding: 0 56px 64px; gap: 22px; }
-  .hero-copy .hero-title { font-size: clamp(72px, 6.4vw, 120px); }
+  /* Desktop: wordmark in the open red to the left of the art */
+  .hero-copy { position: absolute; left: 0; bottom: 0; margin: 0; padding: 0 0 56px 56px; align-items: flex-start; gap: 22px; }
+  .hero-mark img { width: min(26vw, 420px); filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .28)); }
   .hero-link { font-size: 30px; gap: 12px; }
 }
 .hero-link:hover svg { transform: translateX(4px); }

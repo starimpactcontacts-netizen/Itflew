@@ -22,10 +22,16 @@ export default function Home() {
             className="hero-img"
           />
           <div className="hero-copy">
-            <h1 className="display hero-title">
-              New: The ITR
-              <br />
-              Thread Reel
+            <h1 className="hero-mark">
+              <Image
+                src="/itk-wordmark.png"
+                alt="Invisible Thread Kit"
+                width={954}
+                height={972}
+                priority
+                quality={100}
+                sizes="(min-width: 900px) 420px, 64vw"
+              />
             </h1>
             <Link href="/products/itr" className="hero-link">
               Discover
