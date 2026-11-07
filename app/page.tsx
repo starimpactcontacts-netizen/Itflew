@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import HeroArt from "@/components/HeroArt";
 import Reel from "@/components/Reel";
 import AddToCart from "@/components/AddToCart";
 import WaitlistForm from "@/components/WaitlistForm";
@@ -9,12 +9,23 @@ export default function Home() {
   return (
     <main>
       {/* HERO */}
-      <section className="hero grain">
-        <p className="kicker">Introducing the ITR</p>
-        <h1 className="display hero-title">Make It Float</h1>
-        <HeroArt />
-        <p className="hero-sub">Do you know how magicians make things fly?</p>
-        <Link href="/products/itr" className="btn btn-cream btn-lg">Shop Now</Link>
+      <section className="hero">
+        <div className="hero-frame">
+          <Image
+            src="/hero.png"
+            alt="An engraved hand levitating an It Flew! can"
+            width={1049}
+            height={1399}
+            priority
+            quality={100}
+            sizes="(min-width: 700px) 675px, 100vw"
+            className="hero-img"
+          />
+          <div className="hero-copy">
+            <h1 className="display hero-title">Make It Float</h1>
+            <Link href="/products/itr" className="btn btn-cream hero-btn">Shop the ITR</Link>
+          </div>
+        </div>
       </section>
 
       {/* MARQUEE */}
