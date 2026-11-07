@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "@/components/AddToCart";
 import Poster from "@/components/Poster";
+import HeroLevitate from "@/components/HeroLevitate";
 import WaitlistForm from "@/components/WaitlistForm";
 import { ITR, formatPrice } from "@/lib/products";
 
@@ -13,7 +14,7 @@ export default function Home() {
         <div className="hero-frame">
           <div className="hero-art">
           <Image
-            src="/hero.webp"
+            src="/hero-v2.webp"
             alt="An engraved hand levitating an It Flew! can"
             width={1042}
             height={1389}
@@ -21,16 +22,7 @@ export default function Home() {
             unoptimized
             className="hero-img"
           />
-          {/* the can floats on its own layer: falls, gets caught by the invisible strings, rises */}
-          <Image
-            src="/hero-can.webp"
-            alt=""
-            width={346}
-            height={485}
-            priority
-            unoptimized
-            className="hero-can"
-          />
+          <HeroLevitate />
           </div>
           <div className="hero-copy">
             <h1 className="hero-mark">

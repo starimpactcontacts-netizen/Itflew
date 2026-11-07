@@ -105,22 +105,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
   mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
 }
 @media (max-width: 480px) { .hero-img { -webkit-mask-image: none; mask-image: none; } }
-/* Levitating can — positioned exactly where it sits in the art (1042x1389 canvas) */
-.hero-can {
-  position: absolute; left: 35.029%; top: 34.485%; width: 33.205%; height: auto;
-  transform-origin: 50% -40%; /* pivots from the hand above, like it hangs on strings */
-  animation: levitate 4.6s infinite;
-  will-change: transform;
+/* Levitating can + telekinetic strings (SVG in the art's own coordinates) */
+.hero-levitate { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.threads line {
+  stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 18 8;
+  animation: shimmer 1.1s linear infinite;
 }
-@keyframes levitate {
-  0%   { transform: translateY(0) rotate(0deg); animation-timing-function: cubic-bezier(.55, 0, .9, .45); }
-  28%  { transform: translateY(16%) rotate(-2deg); animation-timing-function: cubic-bezier(.2, .6, .4, 1); } /* falls */
-  38%  { transform: translateY(10%) rotate(.8deg); animation-timing-function: ease-in-out; }                /* strings catch it */
-  48%  { transform: translateY(13%) rotate(-.6deg); animation-timing-function: cubic-bezier(.45, 0, .25, 1); }
-  90%  { transform: translateY(-3%) rotate(.4deg); animation-timing-function: ease-in-out; }                /* pulled back up */
-  100% { transform: translateY(0) rotate(0deg); }
-}
-@media (prefers-reduced-motion: reduce) { .hero-can { animation: none; } }
+@keyframes shimmer { to { stroke-dashoffset: -46; } }
+@media (prefers-reduced-motion: reduce) { .threads line { animation: none; } }
 /* Phone: wordmark sits under the can, its thread line rising up toward it */
 .hero-copy {
   position: relative; margin-top: -36cqw; padding: 0 6cqw 9cqw;
