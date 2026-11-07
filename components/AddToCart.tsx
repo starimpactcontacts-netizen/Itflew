@@ -3,9 +3,19 @@
 import { useState } from "react";
 import { useCart } from "./CartProvider";
 
-export default function AddToCart({ withQty = false, label = "Add to bag" }: { withQty?: boolean; label?: string }) {
+type Props = { withQty?: boolean; label?: string; variant?: "solid" | "link" };
+
+export default function AddToCart({ withQty = false, label = "Add to bag", variant = "solid" }: Props) {
   const { add } = useCart();
   const [n, setN] = useState(1);
+
+  if (variant === "link") {
+    return (
+      <button className="link-cta" onClick={() => add(1)}>
+        {label}
+      </button>
+    );
+  }
 
   return (
     <div className="atc">
@@ -16,7 +26,7 @@ export default function AddToCart({ withQty = false, label = "Add to bag" }: { w
           <button aria-label="Increase" onClick={() => setN(Math.min(99, n + 1))}>+</button>
         </div>
       )}
-      <button className="btn btn-red" onClick={() => add(withQty ? n : 1)}>
+      <button className="btn btn-red atc-btn" onClick={() => add(withQty ? n : 1)}>
         {label}
       </button>
     </div>

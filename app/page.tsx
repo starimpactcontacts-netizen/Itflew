@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Reel from "@/components/Reel";
 import AddToCart from "@/components/AddToCart";
 import WaitlistForm from "@/components/WaitlistForm";
 import { ITR, formatPrice } from "@/lib/products";
@@ -53,22 +52,24 @@ export default function Home() {
       </div>
 
       {/* PRODUCT */}
-      <section className="section dark">
-        <h2 className="display section-title">The Reel</h2>
-        <div className="product-card">
-          <Link href="/products/itr" className="product-img">
-            <Reel />
-            <span className="tag">New</span>
-          </Link>
-          <div className="product-info">
-            <p className="kicker kicker-red">{ITR.short}</p>
-            <h3 className="display product-name">{ITR.name}</h3>
-            <p className="price">{formatPrice(ITR.price)}</p>
-            <p className="muted">{ITR.blurb}</p>
-            <div className="row">
-              <AddToCart />
-              <Link href="/products/itr" className="btn btn-outline">Details</Link>
-            </div>
+      <section className="feature">
+        <Link href="/products/itr" className="feature-img" aria-label={`${ITR.name} — view product`}>
+          <Image
+            src="/itr-glove.webp"
+            alt="A red-gloved hand holding the ITR invisible thread reel"
+            width={768}
+            height={1369}
+            unoptimized
+          />
+        </Link>
+        <div className="feature-copy">
+          <p className="kicker">{ITR.short}</p>
+          <h2 className="display feature-title">{ITR.name}</h2>
+          <p className="feature-text">{ITR.blurb}</p>
+          <p className="price">{formatPrice(ITR.price)}</p>
+          <div className="cta-row">
+            <AddToCart variant="link" />
+            <Link href="/products/itr" className="link-cta">Discover</Link>
           </div>
         </div>
       </section>

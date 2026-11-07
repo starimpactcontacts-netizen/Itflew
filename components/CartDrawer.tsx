@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { ITR, formatPrice } from "@/lib/products";
 import { useCart } from "./CartProvider";
-import Reel from "./Reel";
+import Image from "next/image";
 
 export default function CartDrawer() {
   const { qty, setQty, open, setOpen } = useCart();
@@ -34,7 +34,7 @@ export default function CartDrawer() {
           <>
             <div className="line">
               <div className="line-img">
-                <Reel />
+                <Image src="/itr-glove.webp" alt="" width={768} height={1369} unoptimized />
               </div>
               <div>
                 <strong>{ITR.name}</strong>
