@@ -22,8 +22,17 @@ export default function Home() {
             className="hero-img"
           />
           <div className="hero-copy">
-            <h1 className="display hero-title">Make It Float</h1>
-            <Link href="/products/itr" className="btn btn-cream hero-btn">Shop the ITR</Link>
+            <h1 className="display hero-title">
+              New: The ITR
+              <br />
+              Thread Reel
+            </h1>
+            <Link href="/products/itr" className="hero-link">
+              Discover
+              <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>

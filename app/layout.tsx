@@ -5,6 +5,7 @@ import Image from "next/image";
 import "./globals.css";
 import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import CartDrawer from "@/components/CartDrawer";
 
 const display = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-display" });
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
         <CartProvider>
+          <AnnouncementBar />
           <Header />
           {children}
           <footer className="footer">
