@@ -120,7 +120,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   display: inline-flex; align-items: center; gap: 2.5cqw;
   font-family: var(--display); font-size: 4.6cqw; letter-spacing: .2em; text-transform: uppercase; color: var(--cream);
 }
-.hero-link svg { transition: transform .2s; }
+.hero-link { -webkit-text-stroke: .045em currentColor; paint-order: stroke fill; } /* heavier cut of the title font */
+.hero-link svg { transition: transform .2s; stroke-width: 3; }
 /* phone: Discover sits in the open red to the left of KIT */
 .hero-copy .hero-link { position: absolute; left: 6cqw; bottom: 8cqw; font-size: 7.6cqw; letter-spacing: .03em; gap: 1.6cqw; line-height: 1; }
 @media (min-width: 900px) {
