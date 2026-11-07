@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Bebas_Neue } from "next/font/google";
+import { Marcellus } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import "./globals.css";
@@ -8,8 +8,8 @@ import Header from "@/components/Header";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import CartDrawer from "@/components/CartDrawer";
 
-const display = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-display" });
-const body = Archivo({ subsets: ["latin"], variable: "--font-body" });
+// Closest open match to the Emaar-style flared Roman capitals.
+const display = Marcellus({ weight: "400", subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
   title: "It Flew! — The ITR Invisible Thread Reel",
@@ -21,7 +21,7 @@ export const viewport: Viewport = { themeColor: "#121214" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={display.variable}>
       <body>
         <CartProvider>
           <AnnouncementBar />

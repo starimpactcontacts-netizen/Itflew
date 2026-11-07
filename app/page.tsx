@@ -78,17 +78,17 @@ export default function Home() {
         <h2 className="display section-title ink">How It Flies</h2>
         <ol className="steps">
           <li>
-            <span className="step-n display">01</span>
+            <span className="step-n display">I</span>
             <h3 className="display">Clip</h3>
             <p>Hide the reel in a pocket or under a sleeve. Nobody sees it. Nobody ever will.</p>
           </li>
           <li>
-            <span className="step-n display">02</span>
+            <span className="step-n display">II</span>
             <h3 className="display">Pull</h3>
             <p>Draw out the invisible thread and hook up a ring, a bill, a card — whatever you dare.</p>
           </li>
           <li>
-            <span className="step-n display">03</span>
+            <span className="step-n display">III</span>
             <h3 className="display">Fly</h3>
             <p>Lift, float, animate. When you&apos;re done, the thread retracts and the evidence is gone.</p>
           </li>
