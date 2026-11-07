@@ -34,7 +34,7 @@ export default function CartDrawer() {
           <>
             <div className="line">
               <div className="line-img">
-                <Image src="/itr-glove.webp" alt="" width={768} height={1369} unoptimized />
+                <Image src="/itr-hand.webp" alt="" width={412} height={947} unoptimized />
               </div>
               <div>
                 <strong>{ITR.name}</strong>

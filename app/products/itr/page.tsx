@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import Poster from "@/components/Poster";
 import AddToCart from "@/components/AddToCart";
 import { ITR, formatPrice } from "@/lib/products";
 
@@ -13,14 +13,7 @@ export default function ProductPage() {
   return (
     <main className="pdp">
       <div className="pdp-img">
-        <Image
-          src="/itr-glove.webp"
-          alt="A red-gloved hand holding the ITR invisible thread reel"
-          width={768}
-          height={1369}
-          priority
-          unoptimized
-        />
+        <Poster priority />
       </div>
       <div className="pdp-info">
         <nav className="crumbs small">
