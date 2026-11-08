@@ -10,6 +10,7 @@ export default function Header() {
   const { qty, setOpen } = useCart();
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [overFooter, setOverFooter] = useState(false);
   const overlay = usePathname() === "/";
 
   useEffect(() => {
@@ -17,19 +18,24 @@ export default function Header() {
   }, [menu]);
 
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 40);
+    const on = () => {
+      setScrolled(window.scrollY > 40);
+      const f = document.querySelector(".fs");
+      setOverFooter(!!f && f.getBoundingClientRect().top <= 64);
+    };
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
 
   const solid = !overlay || scrolled || menu;
+  const dark = overFooter && !menu;
 
   return (
-    <header className={`header ${solid ? "is-solid" : "is-overlay"}`}>
+    <header className={`header ${dark ? "is-dark" : solid ? "is-solid" : "is-overlay"}`}>
       <div className="header-left">
         <Link href="/" className="brand" aria-label="It Flew! home" onClick={() => setMenu(false)}>
-          <Image src={solid ? "/wordmark-black.png" : "/wordmark-white.png"} alt="It Flew!" width={672} height={140} priority />
+          <Image src={solid && !dark ? "/wordmark-black.png" : "/wordmark-white.png"} alt="It Flew!" width={672} height={140} priority />
         </Link>
       </div>
       <div className="header-right">
