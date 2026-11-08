@@ -382,11 +382,14 @@ a:hover .poster-hand { translate: -50% -10px; }
 .tut-deck { position: relative; height: calc(min(60vw, 380px) * 1.215 + 8px); }
 .tut-card {
   position: absolute; top: 0; left: 50%; width: min(60vw, 380px); padding: 0; border: 0; background: none; cursor: pointer;
-  line-height: 0; transition: transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s; will-change: transform;
+  line-height: 0; transition: transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s, filter .45s; will-change: transform;
+  /* frame on the frame: white mat + black rule */
+  background: #fff; padding: 7px; outline: 2px solid #000; outline-offset: -4px; box-shadow: 0 0 0 1px #000, 0 18px 36px rgba(0,0,0,.35);
 }
+.tut-card .step-img { outline: 1px solid #000; }
 .tut-card.front { transform: translateX(-50%) scale(1); z-index: 3; cursor: default; }
-.tut-card.left { transform: translateX(calc(-50% - min(60vw, 380px) * .86)) scale(.82); transform-origin: right center; z-index: 2; }
-.tut-card.right { transform: translateX(calc(-50% + min(60vw, 380px) * .86)) scale(.82); transform-origin: left center; z-index: 2; }
+.tut-card.left { transform: translateX(calc(-50% - min(60vw, 380px) * .86)) scale(.82); transform-origin: right center; z-index: 2;  filter: blur(2.5px) brightness(.92);}
+.tut-card.right { transform: translateX(calc(-50% + min(60vw, 380px) * .86)) scale(.82); transform-origin: left center; z-index: 2;  filter: blur(2.5px) brightness(.92);}
 .tut-card.hidden { transform: translateX(-50%) scale(.6); opacity: 0; pointer-events: none; z-index: 1; }
 .tut-dots { position: relative; display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
 .tut-dots button { width: 8px; height: 8px; border-radius: 50%; border: 1px solid #fff; background: transparent; padding: 0; }
