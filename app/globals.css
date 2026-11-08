@@ -98,7 +98,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @media (max-width: 480px) { .hero-img { -webkit-mask-image: none; mask-image: none; } }
 /* Phone: wordmark sits under the can, its thread line rising up toward it */
 .hero-copy {
-  position: relative; margin-top: -48.8cqw; padding: 0 6cqw; /* section ends where the thread fades out */
+  position: relative; margin-top: -48.8cqw; padding: 0 6cqw 5cqw;
   display: flex; flex-direction: column; align-items: center; gap: 3cqw; text-align: center;
 }
 .hero-mark { margin: 0; line-height: 0; }
@@ -115,14 +115,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .hero-link svg { transition: transform .2s; stroke-width: 3; }
 .hero-link-text { display: inline-block; padding-bottom: .12em; border-bottom: .06em solid currentColor; } /* underline stroke */
 /* phone: Discover sits in the open red to the left of KIT */
-.hero-copy .hero-link { position: absolute; left: 6cqw; bottom: 2cqw; font-size: 7.6cqw; letter-spacing: .03em; gap: 1.6cqw; line-height: 1; }
+/* phone: DISCOVER tucked under the wordmark, flush with the T of THREAD, beside the thread's fade */
+.hero-copy .hero-link { align-self: flex-start; margin: -7.5cqw 0 0 21cqw; font-size: 5.6cqw; letter-spacing: .03em; gap: 1.4cqw; line-height: 1; }
 @media (min-width: 900px) {
   .hero { position: relative; }
   .hero-frame { position: static; }
   /* Desktop: wordmark in the open red to the left of the art */
   .hero-copy { position: absolute; left: 0; bottom: 0; margin: 0; padding: 0 0 56px 56px; align-items: flex-start; gap: 22px; }
   .hero-mark img { translate: none; width: min(26vw, 420px); filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .28)); }
-  .hero-copy .hero-link { position: static; font-size: 40px; letter-spacing: .03em; gap: 10px; }
+  .hero-copy .hero-link { margin: 0; font-size: 40px; letter-spacing: .03em; gap: 10px; }
 }
 .hero-link:hover svg { transform: translateX(4px); }
 .kicker { font-family: var(--body); font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; font-size: 13px; margin: 0 0 10px; }
