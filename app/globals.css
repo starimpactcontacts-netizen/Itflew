@@ -115,15 +115,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .hero-link svg { transition: transform .2s; stroke-width: 3; }
 .hero-link-text { display: inline-block; padding-bottom: .12em; border-bottom: .06em solid currentColor; } /* underline stroke */
 /* phone: Discover sits in the open red to the left of KIT */
-/* phone: DISCOVER in the free row beside KIT, flush with the logo's left edge; doesn't add height */
-.hero-copy .hero-link { position: absolute; left: 5.1cqw; bottom: 3cqw; font-size: 5.2cqw; letter-spacing: .03em; gap: 1.4cqw; line-height: 1; }
+/* phone: SHOP NOW sits just above INVISIBLE, tilted to the wordmark's rising baseline */
+.hero-copy .hero-link { position: absolute; left: 52cqw; top: 8cqw; font-size: 4.8cqw; letter-spacing: .04em; line-height: 1; transform: rotate(-4.8deg); transform-origin: left bottom; }
 @media (min-width: 900px) {
   .hero { position: relative; }
   .hero-frame { position: static; }
   /* Desktop: wordmark in the open red to the left of the art */
   .hero-copy { position: absolute; left: 0; bottom: 0; margin: 0; padding: 0 0 56px 56px; align-items: flex-start; gap: 22px; }
   .hero-mark img { translate: none; width: min(26vw, 420px); filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .28)); }
-  .hero-copy .hero-link { position: static; font-size: 40px; letter-spacing: .03em; gap: 10px; }
+  .hero-copy .hero-link { position: static; transform: none; font-size: 40px; letter-spacing: .03em; gap: 10px; }
 }
 .hero-link:hover svg { transform: translateX(4px); }
 .kicker { font-family: var(--body); font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; font-size: 13px; margin: 0 0 10px; }

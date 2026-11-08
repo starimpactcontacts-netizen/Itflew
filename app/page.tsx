@@ -34,10 +34,7 @@ export default function Home() {
               />
             </h1>
             <Link href="/products/itr" className="hero-link">
-              <span className="hero-link-text">Discover</span>
-              <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                <path d="M9 5l7 7-7 7" />
-              </svg>
+              <span className="hero-link-text">Shop now</span>
             </Link>
           </div>
         </div>
