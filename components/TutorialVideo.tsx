@@ -18,6 +18,7 @@ export default function TutorialVideo() {
         playsInline
         controls={playing}
         preload="metadata"
+        poster="/videos/tutorial-poster.webp"
         onError={() => setMissing(true)}
         onEnded={() => setPlaying(false)}
       />
@@ -31,7 +32,7 @@ export default function TutorialVideo() {
           }}
           aria-label={missing ? "Tutorial video coming soon" : "Play tutorial video"}
         >
-          <Image src="/steps/step-1-bw.webp" alt="" fill sizes="(min-width: 860px) 50vw, 100vw" unoptimized />
+          <Image src="/videos/tutorial-poster.webp" alt="" fill sizes="(min-width: 860px) 50vw, 100vw" unoptimized />
           <span className="tv-play">
             {missing ? (
               "Video coming soon"

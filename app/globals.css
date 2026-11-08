@@ -439,10 +439,10 @@ a:hover .poster-hand { translate: -50% -10px; }
 .pd-tut { padding: 56px 5vw 48px; border-top: 1px solid #e6e6e6; }
 .pd-tut .pd-label { margin-top: 0; color: #777; }
 .pd-h2 { margin: 0 0 22px; font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(28px, 8vw, 44px); line-height: 1.05; -webkit-text-stroke: .025em currentColor; }
-.tv { position: relative; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
+.tv { position: relative; aspect-ratio: 1 / 1; background: #000; overflow: hidden; }
 .tv-video { width: 100%; height: 100%; display: block; object-fit: cover; }
 .tv-poster { position: absolute; inset: 0; border: 0; padding: 0; background: #ecebe7; cursor: pointer; }
-.tv-poster img { object-fit: cover; object-position: 50% 45%; }
+.tv-poster img { object-fit: cover; }
 .tv-play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; min-width: 72px; height: 72px; padding: 0 22px; border-radius: 36px; background: #fff; color: #000; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); font-family: var(--display); font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
 .pd-steps { list-style: none; margin: 28px 0 0; padding: 0; }
 .pd-steps li { display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid #e6e6e6; }
