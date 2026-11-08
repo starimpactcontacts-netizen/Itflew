@@ -366,32 +366,32 @@ a:hover .poster-hand { translate: -50% -10px; }
 }
 .pager[hidden] { display: none; }
 
-/* TUTORIAL — vintage instruction-card carousel */
+/* TUTORIAL — black & white, looping 3-up deck */
 .tutorial { background: #fff; color: #000; overflow: hidden; }
 .tut-head { text-align: center; padding: 64px 6vw 8px; max-width: 760px; margin: 0 auto; }
 .tut-kicker { margin: 0; font-family: var(--display); font-size: clamp(14px, 3.8vw, 18px); letter-spacing: .28em; text-transform: uppercase; color: #000; -webkit-text-stroke: .02em currentColor; }
-.tut-title { margin: 6px 0 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; color: var(--red); font-size: clamp(58px, 17vw, 132px); line-height: .95; -webkit-text-stroke: .025em currentColor; }
-.tut-text { margin: 20px auto 0; font-size: clamp(17px, 4.6vw, 21px); line-height: 1.5; color: #222; text-wrap: balance; }
+.tut-title { margin: 6px 0 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; color: #000; font-size: clamp(58px, 17vw, 132px); line-height: .95; -webkit-text-stroke: .025em currentColor; }
+.tut-text { margin: 20px auto 0; font-size: clamp(17px, 4.6vw, 21px); line-height: 1.5; color: #000; text-wrap: balance; }
 .tut-ctas { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 16px; margin-top: 32px; }
 .tut-ctas .atc { margin: 0; }
-.tut-ctas .atc-btn { width: 100%; white-space: nowrap; font-size: clamp(16px, 4.4vw, 22px); padding: 20px 10px; letter-spacing: .06em; }
-.tut-link { justify-self: center; font-family: var(--display); font-size: clamp(18px, 4.8vw, 22px); letter-spacing: .08em; text-transform: uppercase; color: var(--red); border-bottom: 2px solid currentColor; padding-bottom: 2px; }
-.tut-stage { position: relative; margin-top: 44px; padding-bottom: 40px; }
-.tut-stage::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 52%; background: var(--red); }
-.tut-rail {
-  position: relative; display: flex; align-items: center; gap: 4vw; overflow-x: auto; scroll-snap-type: x mandatory;
-  padding: 0 22vw; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+.tut-ctas .atc-btn { width: 100%; white-space: nowrap; background: #000; color: #fff; font-size: clamp(16px, 4.4vw, 22px); padding: 20px 10px; letter-spacing: .06em; }
+.tut-ctas .atc-btn:hover:not(:disabled) { background: #222; }
+.tut-link { justify-self: center; font-family: var(--display); font-size: clamp(18px, 4.8vw, 22px); letter-spacing: .08em; text-transform: uppercase; color: #000; border-bottom: 2px solid currentColor; padding-bottom: 2px; }
+.tut-stage { position: relative; margin-top: 44px; padding-bottom: 28px; touch-action: pan-y; }
+.tut-stage::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 58%; background: #000; }
+.tut-deck { position: relative; height: calc(min(60vw, 380px) * 1.215 + 8px); }
+.tut-card {
+  position: absolute; top: 0; left: 50%; width: min(60vw, 380px); padding: 0; border: 0; background: none; cursor: pointer;
+  line-height: 0; transition: transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s; will-change: transform;
 }
-.tut-rail::-webkit-scrollbar { display: none; }
-.tut-card { flex: 0 0 56vw; scroll-snap-align: center; transform: scale(.8); transition: transform .35s ease; box-shadow: 0 14px 30px rgba(0,0,0,.28); line-height: 0; }
-.tut-card.is-active { transform: scale(1); }
-.step-svg { width: 100%; height: auto; display: block; }
-@media (min-width: 860px) {
-  .tut-head { padding-top: 96px; }
-  .tut-ctas { max-width: 520px; margin-inline: auto; }
-  .tut-rail { padding: 0 calc(50vw - 160px); gap: 32px; }
-  .tut-card { flex-basis: 320px; }
-}
+.tut-card.front { transform: translateX(-50%) scale(1); z-index: 3; cursor: default; }
+.tut-card.left { transform: translateX(calc(-50% - min(60vw, 380px) * .86)) scale(.82); transform-origin: right center; z-index: 2; }
+.tut-card.right { transform: translateX(calc(-50% + min(60vw, 380px) * .86)) scale(.82); transform-origin: left center; z-index: 2; }
+.tut-card.hidden { transform: translateX(-50%) scale(.6); opacity: 0; pointer-events: none; z-index: 1; }
+.tut-dots { position: relative; display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
+.tut-dots button { width: 8px; height: 8px; border-radius: 50%; border: 1px solid #fff; background: transparent; padding: 0; }
+.tut-dots button.on { background: #fff; }
+@media (min-width: 860px) { .tut-head { padding-top: 96px; } .tut-ctas { max-width: 520px; margin-inline: auto; } }
 .step-n { font-family: var(--display); font-size: 12px; }
 .step-t { font-family: var(--display); font-size: 24px; }
 .step-c { font-family: var(--display); font-size: 13.5px; letter-spacing: .02em; }
