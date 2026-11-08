@@ -127,8 +127,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* phone: Discover sits in the open red to the left of KIT */
 /* phone: SHOP NOW sits just above INVISIBLE, tilted to the wordmark's rising baseline */
 .hero-copy .hero-link {
-  position: absolute; left: 28cqw; bottom: 2.2cqw; font-size: 5.5cqw; letter-spacing: .04em; line-height: 1;
-  transform: rotate(-4.8deg); transform-origin: left bottom; /* centred under THRE, left of the thread */
+  position: absolute; left: 5.1cqw; bottom: 4.5cqw; font-size: 4.6cqw; letter-spacing: .04em; line-height: 1;
+  transform: none; /* bottom-left corner, in line with the logo */
   /* 3D extrusion matching the wordmark: white face, pink depth falling down-left, soft cast shadow */
   text-shadow: -.012em .014em 0 #f3d2d0, -.024em .028em 0 #e9b9b6, -.036em .042em 0 #d99a96, -.048em .056em 0 #c27d79,
     -.06em .1em .12em rgba(60, 0, 0, .45);
