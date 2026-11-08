@@ -6,7 +6,7 @@ const CX = 300;
 const CY = 330; // burst centre sits just above the reel
 const R = 1200;
 
-const COLORS = ["#c9472c", "#f7ebc8", "#4f88b5", "#f7ebc8"];
+const COLORS = ["#b22423", "#ffffff", "#1b1f6b", "#ffffff"];
 
 function rays() {
   const step = (Math.PI * 2) / RAYS;
@@ -26,8 +26,8 @@ function Star({ x, y }: { x: number; y: number }) {
   }).join(" ");
   return (
     <g>
-      <circle cx={x} cy={y} r="40" fill="#3d4f6c" />
-      <polygon points={pts} fill="#c9472c" stroke="#f7ebc8" strokeWidth="2.5" strokeLinejoin="round" />
+      <circle cx={x} cy={y} r="40" fill="#1b1f6b" />
+      <polygon points={pts} fill="#b22423" stroke="#ffffff" strokeWidth="2.5" strokeLinejoin="round" />
     </g>
   );
 }
@@ -38,9 +38,9 @@ export default function Poster({ priority = false, className = "" }: { priority?
       <svg className="poster-bg" viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice" aria-hidden>
         <defs>
           <radialGradient id="glow" cx={CX / 600} cy={CY / 750} r="0.55">
-            <stop offset="0" stopColor="#fff6dc" stopOpacity=".95" />
-            <stop offset=".35" stopColor="#fff6dc" stopOpacity=".35" />
-            <stop offset="1" stopColor="#fff6dc" stopOpacity="0" />
+            <stop offset="0" stopColor="#ffffff" stopOpacity=".95" />
+            <stop offset=".35" stopColor="#ffffff" stopOpacity=".35" />
+            <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
           </radialGradient>
           <filter id="wear" x="0" y="0" width="100%" height="100%">
             <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="11" />
@@ -49,7 +49,7 @@ export default function Poster({ priority = false, className = "" }: { priority?
         </defs>
         <g className="poster-rays">{rays()}</g>
         <rect width="600" height="750" fill="url(#glow)" />
-        <rect width="600" height="750" filter="url(#wear)" opacity=".8" />
+        <rect width="600" height="750" filter="url(#wear)" opacity="0" />
       </svg>
       <Image
         className="poster-hand"
