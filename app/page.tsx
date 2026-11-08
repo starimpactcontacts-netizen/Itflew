@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import AddToCart from "@/components/AddToCart";
-import Poster from "@/components/Poster";
+import Collection from "@/components/Collection";
 import Snow from "@/components/Snow";
 import WaitlistForm from "@/components/WaitlistForm";
-import { ITR, formatPrice } from "@/lib/products";
 
 export default function Home() {
   return (
@@ -43,30 +41,7 @@ export default function Home() {
       </section>
 
       {/* PRODUCT — Rabanne-style contained card */}
-      <section className="collection">
-        <h2 className="display collection-title">Now Showing</h2>
-        <div className="collection-card">
-          <Link href="/products/itr" className="collection-img" aria-label={`${ITR.name}, view product`}>
-            <Poster />
-          </Link>
-          <div className="collection-copy">
-            <h3 className="display collection-name">{ITR.name}</h3>
-            <p className="collection-meta">
-              {ITR.short} <span aria-hidden>·</span> {formatPrice(ITR.price)}
-            </p>
-            <p className="collection-text">{ITR.blurb}</p>
-            <div className="cta-row">
-              <Link href="/products/itr" className="shop-link">
-                Shop now
-                <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                  <path d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-              <AddToCart variant="link" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Collection />
 
       {/* HOW */}
       <section id="how" className="section cream">

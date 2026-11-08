@@ -60,14 +60,14 @@ export default function Poster({ priority = false, className = "" }: { priority?
         priority={priority}
         unoptimized
       />
-      {/* navy frame with corner stars, above the hand so the cut wrist tucks behind it */}
-      <svg className="poster-frame" viewBox="0 0 600 750" preserveAspectRatio="none" aria-hidden>
-        <path d="M0 0H600V750H0Z M22 22V728H578V22Z" fill="#3d4f6c" fillRule="evenodd" />
-        <Star x={22} y={22} />
-        <Star x={578} y={22} />
-        <Star x={22} y={728} />
-        <Star x={578} y={728} />
-      </svg>
+      {/* navy frame with corner stars (CSS, so it stays crisp at any card shape) */}
+      <div className="poster-frame" aria-hidden>
+        {["tl", "tr", "bl", "br"].map((c) => (
+          <svg key={c} className={`poster-star ${c}`} viewBox="-40 -40 80 80">
+            <Star x={0} y={0} />
+          </svg>
+        ))}
+      </div>
     </div>
   );
 }
