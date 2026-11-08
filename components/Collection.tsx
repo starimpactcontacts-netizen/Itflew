@@ -5,12 +5,13 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Poster from "./Poster";
 
-type Slide = { name: string; href: string; media: React.ReactNode };
+type Slide = { name: React.ReactNode; sub: string; href: string; media: React.ReactNode };
 
 const SLIDES: Slide[] = [
-  { name: "The ITR Thread Reel", href: "/products/itr", media: <Poster /> },
+  { name: <>Invisible<br />Thread</>, sub: "Make anything fly · $35", href: "/products/itr", media: <Poster /> },
   {
-    name: "Hidden In Plain Sight",
+    name: <>No One<br />Sees It</>,
+    sub: "Hides inside your jacket",
     href: "/products/itr",
     media: (
       <Image
@@ -57,9 +58,10 @@ export default function Collection() {
       </h2>
       <div className="rail" ref={rail}>
         {SLIDES.map((s) => (
-          <Link key={s.name} href={s.href} className="slide">
+          <Link key={s.sub} href={s.href} className="slide">
             <div className="slide-media">{s.media}</div>
             <h3 className="display slide-name">{s.name}</h3>
+            <p className="slide-sub">{s.sub}</p>
             <span className="slide-cta">
               Shop now
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden>

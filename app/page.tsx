@@ -24,8 +24,8 @@ export default function Home() {
           <div className="hero-copy">
             <h1 className="hero-mark">
               <Image
-                src="/itk-wordmark.webp"
-                alt="Invisible Thread Kit"
+                src="/it-wordmark.webp"
+                alt="Invisible Thread"
                 width={954}
                 height={972}
                 priority
