@@ -3,27 +3,22 @@
 import { useActionState } from "react";
 import { joinWaitlist, type WaitlistState } from "@/app/actions/waitlist";
 
+// Footer sign-up: underline input with an arrow submit.
 export default function WaitlistForm() {
   const [state, action, pending] = useActionState<WaitlistState, FormData>(joinWaitlist, null);
 
+  if (state?.ok) return <p className="fs-msg" role="status">{state.message}</p>;
+
   return (
-    <section id="list" className="signup">
-      <h2 className="signup-title">Stay in the know</h2>
-      <p className="signup-sub">New drops, restocks and secrets, first.</p>
-      {state?.ok ? (
-        <p className="signup-msg" role="status">{state.message}</p>
-      ) : (
-        <form action={action} className="signup-form">
-          <label htmlFor="email" className="sr-only">Email address</label>
-          <input id="email" name="email" type="email" required placeholder="Email address" autoComplete="email" />
-          <label className="signup-consent">
-            <input type="checkbox" name="consent" required defaultChecked />
-            <span>Sign me up to hear from It Flew!</span>
-          </label>
-          <button disabled={pending}>{pending ? "Signing up…" : "Sign up"}</button>
-          {state && !state.ok && <p className="signup-msg err" role="alert">{state.message}</p>}
-        </form>
-      )}
-    </section>
+    <form action={action} className="fs-form">
+      <label htmlFor="email" className="sr-only">Email address</label>
+      <input id="email" name="email" type="email" required placeholder="Email address *" autoComplete="email" />
+      <button aria-label="Sign up" disabled={pending}>
+        <svg viewBox="0 0 48 32" width="46" height="30" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden>
+          <path d="M2 16h42M30 3c3 7 8 11 14 13-6 2-11 6-14 13" />
+        </svg>
+      </button>
+      {state && !state.ok && <p className="fs-msg err" role="alert">{state.message}</p>}
+    </form>
   );
 }

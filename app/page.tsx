@@ -3,7 +3,6 @@ import Link from "next/link";
 import Collection from "@/components/Collection";
 import Tutorial from "@/components/Tutorial";
 import Snow from "@/components/Snow";
-import WaitlistForm from "@/components/WaitlistForm";
 
 export default function Home() {
   return (
@@ -47,8 +46,6 @@ export default function Home() {
       {/* HOW — tutorial */}
       <Tutorial />
 
-      {/* SIGN UP */}
-      <WaitlistForm />
     </main>
   );
 }
