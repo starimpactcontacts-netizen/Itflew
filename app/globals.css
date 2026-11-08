@@ -340,7 +340,10 @@ a:hover .poster-hand { translate: -50% -10px; }
   margin: auto 0 0; padding-top: 28px; font-family: var(--display); font-size: clamp(20px, 5.4vw, 26px);
   -webkit-text-stroke: .02em currentColor;
 }
-.slide-price::after { content: ""; display: block; height: 2px; background: currentColor; margin-top: 12px; }
+.rail-progress { position: relative; height: 2px; background: #d9d9d9; margin: 36px 4.2vw 0; }
+.rail-progress[hidden] { display: none; }
+.rail-thumb { position: absolute; top: -1px; height: 4px; background: #000; will-change: left; }
+@media (min-width: 860px) { .rail-progress { margin-inline: 56px; } }
 @media (min-width: 860px) {
   .collection-head { padding: 88px 56px 32px; }
   .collection-body { padding: 40px 0 72px; }

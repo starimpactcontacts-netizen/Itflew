@@ -41,6 +41,7 @@ export default function Collection() {
   const rail = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [scrollable, setScrollable] = useState(true);
+  const [thumb, setThumb] = useState({ left: 0, width: 100 });
 
   useEffect(() => {
     const el = rail.current;
@@ -50,6 +51,9 @@ export default function Collection() {
       if (!slide) return;
       const step = slide.offsetWidth + parseFloat(getComputedStyle(el).columnGap || "0");
       setScrollable(el.scrollWidth > el.clientWidth + 2);
+      const max = el.scrollWidth - el.clientWidth;
+      const width = (el.clientWidth / el.scrollWidth) * 100;
+      setThumb({ width, left: max > 0 ? (el.scrollLeft / max) * (100 - width) : 0 });
       const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
       setIndex(atEnd ? SLIDES.length - 1 : Math.round(el.scrollLeft / step));
     };
@@ -105,6 +109,9 @@ export default function Collection() {
               </div>
             </Link>
           ))}
+        </div>
+        <div className="rail-progress" aria-hidden hidden={!scrollable}>
+          <span className="rail-thumb" style={{ left: `${thumb.left}%`, width: `${thumb.width}%` }} />
         </div>
       </div>
     </section>
