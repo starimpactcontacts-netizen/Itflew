@@ -47,13 +47,8 @@ export default function Home() {
       {/* HOW — tutorial */}
       <Tutorial />
 
-      {/* LIST */}
-      <section id="list" className="section red grain center">
-        <p className="kicker">Drops, restocks &amp; secrets</p>
-        <h2 className="display section-title">Get On The List</h2>
-        <p className="list-sub">Be first to know when new reels land.</p>
-        <WaitlistForm />
-      </section>
+      {/* SIGN UP */}
+      <WaitlistForm />
     </main>
   );
 }
