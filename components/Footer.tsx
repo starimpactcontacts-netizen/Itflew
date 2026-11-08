@@ -12,7 +12,8 @@ export default function Footer() {
     <footer className="fs" id="list">
       <div className="fs-sign">
         <h2 className="fs-title">Sign up &amp; save</h2>
-        <p className="fs-sub">Subscribe for new drops, restocks and the odd secret.</p>
+        <p className="fs-offer">10% off your first order</p>
+        <p className="fs-sub">Join the list for 10% off your first order, plus new drops and restocks first.</p>
         <WaitlistForm />
         <div className="fs-social">
           <a href="#" aria-label="Instagram">

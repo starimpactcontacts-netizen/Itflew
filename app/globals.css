@@ -469,3 +469,4 @@ a:hover .poster-hand { translate: -50% -10px; }
   .pd-acc { max-width: 900px; margin: 0 auto 64px; border: 0; }
   .pd-acc summary, .pd-acc ul { padding-inline: 0; }
 }
+.fs-offer { display: inline-block; margin: 18px 0 0; padding: 8px 16px 7px; background: var(--red); color: #fff; font-family: var(--display); font-size: clamp(15px, 4.2vw, 18px); letter-spacing: .14em; text-transform: uppercase; }

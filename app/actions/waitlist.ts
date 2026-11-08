@@ -17,5 +17,5 @@ export async function joinWaitlist(_: WaitlistState, formData: FormData): Promis
   if (error && error.code !== "23505") {
     return { ok: false, message: "Something went wrong. Try again." };
   }
-  return { ok: true, message: "You're on the list. Watch your inbox." };
+  return { ok: true, message: "You're on the list. Your 10% off is saved for your first order." };
 }
