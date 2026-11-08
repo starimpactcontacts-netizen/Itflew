@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Poster from "./Poster";
+import AddToCart from "./AddToCart";
 import { ITR, formatPrice } from "@/lib/products";
 
 type Slide = { key: string; tag?: string; name: React.ReactNode; desc: string; price?: number; href: string; media: React.ReactNode };
@@ -75,7 +76,7 @@ export default function Collection() {
       <div className="collection-head">
         <h2 className="display collection-title">Now Showing</h2>
         <div className="collection-bar">
-          <Link href="/products/itr" className="shop-all">Shop all</Link>
+          <AddToCart variant="link" label="Add to cart" className="shop-all" />
           <div className="pager" aria-label="Carousel controls" hidden={!scrollable}>
             <button aria-label="Previous" disabled={index === 0} onClick={() => go(-1)}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M15 4l-8 8 8 8" /></svg>

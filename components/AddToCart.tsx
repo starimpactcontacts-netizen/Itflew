@@ -3,15 +3,15 @@
 import { useState } from "react";
 import { useCart } from "./CartProvider";
 
-type Props = { withQty?: boolean; label?: string; variant?: "solid" | "link" };
+type Props = { withQty?: boolean; label?: string; variant?: "solid" | "link"; className?: string };
 
-export default function AddToCart({ withQty = false, label = "Add to bag", variant = "solid" }: Props) {
+export default function AddToCart({ withQty = false, label = "Add to bag", variant = "solid", className }: Props) {
   const { add } = useCart();
   const [n, setN] = useState(1);
 
   if (variant === "link") {
     return (
-      <button className="link-cta" onClick={() => add(1)}>
+      <button className={className ?? "link-cta"} onClick={() => add(1)}>
         {label}
       </button>
     );
