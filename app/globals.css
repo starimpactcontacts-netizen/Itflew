@@ -140,7 +140,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @media (prefers-reduced-motion: reduce) { .hero-copy .hero-link { animation: none; } }
 @media (min-width: 900px) {
   /* Desktop: same lockup as mobile (thread runs into the can), centred and sized to fit the screen height */
-  .hero-frame { width: min(100%, calc(100svh / 1.42)); min-width: 0; }
+  .hero-frame { width: min(100%, calc(100svh / 1.42)); min-width: 0; position: static; }
+  .hero-copy { position: static; }
+  .hero-mark { position: relative; z-index: 6; }
+  /* SHOP NOW pinned to the bottom-left corner of the whole hero */
+  .hero-copy .hero-link { left: 56px; bottom: 48px; z-index: 7; font-size: 30px; }
 }
 .hero-link:hover svg { transform: translateX(4px); }
 .kicker { font-family: var(--body); font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; font-size: 13px; margin: 0 0 10px; }
