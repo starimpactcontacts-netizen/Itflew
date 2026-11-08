@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import Poster from "./Poster";
 import { ITR, formatPrice } from "@/lib/products";
 
-type Slide = { key: string; tag?: string; name: React.ReactNode; desc: string; price: number; href: string; media: React.ReactNode };
+type Slide = { key: string; tag?: string; name: React.ReactNode; desc: string; price?: number; href: string; media: React.ReactNode };
 
 const SLIDES: Slide[] = [
   {
@@ -20,10 +20,8 @@ const SLIDES: Slide[] = [
   },
   {
     key: "jacket",
-    tag: "New",
     name: <>No One<br />Sees It</>,
     desc: "Hides inside your jacket.",
-    price: ITR.price,
     href: "/products/itr",
     media: (
       <Image
@@ -102,7 +100,7 @@ export default function Collection() {
               <div className="slide-copy">
                 <h3 className="slide-name">{s.name}</h3>
                 <p className="slide-desc">{s.desc}</p>
-                <p className="slide-price">{formatPrice(s.price)}</p>
+                {s.price != null && <p className="slide-price">{formatPrice(s.price)}</p>}
               </div>
             </Link>
           ))}
