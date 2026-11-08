@@ -338,3 +338,17 @@ a:hover .poster-hand { translate: -50% -10px; }
 
 .snow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
 .hero-copy { z-index: 6; }
+
+.slide-media img.jacket { object-position: 50% 30%; }
+
+/* PDP gallery: swipe on phones, stacked on desktop */
+.pdp-gallery { display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 16px 16px 0; scroll-padding-inline: 16px; }
+.pdp-gallery::-webkit-scrollbar { display: none; }
+.pdp-shot { flex: 0 0 88%; scroll-snap-align: start; aspect-ratio: 4 / 5; overflow: hidden; background: #f7ebc8; }
+.pdp-shot .poster { aspect-ratio: auto; width: 100%; height: 100%; }
+.pdp-shot > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+@media (min-width: 860px) {
+  .pdp-gallery { flex-direction: column; overflow: visible; padding: 24px 0 24px 40px; gap: 12px; }
+  .pdp-shot { flex: none; width: 100%; }
+  .pdp-info { position: sticky; top: var(--header-h); }
+}

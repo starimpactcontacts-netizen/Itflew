@@ -10,10 +10,17 @@ type Slide = { name: string; href: string; media: React.ReactNode };
 const SLIDES: Slide[] = [
   { name: "The ITR Thread Reel", href: "/products/itr", media: <Poster /> },
   {
-    name: "Invisible Thread Kit",
+    name: "Hidden In Plain Sight",
     href: "/products/itr",
     media: (
-      <Image className="cover" src="/hero-v4.webp" alt="" width={1042} height={1389} unoptimized />
+      <Image
+        className="cover jacket"
+        src="/itr-jacket.webp"
+        alt="The ITR clipped inside a jacket, its invisible thread running down the lining"
+        width={1072}
+        height={1008}
+        unoptimized
+      />
     ),
   },
 ];

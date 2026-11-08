@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Poster from "@/components/Poster";
 import AddToCart from "@/components/AddToCart";
@@ -12,8 +13,19 @@ export const metadata: Metadata = {
 export default function ProductPage() {
   return (
     <main className="pdp">
-      <div className="pdp-img">
-        <Poster priority />
+      <div className="pdp-gallery">
+        <div className="pdp-shot">
+          <Poster priority />
+        </div>
+        <div className="pdp-shot">
+          <Image
+            src="/itr-jacket.webp"
+            alt="The ITR clipped inside a jacket, its invisible thread running down the lining"
+            width={1072}
+            height={1008}
+            unoptimized
+          />
+        </div>
       </div>
       <div className="pdp-info">
         <nav className="crumbs small">
