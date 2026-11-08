@@ -21,7 +21,7 @@ export default function Header() {
     const on = () => {
       setScrolled(window.scrollY > 40);
       const f = document.querySelector(".fs");
-      setOverFooter(!!f && f.getBoundingClientRect().top <= 64);
+      setOverFooter(!!f && f.getBoundingClientRect().top < window.innerHeight);
     };
     on();
     window.addEventListener("scroll", on, { passive: true });

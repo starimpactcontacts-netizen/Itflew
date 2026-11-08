@@ -435,3 +435,4 @@ a:hover .poster-hand { translate: -50% -10px; }
 @media (min-width: 860px) { .fs-acc { max-width: 900px; margin: 0 auto; } .fs-acc summary, .fs-acc ul { padding-inline: 0; } }.header.is-dark { background: #000; border-bottom-color: #333; }
 .header.is-dark .icon-btn { color: #fff; }
 .header.is-dark .badge { background: #fff; color: #000; }
+.header { transition: background .35s ease, border-color .35s ease; }
