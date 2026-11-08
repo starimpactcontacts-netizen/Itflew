@@ -5,6 +5,13 @@ import { useRef, useState } from "react";
 import AddToCart from "./AddToCart";
 import { StepImage, STEP_COUNT } from "./StepCard";
 
+const CAPTIONS = [
+  "Clip the ITR inside your collar or jacket, the thread runs out unseen.",
+  "Pinch the tip and draw a length of invisible thread off the spool.",
+  "Secretly hook the thread to the can, then step back with open hands.",
+  "Lift your hands slowly and the can rises straight to you. It flew.",
+];
+
 // Looping 3-up carousel: one card in front, one peeking left, one right — always.
 export default function Tutorial() {
   const [active, setActive] = useState(0);
@@ -58,6 +65,10 @@ export default function Tutorial() {
             );
           })}
         </div>
+        <p className="tut-caption" aria-live="polite">
+          <span>{active === 0 ? "The setup" : `Step ${active + 1}`}</span>
+          {CAPTIONS[active]}
+        </p>
         <div className="tut-dots">
           {Array.from({ length: STEP_COUNT }, (_, i) => (
             <button key={i} aria-label={`Show step ${i + 1}`} className={i === active ? "on" : ""} onClick={() => setActive(i)} />
