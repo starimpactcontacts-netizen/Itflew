@@ -1,124 +1,132 @@
-// Vintage instruction-card illustrations for each step of the trick.
-// Line-art in ink on cream, with the "invisible" thread drawn in red so it reads.
-const INK = "#1d1d1f";
+// Step cards for the tutorial carousel, built from the real product art
+// with the thread drawn on top in brand red so the "invisible" part reads.
 const RED = "#b22423";
-const CREAM = "#f7efe2";
+const INK = "#000";
+const W = 300;
+const H = 400;
+const WIN = { x: 22, y: 98, w: 256, h: 246 };
 
-function Frame({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
+function Card({ n, title, caption, children, id }: { n: string; title: string; caption: string; children: React.ReactNode; id: string }) {
   return (
-    <svg viewBox="0 0 300 380" className="step-svg" role="img" aria-label={`Step ${n}: ${title}`}>
-      <rect width="300" height="380" fill={CREAM} />
-      <rect x="10" y="10" width="280" height="360" fill="none" stroke={INK} strokeWidth="2.5" />
-      <rect x="16" y="16" width="268" height="348" fill="none" stroke={INK} strokeWidth="1" />
-      {/* banner */}
-      <rect x="34" y="34" width="232" height="54" fill={INK} />
-      <text x="150" y="58" textAnchor="middle" fill={CREAM} fontFamily="Georgia, serif" fontSize="13" letterSpacing="4">
-        STEP {n}
-      </text>
-      <text x="150" y="80" textAnchor="middle" fill={CREAM} fontFamily="Georgia, serif" fontSize="20" letterSpacing="5" fontWeight="700">
-        {title}
-      </text>
-      <g fill="none" stroke={INK} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        {children}
-      </g>
+    <svg viewBox={`0 0 ${W} ${H}`} className="step-svg" role="img" aria-label={`Step ${n}: ${title}. ${caption}`}>
+      <defs>
+        <clipPath id={`win-${id}`}>
+          <rect x={WIN.x} y={WIN.y} width={WIN.w} height={WIN.h} />
+        </clipPath>
+        <radialGradient id={`glow-${id}`} cx=".45" cy=".4" r=".75">
+          <stop offset="0" stopColor="#fff" />
+          <stop offset="1" stopColor="#ececec" />
+        </radialGradient>
+        <marker id={`arrow-${id}`} viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M1 1 L8 5 L1 9" fill="none" stroke={RED} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </marker>
+      </defs>
+      <rect width={W} height={H} fill="#fff" />
+      <rect x="8" y="8" width={W - 16} height={H - 16} fill="none" stroke={INK} strokeWidth="2.4" />
+      <rect x="14" y="14" width={W - 28} height={H - 28} fill="none" stroke={INK} strokeWidth=".8" />
+
+      {/* title banner */}
+      <rect x="22" y="22" width="256" height="62" fill={INK} />
+      <text x="150" y="44" textAnchor="middle" fill="#fff" className="step-n" letterSpacing="5">STEP {n}</text>
+      <text x="150" y="72" textAnchor="middle" fill="#fff" className="step-t" letterSpacing="6">{title}</text>
+
+      {/* picture window */}
+      <rect x={WIN.x} y={WIN.y} width={WIN.w} height={WIN.h} fill={`url(#glow-${id})`} />
+      <g clipPath={`url(#win-${id})`}>{children}</g>
+      <rect x={WIN.x} y={WIN.y} width={WIN.w} height={WIN.h} fill="none" stroke={INK} strokeWidth="1" />
+
+      <text x="150" y="372" textAnchor="middle" fill={INK} className="step-c">{caption}</text>
     </svg>
   );
 }
 
-// The ITR: clear tube with two black end caps and a clip.
-function Reel({ x, y, r = 0, s = 1 }: { x: number; y: number; r?: number; s?: number }) {
+// Red-glove cutout (412 x 947). Thread leaves the reel's middle at (235, 140) in the image.
+const GLOVE = { w: 412, h: 947, ox: 235, oy: 140 };
+function Glove({ x, y, s }: { x: number; y: number; s: number }) {
+  // x, y = where the thread origin should land on the card
   return (
-    <g transform={`translate(${x} ${y}) rotate(${r}) scale(${s})`}>
-      <rect x="-34" y="-9" width="68" height="18" rx="4" fill={CREAM} />
-      <line x1="-20" y1="-4" x2="20" y2="-4" strokeWidth="1" />
-      <rect x="-52" y="-11" width="20" height="22" rx="7" fill={INK} />
-      <rect x="32" y="-11" width="20" height="22" rx="7" fill={INK} />
-      <path d="M-14 -9 v-6 h26 l6 -4" strokeWidth="1.6" />
-    </g>
+    <image href="/itr-hand.webp" width={GLOVE.w * s} height={GLOVE.h * s} x={x - GLOVE.ox * s} y={y - GLOVE.oy * s} />
   );
 }
 
-// Simple engraved-style hand, fingers pointing down.
-function Hand({ x, y, r = 0, s = 1 }: { x: number; y: number; r?: number; s?: number }) {
-  return (
-    <g transform={`translate(${x} ${y}) rotate(${r}) scale(${s})`} fill={CREAM}>
-      <path d="M-30 -60 C-34 -30 -32 -10 -26 4 C-24 16 -20 30 -18 44 C-16 52 -8 52 -8 44 L-8 18 C-6 32 -4 50 -2 58 C0 66 8 64 8 56 L8 22 C10 36 12 50 14 56 C16 64 24 62 24 54 L22 20 C24 30 26 40 28 44 C30 50 38 48 36 40 L32 4 C34 -16 36 -36 34 -60 Z" />
-      <path d="M-20 -30 q6 4 12 0 M-2 -24 q6 4 12 0" strokeWidth="1" />
-    </g>
-  );
-}
-
-function Ring({ x, y }: { x: number; y: number }) {
+function Ring({ x, y, id }: { x: number; y: number; id: string }) {
   return (
     <g transform={`translate(${x} ${y})`}>
-      <ellipse rx="22" ry="9" strokeWidth="5" />
-      <ellipse rx="22" ry="9" stroke={CREAM} strokeWidth="1.4" />
-      <path d="M-6 -12 l6 -10 l6 10 z" fill={CREAM} />
-    </g>
-  );
-}
-
-function Sparks({ x, y }: { x: number; y: number }) {
-  return (
-    <g transform={`translate(${x} ${y})`} strokeWidth="1.6">
-      {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
-        <line key={a} x1="0" y1="-34" x2="0" y2="-44" transform={`rotate(${a})`} />
-      ))}
+      <defs>
+        <linearGradient id={`metal-${id}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#fff" />
+          <stop offset=".35" stopColor="#bdbdbd" />
+          <stop offset=".6" stopColor="#f2f2f2" />
+          <stop offset="1" stopColor="#7d7d7d" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="2" cy="20" rx="20" ry="4" fill="#000" opacity=".12" />
+      <ellipse rx="19" ry="17" fill="none" stroke="#222" strokeWidth="8.5" />
+      <ellipse rx="19" ry="17" fill="none" stroke={`url(#metal-${id})`} strokeWidth="6" />
+      <path d="M-13 -9 A15 13 0 0 1 4 -16" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M-4 -24 L0 -32 L4 -24 Z" fill={RED} stroke="#222" strokeWidth=".8" />
     </g>
   );
 }
 
 export function StepClip() {
+  // Jacket photo (1072 x 1008), reel at ~(520, 350), thread at x≈524 below y≈400.
+  const s = 0.4;
+  const x = 150 - 520 * s;
+  const y = 205 - 350 * s;
   return (
-    <Frame n="I" title="CLIP">
-      {/* jacket lapel + lining */}
-      <path d="M60 120 L130 330 M240 120 L170 330" />
-      <path d="M130 330 L150 260 L170 330" />
-      <path d="M90 120 C110 170 120 200 140 230 M210 120 C190 170 180 200 160 230" strokeWidth="1.2" />
-      <Reel x={150} y={170} r={-8} s={1} />
-      <path d="M150 182 L150 330" stroke={RED} strokeWidth="1.6" strokeDasharray="5 4" />
-      <path d="M232 168 l14 -6 m-14 18 l16 0 m-14 12 l14 6" strokeWidth="1.4" />
-    </Frame>
+    <Card id="clip" n="I" title="CLIP" caption="Clip the reel inside your jacket.">
+      <image href="/itr-jacket.webp" width={1072 * s} height={1008 * s} x={x} y={y} />
+      <line x1={x + 524 * s} y1={y + 392 * s} x2={x + 524 * s} y2={WIN.y + WIN.h} stroke={RED} strokeWidth="1.6" />
+    </Card>
   );
 }
 
 export function StepPull() {
+  const o = { x: 132, y: 168 };
   return (
-    <Frame n="II" title="PULL">
-      <Reel x={95} y={170} r={0} s={0.9} />
-      <path d="M142 170 C175 170 195 180 205 205" stroke={RED} strokeWidth="2" />
-      <Hand x={215} y={260} r={180} s={0.9} />
-      <path d="M150 240 l-26 0 m6 -8 l-8 8 l8 8" strokeWidth="1.6" />
-      <text x="150" y="340" textAnchor="middle" fill={INK} stroke="none" fontFamily="Georgia, serif" fontSize="13" fontStyle="italic">
-        draw out a length of thread
-      </text>
-    </Frame>
+    <Card id="pull" n="II" title="PULL" caption="Draw out a length of thread.">
+      <Glove x={o.x} y={o.y} s={0.44} />
+      <path
+        d={`M${o.x} ${o.y} C ${o.x + 50} ${o.y + 4}, ${o.x + 100} ${o.y + 26}, 264 ${o.y + 78}`}
+        fill="none"
+        stroke={RED}
+        strokeWidth="1.8"
+        markerEnd="url(#arrow-pull)"
+      />
+      <g stroke={RED} strokeWidth="1.1" strokeLinecap="round" opacity=".55">
+        <line x1="218" y1="230" x2="236" y2="238" />
+        <line x1="212" y1="242" x2="228" y2="249" />
+      </g>
+    </Card>
   );
 }
 
 export function StepHook() {
+  const o = { x: 118, y: 156 };
+  const ring = { x: 228, y: 290 };
   return (
-    <Frame n="III" title="HOOK">
-      <Hand x={150} y={150} s={0.85} />
-      <path d="M150 205 L150 265" stroke={RED} strokeWidth="2" />
-      <Ring x={150} y={276} />
-      <circle cx="150" cy="276" r="52" strokeWidth="1.4" strokeDasharray="3 5" />
-      <text x="150" y="350" textAnchor="middle" fill={INK} stroke="none" fontFamily="Georgia, serif" fontSize="13" fontStyle="italic">
-        loop it on a ring, card or bill
-      </text>
-    </Frame>
+    <Card id="hook" n="III" title="HOOK" caption="Loop it on a ring, a card or a bill.">
+      <Glove x={o.x} y={o.y} s={0.44} />
+      <path
+        d={`M${o.x} ${o.y} C ${o.x + 70} ${o.y + 10}, ${ring.x} ${ring.y - 90}, ${ring.x} ${ring.y - 32}`}
+        fill="none"
+        stroke={RED}
+        strokeWidth="1.6"
+      />
+      <Ring x={ring.x} y={ring.y} id="hook" />
+    </Card>
   );
 }
 
 export function StepFly() {
+  // Hero art (1042 x 1389): can centre ~(540, 690).
+  const s = 0.36;
+  const x = 150 - 540 * s;
+  const y = 232 - 690 * s;
   return (
-    <Frame n="IV" title="FLY">
-      <Hand x={150} y={150} s={0.85} />
-      <path d="M150 205 L150 232" stroke={RED} strokeWidth="1.4" strokeDasharray="3 4" opacity=".7" />
-      <Ring x={150} y={244} />
-      <Sparks x={150} y={244} />
-      <path d="M150 330 L150 296 M140 306 l10 -10 l10 10" strokeWidth="1.8" />
-      <path d="M118 300 q-8 -14 0 -28 M182 300 q8 -14 0 -28" strokeWidth="1.2" />
-    </Frame>
+    <Card id="fly" n="IV" title="FLY" caption="Lift your hand. It flies.">
+      <image href="/hero-v4.webp" width={1042 * s} height={1389 * s} x={x} y={y} />
+    </Card>
   );
 }
