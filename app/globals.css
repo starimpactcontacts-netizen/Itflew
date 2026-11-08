@@ -1,6 +1,6 @@
 :root {
-  --red: #a10d0a; /* matched to the hero art background */
-  --red-deep: #830a08;
+  --red: #b22423;
+  --red-deep: #921b1a;
   --red-bright: #e2483d; /* red text on dark backgrounds */
   --ink: #000000;
   --ink-2: #111111;
@@ -81,7 +81,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* HERO */
 .hero {
-  background: #940403; /* matched to the hero art */ display: flex; justify-content: center; overflow: hidden;
+  background: #b22323; /* matched to the hero art */ position: relative; display: flex; justify-content: center; overflow: hidden;
   margin-top: calc(-1 * var(--header-h)); /* image runs under the see-through header */
 }
 .hero-frame {
@@ -314,3 +314,6 @@ a:hover .poster-hand { translate: -50% -10px; }
   .collection-title, .collection-card { max-width: 1040px; }
   .collection-card { grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 72px; align-items: center; }
 }
+
+.snow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+.hero-copy { z-index: 6; }

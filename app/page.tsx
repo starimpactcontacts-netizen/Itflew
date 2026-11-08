@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "@/components/AddToCart";
 import Poster from "@/components/Poster";
+import Snow from "@/components/Snow";
 import WaitlistForm from "@/components/WaitlistForm";
 import { ITR, formatPrice } from "@/lib/products";
 
@@ -13,7 +14,7 @@ export default function Home() {
         <div className="hero-frame">
           <div className="hero-art">
           <Image
-            src="/hero-v3.webp"
+            src="/hero-v4.webp"
             alt="An engraved hand levitating an It Flew! can"
             width={1042}
             height={1389}
@@ -38,6 +39,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        <Snow />
       </section>
 
       {/* PRODUCT — Rabanne-style contained card */}
