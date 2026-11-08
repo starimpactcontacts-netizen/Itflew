@@ -11,7 +11,7 @@ export const ITR: Product = {
   slug: "itr",
   name: "The ITR",
   short: "Small Invisible Thread Reel",
-  price: 35,
+  price: 19,
   blurb:
     "A pocket-sized reel loaded with invisible thread. Clip it on, pull it out, and make rings, bills and cards rise from your fingertips — then let it all vanish back into the reel.",
   details: [

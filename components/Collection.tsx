@@ -4,14 +4,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Poster from "./Poster";
+import { ITR, formatPrice } from "@/lib/products";
 
-type Slide = { name: React.ReactNode; sub: string; href: string; media: React.ReactNode };
+type Slide = { key: string; tag?: string; name: React.ReactNode; desc: string; price: number; href: string; media: React.ReactNode };
 
 const SLIDES: Slide[] = [
-  { name: <>Invisible<br />Thread</>, sub: "Make anything fly · $35", href: "/products/itr", media: <Poster /> },
   {
+    key: "thread",
+    tag: "New",
+    name: <>Invisible<br />Thread</>,
+    desc: "Make anything fly.",
+    price: ITR.price,
+    href: "/products/itr",
+    media: <Poster />,
+  },
+  {
+    key: "jacket",
+    tag: "New",
     name: <>No One<br />Sees It</>,
-    sub: "Hides inside your jacket",
+    desc: "Hides inside your jacket.",
+    price: ITR.price,
     href: "/products/itr",
     media: (
       <Image
@@ -28,16 +40,19 @@ const SLIDES: Slide[] = [
 
 export default function Collection() {
   const rail = useRef<HTMLDivElement>(null);
-  const [thumb, setThumb] = useState({ left: 0, width: 100 });
+  const [index, setIndex] = useState(0);
+  const [scrollable, setScrollable] = useState(true);
 
   useEffect(() => {
     const el = rail.current;
     if (!el) return;
     const update = () => {
-      const max = el.scrollWidth - el.clientWidth;
-      const width = (el.clientWidth / el.scrollWidth) * 100;
-      const left = max > 0 ? (el.scrollLeft / max) * (100 - width) : 0;
-      setThumb({ left, width });
+      const slide = el.querySelector<HTMLElement>(".slide");
+      if (!slide) return;
+      const step = slide.offsetWidth + parseFloat(getComputedStyle(el).columnGap || "0");
+      setScrollable(el.scrollWidth > el.clientWidth + 2);
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
+      setIndex(atEnd ? SLIDES.length - 1 : Math.round(el.scrollLeft / step));
     };
     update();
     el.addEventListener("scroll", update, { passive: true });
@@ -49,31 +64,49 @@ export default function Collection() {
     };
   }, []);
 
+  const go = (dir: 1 | -1) => {
+    const el = rail.current;
+    const slide = el?.querySelector<HTMLElement>(".slide");
+    if (!el || !slide) return;
+    const step = slide.offsetWidth + parseFloat(getComputedStyle(el).columnGap || "0");
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
   return (
     <section className="collection">
       <div className="collection-head">
         <h2 className="display collection-title">Now Showing</h2>
-        <p className="collection-lede">The tools magicians are reaching for right now.</p>
+        <div className="collection-bar">
+          <Link href="/products/itr" className="shop-all">Shop all</Link>
+          <div className="pager" aria-label="Carousel controls" hidden={!scrollable}>
+            <button aria-label="Previous" disabled={index === 0} onClick={() => go(-1)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M15 4l-8 8 8 8" /></svg>
+            </button>
+            <span>
+              {index + 1}/{SLIDES.length}
+            </span>
+            <button aria-label="Next" disabled={index === SLIDES.length - 1} onClick={() => go(1)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M9 4l8 8-8 8" /></svg>
+            </button>
+          </div>
+        </div>
       </div>
       <div className="collection-body">
-      <div className="rail" ref={rail}>
-        {SLIDES.map((s) => (
-          <Link key={s.sub} href={s.href} className="slide">
-            <div className="slide-media">{s.media}</div>
-            <h3 className="display slide-name">{s.name}</h3>
-            <p className="slide-sub">{s.sub}</p>
-            <span className="slide-cta">
-              Shop now
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden>
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
-          </Link>
-        ))}
-      </div>
-      <div className="rail-progress" aria-hidden>
-        <span className="rail-thumb" style={{ left: `${thumb.left}%`, width: `${thumb.width}%` }} />
-      </div>
+        <div className="rail" ref={rail}>
+          {SLIDES.map((s) => (
+            <Link key={s.key} href={s.href} className="slide">
+              <div className="slide-media">
+                {s.media}
+                {s.tag && <span className="slide-tag">{s.tag}</span>}
+              </div>
+              <div className="slide-copy">
+                <h3 className="slide-name">{s.name}</h3>
+                <p className="slide-desc">{s.desc}</p>
+                <p className="slide-price">{formatPrice(s.price)}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
