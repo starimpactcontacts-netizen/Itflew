@@ -395,3 +395,4 @@ a:hover .poster-hand { translate: -50% -10px; }
 .step-n { font-family: var(--display); font-size: 12px; }
 .step-t { font-family: var(--display); font-size: 24px; }
 .step-c { font-family: var(--display); font-size: 13.5px; letter-spacing: .02em; }
+.step-img { width: 100%; height: auto; display: block; }

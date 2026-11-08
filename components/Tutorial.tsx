@@ -3,14 +3,9 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import AddToCart from "./AddToCart";
-import { StepClip, StepPull, StepHook, StepFly } from "./StepCard";
+import { StepImage, STEP_COUNT } from "./StepCard";
 
-const STEPS = [
-  { key: "clip", Card: StepClip },
-  { key: "pull", Card: StepPull },
-  { key: "hook", Card: StepHook },
-  { key: "fly", Card: StepFly },
-];
+const STEPS = Array.from({ length: STEP_COUNT }, (_, i) => i);
 
 export default function Tutorial() {
   const rail = useRef<HTMLDivElement>(null);
@@ -48,9 +43,9 @@ export default function Tutorial() {
       </div>
       <div className="tut-stage">
         <div className="tut-rail" ref={rail}>
-          {STEPS.map(({ key, Card }, i) => (
-            <div key={key} className={`tut-card${i === active ? " is-active" : ""}`}>
-              <Card />
+          {STEPS.map((i) => (
+            <div key={i} className={`tut-card${i === active ? " is-active" : ""}`}>
+              <StepImage i={i} />
             </div>
           ))}
         </div>
