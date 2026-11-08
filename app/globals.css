@@ -48,7 +48,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
   transition: background .3s, border-color .3s;
 }
 .header.is-overlay { background: linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.12)); }
-.header.is-solid { background: var(--ink); border-bottom-color: #262626; }
+.header.is-solid { background: #fff; border-bottom-color: #e6e6e6; }
+.header.is-solid .icon-btn { color: #000; }
+.header.is-solid .badge { background: #000; color: #fff; }
+.header.is-solid .menu { background: #fff; color: #000; }
+.header.is-solid .menu a { border-bottom-color: #e6e6e6; }
+.header.is-solid .menu a:hover { color: var(--red); }
 .header-left { display: flex; align-items: center; gap: 10px; padding-left: 8px; }
 .brand img { display: block; width: 150px; height: auto; }
 

@@ -29,7 +29,7 @@ export default function Header() {
     <header className={`header ${solid ? "is-solid" : "is-overlay"}`}>
       <div className="header-left">
         <Link href="/" className="brand" aria-label="It Flew! home" onClick={() => setMenu(false)}>
-          <Image src="/wordmark-white.png" alt="It Flew!" width={672} height={140} priority />
+          <Image src={solid ? "/wordmark-black.png" : "/wordmark-white.png"} alt="It Flew!" width={672} height={140} priority />
         </Link>
       </div>
       <div className="header-right">
