@@ -51,11 +51,11 @@ export default function Collection() {
 
   return (
     <section className="collection">
-      <h2 className="display collection-title">
-        Now
-        <br />
-        Showing
-      </h2>
+      <div className="collection-head">
+        <h2 className="display collection-title">Now Showing</h2>
+        <p className="collection-lede">The tools magicians are reaching for right now.</p>
+      </div>
+      <div className="collection-body">
       <div className="rail" ref={rail}>
         {SLIDES.map((s) => (
           <Link key={s.sub} href={s.href} className="slide">
@@ -73,6 +73,7 @@ export default function Collection() {
       </div>
       <div className="rail-progress" aria-hidden>
         <span className="rail-thumb" style={{ left: `${thumb.left}%`, width: `${thumb.width}%` }} />
+      </div>
       </div>
     </section>
   );

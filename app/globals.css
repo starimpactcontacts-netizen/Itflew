@@ -303,8 +303,16 @@ a:hover .poster-hand { translate: -50% -10px; }
 
 
 /* COLLECTION — Rabanne-style carousel */
-.collection { background: #fff; color: #000; padding: 72px 0 40px; }
-.collection-title { font-size: clamp(40px, 11vw, 96px); line-height: .98; margin: 0 4.2vw 44px; }
+.collection { padding: 0; }
+/* white intro: title on one line + a line of copy */
+.collection-head { background: #fff; color: #000; padding: 64px 4.2vw 48px; }
+.collection-title { font-size: clamp(30px, 8.6vw, 96px); line-height: 1; margin: 0; white-space: nowrap; }
+.collection-lede { margin: 16px 0 0; font-size: clamp(17px, 4.6vw, 22px); line-height: 1.4; color: #222; max-width: 26em; text-wrap: balance; }
+/* black stage for the products */
+.collection-body { background: #000; color: #fff; padding: 40px 0 44px; }
+.collection-body .slide-sub { color: #b5b5b5; }
+.collection-body .rail-progress { background: #3a3a3a; }
+.collection-body .rail-thumb { background: #fff; }
 .rail {
   display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 4.2vw;
   padding: 0 4.2vw; scrollbar-width: none; -webkit-overflow-scrolling: touch;
@@ -328,8 +336,9 @@ a:hover .poster-hand { translate: -50% -10px; }
 .rail-progress::before { display: none; }
 .rail-thumb { position: absolute; top: -1px; height: 4px; background: #000; transition: left .25s ease, width .25s ease; }
 @media (min-width: 860px) {
-  .collection { padding: 112px 0 64px; }
-  .collection-title, .rail-progress { margin-inline: 56px; }
+  .collection-head { padding: 96px 56px 56px; }
+  .collection-body { padding: 56px 0 64px; }
+  .rail-progress { margin-inline: 56px; }
   .rail { padding-inline: 56px; scroll-padding-inline: 56px; gap: 8px; }
   .slide { flex-basis: min(44vw, 720px); }
   .slide-name { margin-top: 28px; }
