@@ -139,12 +139,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-copy .hero-link { animation: none; } }
 @media (min-width: 900px) {
-  .hero { position: relative; }
-  .hero-frame { position: static; }
-  /* Desktop: wordmark in the open red to the left of the art */
-  .hero-copy { position: absolute; left: 0; bottom: 0; margin: 0; padding: 0 0 56px 56px; align-items: flex-start; gap: 22px; }
-  .hero-mark img { translate: none; width: min(26vw, 420px); filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .28)); }
-  .hero-copy .hero-link { position: static; transform: none; animation: none; text-shadow: -1px 1px 0 #f3d2d0, -2px 2px 0 #e9b9b6, -3px 3px 0 #d99a96, -4px 4px 0 #c27d79, -5px 8px 10px rgba(60,0,0,.45); font-size: 40px; letter-spacing: .03em; gap: 10px; }
+  /* Desktop: same lockup as mobile (thread runs into the can), centred and sized to fit the screen height */
+  .hero-frame { width: min(100%, calc(100svh / 1.42)); min-width: 0; }
 }
 .hero-link:hover svg { transform: translateX(4px); }
 .kicker { font-family: var(--body); font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; font-size: 13px; margin: 0 0 10px; }
