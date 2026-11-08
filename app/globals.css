@@ -423,3 +423,28 @@ a:hover .poster-hand { translate: -50% -10px; }
 .signup-msg { margin: 6px 0 0; font-size: 14px; }
 .signup-msg.err { color: var(--red); }
 @media (min-width: 860px) { .signup { padding: 36px 56px; } }
+
+/* FOOTER */
+.ft { background: #fff; color: #111; padding: 48px 4.2vw 36px; border-top: 1px solid #e6e6e6; }
+.ft-title { display: inline-block; margin: 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(56px, 16vw, 96px); line-height: 1; letter-spacing: .01em; -webkit-text-stroke: .03em currentColor; border-bottom: 6px solid currentColor; padding-bottom: 6px; }
+.ft-acc { margin-top: 36px; }
+.ft-acc details { border: 0; }
+.ft-acc summary { list-style: none; display: inline-flex; align-items: center; gap: 12px; cursor: pointer; padding: 12px 0; font-size: clamp(22px, 6vw, 28px); }
+.ft-acc summary::-webkit-details-marker { display: none; }
+.ft-acc summary svg { transition: transform .2s; }
+.ft-acc details[open] summary svg { transform: rotate(180deg); }
+.ft-acc ul { list-style: none; margin: 0 0 8px; padding: 0 0 0 2px; }
+.ft-acc li a { display: block; padding: 6px 0; font-size: 17px; color: #555; }
+.ft-acc li a:hover { color: #000; }
+.ft-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; row-gap: 34px; column-gap: 12px;
+  margin: 48px 0 0; font-family: var(--display); font-size: clamp(14px, 3.8vw, 17px); letter-spacing: .08em; text-transform: uppercase; color: #6b6b6b;
+}
+.ft-grid > :nth-child(3n + 1) { justify-self: start; }
+.ft-grid > :nth-child(3n + 2) { justify-self: center; text-align: center; }
+.ft-grid > :nth-child(3n) { justify-self: end; text-align: right; }
+.ft-grid a:hover { color: #000; }
+.ft-region { display: inline-flex; align-items: center; gap: 10px; }
+.ft-logo img { width: 96px; height: auto; display: block; }
+.ft-copy { margin: 40px 0 0; text-align: center; font-family: var(--display); font-size: clamp(12px, 3.4vw, 15px); letter-spacing: .08em; text-transform: uppercase; color: #6b6b6b; }
+@media (min-width: 860px) { .ft { padding: 72px 56px 48px; } .ft-grid { max-width: 900px; margin-inline: auto; } }

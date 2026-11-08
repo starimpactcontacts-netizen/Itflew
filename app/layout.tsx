@@ -6,6 +6,7 @@ import "./globals.css";
 import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
 import CartDrawer from "@/components/CartDrawer";
+import Footer from "@/components/Footer";
 
 // Closest open match to the Emaar-style flared Roman capitals.
 const display = Marcellus({ weight: "400", subsets: ["latin"], variable: "--font-display" });
@@ -25,18 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CartProvider>
           <Header />
           {children}
-          <footer className="footer">
-            <Link href="/" aria-label="It Flew! home">
-              <Image src="/wordmark-white.png" alt="It Flew!" width={672} height={140} className="footer-mark" />
-            </Link>
-            <nav>
-              <Link href="/products/itr">Shop</Link>
-              <Link href="/#how">How it works</Link>
-              <Link href="/#list">Join the list</Link>
-              <Link href="/track">Track order</Link>
-            </nav>
-            <p className="muted small">© {new Date().getFullYear()} It Flew! — A magician never reveals. We just sell the reel.</p>
-          </footer>
+          <Footer />
           <CartDrawer />
         </CartProvider>
       </body>
