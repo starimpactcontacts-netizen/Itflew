@@ -5,7 +5,6 @@ import Image from "next/image";
 import "./globals.css";
 import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import CartDrawer from "@/components/CartDrawer";
 
 // Closest open match to the Emaar-style flared Roman capitals.
@@ -24,7 +23,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={display.variable}>
       <body>
         <CartProvider>
-          <AnnouncementBar />
           <Header />
           {children}
           <footer className="footer">

@@ -52,15 +52,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .header-left { display: flex; align-items: center; gap: 10px; padding-left: 8px; }
 .brand img { display: block; width: 150px; height: auto; }
 
-/* ANNOUNCEMENT */
-.announce {
-  position: relative; background: #000; color: var(--cream); height: 44px;
-  display: flex; align-items: center; justify-content: center; padding: 0 48px;
-  font-family: var(--body); font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
-}
-.announce-text { display: flex; gap: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.announce-text span:last-child { overflow: hidden; text-overflow: ellipsis; }
-.announce-close { position: absolute; right: 10px; background: none; border: 0; padding: 6px; display: grid; }
 .icon-btn { background: none; border: 0; padding: 8px; display: grid; place-items: center; color: var(--cream); }
 .cart-btn { position: relative; }
 .badge {
@@ -122,6 +113,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .hero-link { -webkit-text-stroke: .045em currentColor; paint-order: stroke fill; } /* heavier cut of the title font */
 .hero-link svg { transition: transform .2s; stroke-width: 3; }
+.hero-link-text { display: inline-block; padding-bottom: .12em; border-bottom: .06em solid currentColor; } /* underline stroke */
 /* phone: Discover sits in the open red to the left of KIT */
 .hero-copy .hero-link { position: absolute; left: 6cqw; bottom: 2cqw; font-size: 7.6cqw; letter-spacing: .03em; gap: 1.6cqw; line-height: 1; }
 @media (min-width: 900px) {
