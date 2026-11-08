@@ -6,7 +6,7 @@ import AddToCart from "./AddToCart";
 import { StepImage, STEP_COUNT } from "./StepCard";
 
 const CAPTIONS = [
-  "Clip the ITR inside your collar or jacket, the thread runs out unseen.",
+  "Clip the reel inside your collar or jacket, the thread runs out unseen.",
   "Pinch the tip and draw a length of invisible thread off the spool.",
   "Secretly hook the thread to the can, then step back with open hands.",
   "Lift your hands slowly and the can rises straight to you. It flew.",
@@ -28,7 +28,7 @@ export default function Tutorial() {
     <section id="how" className="tutorial">
       <div className="tut-head">
         <p className="tut-kicker">How it flies</p>
-        <h2 className="tut-title">The ITR</h2>
+        <h2 className="tut-title">Invisible Thread</h2>
         <p className="tut-text">
           Clip it on, pull out the thread, hook up whatever you dare and make it fly. Easy to learn, impossible to spot.
         </p>

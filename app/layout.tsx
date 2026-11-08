@@ -11,8 +11,8 @@ import CartDrawer from "@/components/CartDrawer";
 const display = Marcellus({ weight: "400", subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "It Flew! — The ITR Invisible Thread Reel",
-  description: "Make it float. The ITR: a small invisible thread reel for levitations, animations and vanishes.",
+  title: "It Flew! — Invisible Thread",
+  description: "Make it float. Invisible Thread: a small reel for levitations, animations and vanishes.",
   metadataBase: new URL("https://itflew.com"),
 };
 

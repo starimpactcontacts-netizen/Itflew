@@ -54,7 +54,7 @@ export default function Poster({ priority = false, className = "" }: { priority?
       <Image
         className="poster-hand"
         src="/itr-hand.webp"
-        alt="A red-gloved hand holding the ITR invisible thread reel"
+        alt="A red-gloved hand holding the Invisible Thread reel"
         width={412}
         height={947}
         priority={priority}

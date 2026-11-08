@@ -6,7 +6,7 @@ import AddToCart from "@/components/AddToCart";
 import { ITR, formatPrice } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "The ITR — Small Invisible Thread Reel | It Flew!",
+  title: "Invisible Thread | It Flew!",
   description: ITR.blurb,
 };
 
@@ -20,7 +20,7 @@ export default function ProductPage() {
         <div className="pdp-shot">
           <Image
             src="/itr-jacket.webp"
-            alt="The ITR clipped inside a jacket, its invisible thread running down the lining"
+            alt="Invisible Thread clipped inside a jacket, its invisible thread running down the lining"
             width={1072}
             height={1008}
             unoptimized

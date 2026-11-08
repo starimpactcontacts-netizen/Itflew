@@ -28,7 +28,7 @@ const SLIDES: Slide[] = [
       <Image
         className="cover jacket"
         src="/itr-jacket.webp"
-        alt="The ITR clipped inside a jacket, its invisible thread running down the lining"
+        alt="Invisible Thread clipped inside a jacket, its invisible thread running down the lining"
         width={1072}
         height={1008}
         unoptimized
