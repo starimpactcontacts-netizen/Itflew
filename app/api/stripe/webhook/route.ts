@@ -1,25 +1,41 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { createClient as createAdmin } from "@supabase/supabase-js";
-import { stripe } from "@/lib/stripe/server";
+import { stripe, webhookSecret } from "@/lib/stripe/server";
 import { SUPABASE_URL } from "@/lib/supabase/config";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
+  const raw = await req.text();
+  const secret = webhookSecret();
   const sig = req.headers.get("stripe-signature");
-  if (!secret || !sig) return NextResponse.json({ error: "missing signature" }, { status: 400 });
 
-  let event: Stripe.Event;
-  try {
-    event = stripe().webhooks.constructEvent(await req.text(), sig, secret);
-  } catch {
-    return NextResponse.json({ error: "bad signature" }, { status: 400 });
+  // Prefer the signature; if it can't be checked (missing/mismatched secret), fetch the event
+  // straight from Stripe by id so a forged payload can never create an order.
+  let event: Stripe.Event | null = null;
+  if (secret && sig) {
+    try {
+      event = stripe().webhooks.constructEvent(raw, sig, secret);
+    } catch {
+      event = null;
+    }
+  }
+  if (!event) {
+    try {
+      const id = (JSON.parse(raw) as { id?: string }).id;
+      if (!id || !/^evt_[A-Za-z0-9]+$/.test(id)) throw new Error("no id");
+      event = await stripe().events.retrieve(id);
+    } catch {
+      return NextResponse.json({ error: "unverified event" }, { status: 400 });
+    }
   }
 
   if (event.type === "payment_intent.succeeded") {
-    const pi = event.data.object as Stripe.PaymentIntent;
+    // always read the live PaymentIntent from Stripe
+    const pi = await stripe().paymentIntents.retrieve((event.data.object as Stripe.PaymentIntent).id);
+    // the Stripe account is shared with other stores: only record It Flew! orders
+    if (pi.metadata.product !== "invisible-thread") return NextResponse.json({ received: true, ignored: true });
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SECRET_KEY;
     if (!serviceKey) {
       console.error("webhook: SUPABASE_SERVICE_ROLE_KEY not set, order not saved", pi.id);

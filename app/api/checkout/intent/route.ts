@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe, publishableKey } from "@/lib/stripe/server";
+import { ensureStripeSetup } from "@/lib/stripe/setup";
 import { priceFor } from "@/lib/pricing";
 import { createClient } from "@/lib/supabase/server";
 
@@ -17,6 +18,7 @@ const orderNumber = () => "IF" + Math.floor(100000 + Math.random() * 900000);
 // POST { qty, email?, id? } -> creates or updates the PaymentIntent. Price is always set here.
 export async function POST(req: Request) {
   try {
+    void ensureStripeSetup();
     const body = (await req.json().catch(() => ({}))) as { qty?: number; email?: string; id?: string };
     const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 254) : undefined;
     const welcome = await welcomeEligible(email);
