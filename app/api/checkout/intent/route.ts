@@ -42,6 +42,7 @@ export async function POST(req: Request) {
         amount: p.total,
         currency: "usd",
         automatic_payment_methods: { enabled: true },
+        excluded_payment_method_types: ["paypal", "amazon_pay"],
         receipt_email: email && EMAIL.test(email) ? email : undefined,
         description: `Invisible Thread × ${p.qty}`,
         statement_descriptor_suffix: "ITFLEW",

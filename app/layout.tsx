@@ -7,6 +7,7 @@ import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
 import CartDrawer from "@/components/CartDrawer";
 import Footer from "@/components/Footer";
+import SiteChrome from "@/components/SiteChrome";
 
 // Closest open match to the Emaar-style flared Roman capitals.
 const display = Marcellus({ weight: "400", subsets: ["latin"], variable: "--font-display" });
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CartProvider>
           <Header />
           {children}
-          <Footer />
+          <SiteChrome>
+            <Footer />
+          </SiteChrome>
           <CartDrawer />
         </CartProvider>
       </body>

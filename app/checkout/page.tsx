@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Checkout | It Flew!", robots: { inde
 export default function CheckoutPage() {
   return (
     <main className="co">
-      <h1 className="co-title">Checkout</h1>
+      <h1 className="sr-only">Checkout</h1>
       <Checkout />
     </main>
   );

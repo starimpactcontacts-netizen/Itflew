@@ -76,7 +76,7 @@ export default function Checkout() {
     return (
       <div className="co-empty">
         <p>Your bag is empty.</p>
-        <Link href="/products/itr" className="dr-add co-btn-link"><span>Shop Invisible Thread</span><span>›</span></Link>
+        <Link href="/products/itr" className="co-primary"><span>Shop Invisible Thread</span><span>›</span></Link>
       </div>
     );
   if (failed) return <p className="co-error" role="alert">{failed}</p>;
@@ -89,14 +89,44 @@ export default function Checkout() {
   );
 }
 
+const COUNTRIES = ["US", "CA", "GB", "IE", "AU", "NZ", "SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "ES", "IT", "PT", "AT", "CH", "PL"];
+
+function PayMarks() {
+  return (
+    <div className="co-marks" aria-label="Accepted payment methods">
+      <span className="pm pm-apple"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.8-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.3.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.8-1-2.8-4.3zM13.9 5.3c.7-.8 1.2-2 1.1-3.2-1 0-2.3.7-3 1.5-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.4z" /></svg>Pay</span>
+      <span className="pm pm-visa co-visa">VISA</span>
+      <span className="pm pm-mc co-mc" aria-label="Mastercard"><i /><i /></span>
+      <span className="pm co-amex">AM<br />EX</span>
+      <span className="pm co-disc">DISC<b>●</b>VER</span>
+    </div>
+  );
+}
+
+function Acc({ icon, title, open, children }: { icon: React.ReactNode; title: string; open?: boolean; children: React.ReactNode }) {
+  return (
+    <details className="co-acc" open={open}>
+      <summary>
+        {icon}
+        <span>{title}</span>
+        <svg className="co-chev" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden><path d="M5 9l7 7 7-7" /></svg>
+      </summary>
+      <div className="co-acc-body">{children}</div>
+    </details>
+  );
+}
+
 function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) => void }) {
   const stripe = useStripe();
   const elements = useElements();
   const { qty, setQty } = useCart();
+  const [step, setStep] = useState<"review" | "details">("review");
+  const [editQty, setEditQty] = useState(false);
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const [expressReady, setExpressReady] = useState(false);
+  const top = useRef<HTMLDivElement>(null);
 
   const refresh = useCallback(
     async (next: { qty?: number; email?: string }) => {
@@ -108,10 +138,11 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
     [intent, qty, email, elements, setIntent]
   );
 
-  // keep price in sync if the bag changes in another tab/drawer
   useEffect(() => {
     if (qty >= 1 && qty !== intent.qty) refresh({ qty });
   }, [qty]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const returnUrl = () => `${window.location.origin}/checkout/success`;
 
   const pay = async () => {
     if (!stripe || !elements) return;
@@ -124,92 +155,187 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
       return setMsg(submitError.message ?? "Check your details.");
     }
     await refresh({ email });
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: { return_url: `${window.location.origin}/checkout/success`, receipt_email: email },
-    });
+    const { error } = await stripe.confirmPayment({ elements, confirmParams: { return_url: returnUrl(), receipt_email: email } });
     setBusy(false);
     if (error) setMsg(error.message ?? "Payment failed. Try again.");
   };
 
-  return (
-    <div className="co-grid">
-      <div className="co-main">
-        <div className={`co-express${expressReady ? "" : " hidden"}`}>
-          <p className="co-label">Express checkout</p>
-          <ExpressCheckoutElement
-            options={{ buttonHeight: 52, buttonTheme: { applePay: "black", googlePay: "black" } }}
-            onReady={(e) => setExpressReady(!!e.availablePaymentMethods)}
-            onConfirm={async () => {
-              if (!stripe || !elements) return;
-              const { error } = await stripe.confirmPayment({
-                elements,
-                confirmParams: { return_url: `${window.location.origin}/checkout/success` },
-              });
-              if (error) setMsg(error.message ?? "Payment failed.");
-            }}
-          />
-          <div className="co-or"><span>or pay with card</span></div>
-        </div>
+  const go = (s: "review" | "details") => {
+    setStep(s);
+    setMsg("");
+    requestAnimationFrame(() => top.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  };
 
-        <section className="co-sec">
-          <h2>Contact</h2>
-          <input
-            className="co-input"
-            type="email"
-            inputMode="email"
-            autoComplete="email"
-            placeholder="Email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={() => EMAIL.test(email) && refresh({ email })}
-          />
-          {intent.welcome && <p className="co-ok">Welcome offer applied: 10% off your first order.</p>}
-        </section>
-
-        <section className="co-sec">
-          <h2>Delivery</h2>
-          <AddressElement options={{ mode: "shipping", fields: { phone: "never" } }} />
-        </section>
-
-        <section className="co-sec">
-          <h2>Payment</h2>
-          <PaymentElement options={{ layout: "tabs" }} />
-        </section>
-
-        {msg && <p className="co-error" role="alert">{msg}</p>}
-        <button className="dr-add co-pay" onClick={pay} disabled={busy || !stripe}>
-          <span>{busy ? "Processing…" : "Pay now"}</span>
-          <span>{money(intent.total)}</span>
-        </button>
-        <p className="co-secure">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden><rect x="5" y="11" width="14" height="9" rx="1.5" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>
-          Secure payment by Stripe. We never see your card details.
-        </p>
+  if (qty < 1)
+    return (
+      <div className="co-empty">
+        <p>Your bag is empty.</p>
+        <Link href="/products/itr" className="co-primary"><span>Shop Invisible Thread</span><span>›</span></Link>
       </div>
+    );
 
-      <aside className="co-sum">
-        <h2>Order summary</h2>
-        <div className="co-line">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/product/reel-angle-v2.webp" alt="" />
-          <div>
-            <strong>Invisible Thread</strong>
-            <div className="co-qty">
-              <button aria-label="Decrease" onClick={() => qty > 1 && setQty(qty - 1)}>−</button>
-              <span>{qty}</span>
-              <button aria-label="Increase" onClick={() => qty < 10 && setQty(qty + 1)}>+</button>
+  const totals = (
+    <dl className="co-totals">
+      <div><dt>Subtotal</dt><dd>{money(intent.subtotal)}</dd></div>
+      {intent.discount > 0 && <div className="co-disc-row"><dt>Welcome offer (10%)</dt><dd>−{money(intent.discount)}</dd></div>}
+      <div><dt>Delivery</dt><dd>{intent.shipping ? money(intent.shipping) : "Free standard shipping"}</dd></div>
+      {(intent.discount > 0 || intent.shipping > 0) && <div className="co-grand"><dt>Total</dt><dd>{money(intent.total)}</dd></div>}
+    </dl>
+  );
+
+  return (
+    <div className="co-wrap" ref={top}>
+      {/* ORDER SUMMARY */}
+      <section className="co-block">
+        <div className="co-h">
+          <h2>Order Summary</h2>
+          <span>{qty} {qty === 1 ? "product" : "products"}</span>
+        </div>
+        <div className="co-item">
+          <div className="co-item-img">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/product/reel-angle-v2.webp" alt="Invisible Thread reel" />
+          </div>
+          <div className="co-item-info">
+            <p className="co-item-name">Invisible Thread</p>
+            <p className="co-item-sub">Small reel, one thread, endless tricks</p>
+            <p className="co-item-qty">
+              Qty: {qty}{" "}
+              <button className="co-u" onClick={() => setEditQty(!editQty)}>{editQty ? "done" : "edit"}</button>
+            </p>
+            {editQty && (
+              <div className="co-qty-pick">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <button key={n} className={n === qty ? "on" : ""} onClick={() => { setQty(n); setEditQty(false); }}>{n}</button>
+                ))}
+              </div>
+            )}
+            <div className="co-item-foot">
+              <button className="co-u co-muted" onClick={() => setQty(0)}>Remove</button>
+              <span>{money(intent.subtotal)}</span>
             </div>
           </div>
-          <span>{money(intent.subtotal)}</span>
         </div>
-        <dl>
-          <div><dt>Subtotal</dt><dd>{money(intent.subtotal)}</dd></div>
-          {intent.discount > 0 && <div className="co-disc"><dt>Welcome 10%</dt><dd>−{money(intent.discount)}</dd></div>}
-          <div><dt>Shipping</dt><dd>{intent.shipping ? money(intent.shipping) : "Free"}</dd></div>
-          <div className="co-total"><dt>Total</dt><dd>{money(intent.total)}</dd></div>
-        </dl>
-      </aside>
+      </section>
+
+      {step === "review" ? (
+        <section className="co-block">
+          <h2 className="co-h2">Total</h2>
+          {totals}
+          <button className="co-primary" onClick={() => go("details")}>
+            <span>Continue to checkout</span>
+            <span>{money(intent.total)}</span>
+          </button>
+          <div className={`co-express${expressReady ? "" : " hidden"}`}>
+            <div className="co-or"><span>or pay with</span></div>
+            <ExpressCheckoutElement
+              options={{
+                buttonHeight: 54,
+                buttonType: { applePay: "plain", googlePay: "plain" },
+                buttonTheme: { applePay: "white-outline", googlePay: "white" },
+                paymentMethods: { applePay: "always", googlePay: "auto", link: "auto", paypal: "never", amazonPay: "never", klarna: "never" },
+                layout: { maxColumns: 1, overflow: "never" },
+              }}
+              onReady={(e) => setExpressReady(!!e.availablePaymentMethods)}
+              onClick={({ resolve }) =>
+                resolve({
+                  emailRequired: true,
+                  shippingAddressRequired: true,
+                  allowedShippingCountries: COUNTRIES,
+                  shippingRates: [{ id: "free", displayName: "Free standard shipping", amount: 0 }],
+                })
+              }
+              onConfirm={async (ev) => {
+                if (!stripe || !elements) return;
+                const mail = ev.billingDetails?.email ?? undefined;
+                if (mail) await refresh({ email: mail });
+                const sa = ev.shippingAddress;
+                const { error } = await stripe.confirmPayment({
+                  elements,
+                  confirmParams: {
+                    return_url: returnUrl(),
+                    receipt_email: mail,
+                    shipping: sa ? { name: sa.name, address: { ...sa.address, line2: sa.address.line2 ?? undefined } } : undefined,
+                  },
+                });
+                if (error) setMsg(error.message ?? "Payment failed.");
+              }}
+            />
+          </div>
+          {msg && <p className="co-error" role="alert">{msg}</p>}
+        </section>
+      ) : (
+        <>
+          <section className="co-block">
+            <div className="co-h">
+              <h2>Contact</h2>
+              <button className="co-u co-muted" onClick={() => go("review")}>Edit bag</button>
+            </div>
+            <div className="co-card">
+              <input
+                className="co-input"
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                placeholder="* Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={() => EMAIL.test(email) && refresh({ email })}
+              />
+              {intent.welcome && <p className="co-ok">Welcome offer applied: 10% off your first order.</p>}
+            </div>
+          </section>
+          <section className="co-block">
+            <h2 className="co-h2">Delivery</h2>
+            <div className="co-card">
+              <AddressElement options={{ mode: "shipping", allowedCountries: COUNTRIES, fields: { phone: "never" } }} />
+              <p className="co-note">Free standard shipping</p>
+            </div>
+          </section>
+          <section className="co-block">
+            <h2 className="co-h2">Payment</h2>
+            <div className="co-card">
+              <PaymentElement options={{ layout: "tabs", wallets: { applePay: "never", googlePay: "never" } }} />
+            </div>
+          </section>
+          <section className="co-block">
+            <h2 className="co-h2">Total</h2>
+            {totals}
+            {msg && <p className="co-error" role="alert">{msg}</p>}
+            <button className="co-primary" onClick={pay} disabled={busy || !stripe}>
+              <span>{busy ? "Processing…" : "Pay now"}</span>
+              <span>{money(intent.total)}</span>
+            </button>
+          </section>
+        </>
+      )}
+
+      {/* HELP & SERVICES */}
+      <section className="co-block">
+        <h2 className="co-h2">Help &amp; Services</h2>
+        <div className="co-help">
+          <Acc
+            open
+            title="100% secure payment"
+            icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><rect x="3" y="5" width="18" height="14" rx="1" /><path d="M3 10h18M6 15h5" /></svg>}
+          >
+            <PayMarks />
+            <p>Your card details are encrypted and processed by Stripe. They never touch our servers.</p>
+          </Acc>
+          <Acc
+            title="Need assistance?"
+            icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><path d="M4 18h16M6 18a6 6 0 0 1 12 0M12 9V7" /></svg>}
+          >
+            <p>Already ordered? <Link href="/track">Track your order</Link> with your email and the order number from your confirmation.</p>
+          </Acc>
+          <Acc
+            title="Free standard shipping"
+            icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" /><circle cx="7" cy="17.5" r="1.6" /><circle cx="17" cy="17.5" r="1.6" /></svg>}
+          >
+            <p>Every order ships free. You&apos;ll get a confirmation email with your order number as soon as you pay.</p>
+          </Acc>
+        </div>
+      </section>
     </div>
   );
 }

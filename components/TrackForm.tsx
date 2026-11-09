@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useState } from "react";
 import { trackOrder, type TrackState, type TrackedOrder } from "@/app/actions/track";
 
@@ -10,49 +11,41 @@ const STEPS: { key: TrackedOrder["status"]; label: string }[] = [
   { key: "delivered", label: "Delivered" },
 ];
 
-const fmt = (d: string) =>
-  new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+const fmt = (d: string) => new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
-function Result({ order }: { order: TrackedOrder }) {
+function Result({ order, onBack }: { order: TrackedOrder; onBack: () => void }) {
   const cancelled = order.status === "cancelled";
   const current = STEPS.findIndex((s) => s.key === order.status);
-
   return (
-    <div className="track-result">
-      <div className="track-head">
-        <div>
-          <p className="kicker kicker-red">Order</p>
-          <h2 className="display track-num">#{order.order_number}</h2>
-        </div>
-        <p className="muted small">Placed {fmt(order.created_at)}</p>
+    <div className="tk-result">
+      <div className="tk-result-head">
+        <span>Order {order.order_number}</span>
+        <span>Placed {fmt(order.created_at)}</span>
       </div>
-
       {cancelled ? (
-        <p className="track-cancel">This order was cancelled.</p>
+        <p className="tk-cancel">This order was cancelled.</p>
       ) : (
-        <ol className="timeline">
+        <ol className="tk-steps">
           {STEPS.map((s, i) => (
             <li key={s.key} className={i <= current ? "done" : ""} aria-current={i === current ? "step" : undefined}>
-              <span className="dot" />
+              <i aria-hidden />
               <span>{s.label}</span>
             </li>
           ))}
         </ol>
       )}
-
       {order.tracking_number && (
-        <div className="track-ship">
-          <span className="muted small">{order.carrier ?? "Tracking"}</span>
+        <p className="tk-ship">
+          {order.carrier ?? "Tracking"}:{" "}
           {order.tracking_url ? (
-            <a href={order.tracking_url} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-              {order.tracking_number} ↗
-            </a>
+            <a href={order.tracking_url} target="_blank" rel="noopener noreferrer">{order.tracking_number}</a>
           ) : (
-            <strong>{order.tracking_number}</strong>
+            order.tracking_number
           )}
-        </div>
+        </p>
       )}
-      <p className="muted small">Last update {fmt(order.updated_at)}</p>
+      <p className="tk-muted">Last update {fmt(order.updated_at)}</p>
+      <button className="tk-link" onClick={onBack}>Track another order</button>
     </div>
   );
 }
@@ -61,24 +54,24 @@ export default function TrackForm() {
   const [state, action, pending] = useActionState<TrackState, FormData>(trackOrder, null);
   const [order, setOrder] = useState("");
   const [email, setEmail] = useState("");
+  const [showResult, setShowResult] = useState(true);
+  const ready = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) && order.trim().length > 2;
+
+  if (state?.kind === "found" && showResult) return <Result order={state.order} onBack={() => setShowResult(false)} />;
 
   return (
-    <>
-      <form action={action} className="track-form">
-        <label>
-          <span>Order number</span>
-          <input name="order" value={order} onChange={(e) => setOrder(e.target.value)} required placeholder="e.g. IF1001" autoComplete="off" maxLength={64} />
-        </label>
-        <label>
-          <span>Email</span>
-          <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@email.com" autoComplete="email" />
-        </label>
-        <button className="btn btn-red btn-block" disabled={pending}>
-          {pending ? "Checking…" : "Track order"}
-        </button>
-        {state?.kind === "error" && <p className="form-msg err" role="alert">{state.message}</p>}
-      </form>
-      {state?.kind === "found" && <Result order={state.order} />}
-    </>
+    <form action={(fd) => { setShowResult(true); action(fd); }} className="tk-form">
+      <label className="tk-field">
+        <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder=" " autoComplete="email" />
+        <span>* Email address</span>
+      </label>
+      <label className="tk-field">
+        <input name="order" value={order} onChange={(e) => setOrder(e.target.value)} required placeholder=" " autoComplete="off" maxLength={64} />
+        <span>* Order number</span>
+      </label>
+      {state?.kind === "error" && <p className="tk-err" role="alert">{state.message}</p>}
+      <button className="tk-btn" disabled={!ready || pending}>{pending ? "Checking…" : "Continue"}</button>
+      <p className="tk-muted tk-help">Your order number starts with IF and is in your confirmation email. <Link href="/products/itr">Shop Invisible Thread</Link></p>
+    </form>
   );
 }

@@ -14,6 +14,7 @@ export async function POST(req: Request) {
     const meta = { product: "invisible-thread", qty: String(p.qty), order_number: orderNumber };
     const session = await stripe().checkout.sessions.create({
       mode: "payment",
+      excluded_payment_method_types: ["paypal", "amazon_pay"],
       line_items: [
         {
           quantity: p.qty,

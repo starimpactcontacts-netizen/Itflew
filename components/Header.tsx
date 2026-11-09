@@ -2,16 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
+import TrackPanel from "./TrackPanel";
 
 export default function Header() {
   const { qty, setOpen } = useCart();
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [overFooter, setOverFooter] = useState(false);
-  const overlay = usePathname() === "/";
+  const [track, setTrack] = useState(false);
+  const path = usePathname();
+  const router = useRouter();
+  const overlay = path === "/";
 
   useEffect(() => {
     document.body.style.overflow = menu ? "hidden" : "";
@@ -31,6 +35,21 @@ export default function Header() {
   const solid = !overlay || scrolled || menu;
   const dark = overFooter && !menu;
 
+  if (path.startsWith("/checkout")) {
+    return (
+      <header className="header is-solid co-header">
+        <button className="co-back" onClick={() => (window.history.length > 1 ? router.back() : router.push("/products/itr"))}>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden><path d="M15 4l-8 8 8 8" /></svg>
+          Back
+        </button>
+        <Link href="/" className="co-logo" aria-label="It Flew! home">
+          <Image src="/wordmark-black.png" alt="It Flew!" width={672} height={140} priority />
+        </Link>
+        <span aria-hidden />
+      </header>
+    );
+  }
+
   return (
     <header className={`header ${dark ? "is-dark" : solid ? "is-solid" : "is-overlay"}`}>
       <div className="header-left">
@@ -39,12 +58,12 @@ export default function Header() {
         </Link>
       </div>
       <div className="header-right">
-      <Link href="/track" className="icon-btn" aria-label="Track your order" onClick={() => setMenu(false)}>
+      <button className="icon-btn" aria-label="Track your order" onClick={() => { setMenu(false); setTrack(true); }}>
         <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
           <circle cx="12" cy="8" r="4" />
           <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
         </svg>
-      </Link>
+      </button>
       <button className="icon-btn cart-btn" aria-label={`Bag, ${qty} items`} onClick={() => setOpen(true)}>
         <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
           <path d="M5 8h14l-1.2 12H6.2z" />
@@ -65,6 +84,7 @@ export default function Header() {
         </button>
       </div>
 
+      {track && <TrackPanel onClose={() => setTrack(false)} />}
       {menu && (
         <div className="menu">
           <Link href="/products/itr" onClick={() => setMenu(false)}>Shop Invisible Thread</Link>
