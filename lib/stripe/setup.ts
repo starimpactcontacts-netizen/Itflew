@@ -14,7 +14,13 @@ let done: Promise<void> | null = null;
 
 export function ensureStripeSetup() {
   done ??= (async () => {
-    const s = stripe();
+    let s;
+    try {
+      s = stripe();
+    } catch {
+      done = null; // no key yet; try again next request
+      return;
+    }
     try {
       const existing = await s.paymentMethodDomains.list({ limit: 100 });
       const have = new Set(existing.data.map((d) => d.domain_name));
