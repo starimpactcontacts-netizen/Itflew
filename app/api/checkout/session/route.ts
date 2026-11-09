@@ -26,6 +26,16 @@ export async function POST(req: Request) {
         },
       ],
       shipping_address_collection: { allowed_countries: [...COUNTRIES] },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            display_name: "Free standard shipping",
+            fixed_amount: { amount: 0, currency: "usd" },
+            delivery_estimate: { minimum: { unit: "business_day", value: 7 }, maximum: { unit: "business_day", value: 12 } },
+          },
+        },
+      ],
       allow_promotion_codes: true,
       metadata: meta,
       payment_intent_data: { metadata: meta, description: `Invisible Thread × ${p.qty}`, statement_descriptor_suffix: "ITFLEW" },

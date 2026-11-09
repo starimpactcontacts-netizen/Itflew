@@ -9,7 +9,8 @@ export default function Shipping() {
   return (
     <LegalPage title="Shipping & Returns" updated="November 9, 2026">
       <h2>Shipping</h2>
-      <p>Standard shipping is free on every order. Orders are packed and shipped within 1–3 business days, and you&apos;ll get a confirmation email with your order number as soon as you pay.</p>
+      <p><strong>Standard Shipping: 7–12 business days</strong>, free on every order.</p>
+      <p>Orders are fulfilled within 24–48 hours. Most orders to major metropolitan areas arrive within 5–7 days once dispatched. You&apos;ll get a confirmation email with your order number as soon as you pay.</p>
       <p>Once your order ships you can follow it on our <Link href="/track">Track your order</Link> page with your email and order number.</p>
       <h2>Returns</h2>
       <p>Changed your mind? You can return unused reels in their original packaging within 30 days of delivery for a full refund of the item price. Email <a href={`mailto:${ORDERS_EMAIL}`}>{ORDERS_EMAIL}</a> with your order number to start a return and we&apos;ll send instructions.</p>

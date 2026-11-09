@@ -125,7 +125,7 @@ export default function PdpBuy() {
       <ul className="dr-rows">
         <Row href="#tutorial" label="How it works" sub="Watch the one-minute tutorial" />
         <Row href="/track" label="Track your order" />
-        <Row href="/shipping-returns" label="Delivery & Returns" sub="Free standard shipping · 30-day returns" />
+        <Row href="/shipping-returns" label="Delivery & Returns" sub="Free shipping, 7–12 business days · 30-day returns" />
         <Row href="/contact" label="Contact us" sub="support@itflew.com" />
       </ul>
     </div>

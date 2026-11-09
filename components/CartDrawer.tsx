@@ -66,7 +66,7 @@ export default function CartDrawer() {
             </div>
             <div className="bag-foot">
               <div className="bag-line"><span>Subtotal</span><span>{formatPrice(ITR.price * qty)}</span></div>
-              <div className="bag-line bag-muted"><span>Delivery</span><span>Free standard shipping</span></div>
+              <div className="bag-line bag-muted"><span>Delivery</span><span>Free · 7–12 business days</span></div>
               <Link href="/checkout" className="co-primary" onClick={() => setOpen(false)}>
                 <span>Continue to checkout</span>
                 <span>{formatPrice(ITR.price * qty)}</span>

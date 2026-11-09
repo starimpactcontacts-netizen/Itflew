@@ -242,7 +242,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
                   emailRequired: true,
                   shippingAddressRequired: true,
                   allowedShippingCountries: COUNTRIES,
-                  shippingRates: [{ id: "free", displayName: "Free standard shipping", amount: 0 }],
+                  shippingRates: [{ id: "free", displayName: "Free standard shipping (7–12 business days)", amount: 0, deliveryEstimate: { minimum: { unit: "business_day", value: 7 }, maximum: { unit: "business_day", value: 12 } } }],
                 })
               }
               onConfirm={async (ev) => {
@@ -289,7 +289,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
             <h2 className="co-h2">Delivery</h2>
             <div className="co-card">
               <AddressElement options={{ mode: "shipping", allowedCountries: COUNTRIES, fields: { phone: "never" } }} />
-              <p className="co-note">Free standard shipping</p>
+              <p className="co-note">Free standard shipping · 7–12 business days</p>
             </div>
           </section>
           <section className="co-block">
@@ -333,7 +333,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
             title="Free standard shipping"
             icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" /><circle cx="7" cy="17.5" r="1.6" /><circle cx="17" cy="17.5" r="1.6" /></svg>}
           >
-            <p>Every order ships free and leaves us within 1–3 business days. You&apos;ll get a confirmation email with your order number as soon as you pay.</p>
+            <p>Standard Shipping: 7–12 business days, free on every order. Orders are fulfilled within 24–48 hours, and most orders to major metropolitan areas arrive within 5–7 days once dispatched.</p>
           </Acc>
           <Acc
             title="Free returns within 30 days"

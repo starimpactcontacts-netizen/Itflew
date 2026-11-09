@@ -10,7 +10,7 @@ const KEY = "itflew-chat-hidden";
 
 const QUICK: { label: string; reply: React.ReactNode }[] = [
   { label: "Where's my order?", reply: <>Track it any time with your email and order number (it starts with IF). <Link href="/track">Track your order</Link></> },
-  { label: "Shipping", reply: <>Standard shipping is free on every order. See <Link href="/shipping-returns">Shipping &amp; Returns</Link>.</> },
+  { label: "Shipping", reply: <>Standard shipping is free and takes 7–12 business days. We fulfil orders within 24–48 hours, and most big-city orders arrive within 5–7 days once dispatched. <Link href="/shipping-returns">Shipping &amp; Returns</Link></> },
   { label: "How does it work?", reply: <>Clip the reel inside your collar or jacket, draw the thread, hook it, lift. <Link href="/products/itr#tutorial">Watch the tutorial</Link></> },
   { label: "Returns", reply: <>Unused reels can be returned within 30 days. Details in <Link href="/shipping-returns">Shipping &amp; Returns</Link>.</> },
 ];
