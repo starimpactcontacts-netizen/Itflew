@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCart } from "./CartProvider";
 import { ITR, formatPrice } from "@/lib/products";
 
@@ -27,6 +27,28 @@ export default function PdpBuy() {
   const [qty, setQty] = useState(1);
   const [more, setMore] = useState(false);
   const [pick, setPick] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [sticky, setSticky] = useState(false);
+  const addRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    try { setSaved(localStorage.getItem("itflew-wish-itr") === "1"); } catch {}
+  }, []);
+  const toggleSave = () => {
+    setSaved((v) => {
+      try { localStorage.setItem("itflew-wish-itr", v ? "0" : "1"); } catch {}
+      return !v;
+    });
+  };
+
+  // show the bottom bar once the main Add to cart button has scrolled off the top
+  useEffect(() => {
+    const el = addRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setSticky(!e.isIntersecting && e.boundingClientRect.top < 0));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div className="dr">
@@ -52,10 +74,32 @@ export default function PdpBuy() {
         </div>
       )}
 
-      <button className="dr-add" onClick={() => add(qty)}>
+      <div className="dr-pay" aria-label="Accepted payment methods">
+        <span className="pm pm-apple"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.8-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.3.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.8-1-2.8-4.3zM13.9 5.3c.7-.8 1.2-2 1.1-3.2-1 0-2.3.7-3 1.5-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.4z" /></svg>Pay</span>
+        <span className="pm pm-paypal">PayPal</span>
+        <span className="pm pm-visa">VISA</span>
+        <span className="pm pm-mc" aria-label="Mastercard"><i /><i /></span>
+        <span className="pm pm-box">AMEX</span>
+        <span className="pm pm-box">DISCOVER</span>
+      </div>
+
+      <button ref={addRef} className="dr-add" onClick={() => add(qty)}>
         <span>Add to cart</span>
         <span>{formatPrice(ITR.price * qty)}</span>
       </button>
+      <div className="dr-row2">
+        <button className="dr-express" disabled title="Express payment opens with checkout">Express payment</button>
+        <button className={`dr-heart${saved ? " on" : ""}`} onClick={toggleSave} aria-pressed={saved} aria-label={saved ? "Remove from wishlist" : "Add to wishlist"}>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill={saved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5" aria-hidden><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg>
+        </button>
+      </div>
+
+      <div className={`dr-sticky${sticky ? " show" : ""}`} aria-hidden={!sticky}>
+        <button className="dr-add" onClick={() => add(qty)} tabIndex={sticky ? 0 : -1}>
+          <span>Add to cart</span>
+          <span>{formatPrice(ITR.price * qty)}</span>
+        </button>
+      </div>
 
       <div className="dr-desc">
         <div className="dr-desc-head">
