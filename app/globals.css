@@ -356,8 +356,8 @@ a:hover .poster-hand { translate: -50% -10px; }
 }
 .tut-card .step-img { outline: 1px solid #000; }
 .tut-card.front { transform: translateX(-50%) scale(1); z-index: 3; cursor: default; }
-.tut-card.left { transform: translateX(calc(-50% - min(60vw, 380px) * 1.02)) scale(.8); transform-origin: right center; z-index: 2; }
-.tut-card.right { transform: translateX(calc(-50% + min(60vw, 380px) * 1.02)) scale(.8); transform-origin: left center; z-index: 2; }
+.tut-card.left { transform: translateX(calc(-50% - min(60vw, 380px) * 1.14)) scale(.8); transform-origin: right center; z-index: 2; }
+.tut-card.right { transform: translateX(calc(-50% + min(60vw, 380px) * 1.14)) scale(.8); transform-origin: left center; z-index: 2; }
 .tut-card.hidden { transform: translateX(-50%) scale(.6); opacity: 0; pointer-events: none; z-index: 1; }
 .tut-caption {
   position: relative; z-index: 4; margin: 22px auto 0; width: min(88vw, 520px); background: #fff; color: #000;
