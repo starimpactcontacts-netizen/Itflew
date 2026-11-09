@@ -2,24 +2,15 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import Poster from "./Poster";
+
+const SHOT = (src: string, alt: string) => (
+  <Image src={src} alt={alt} width={948} height={1264} unoptimized className="pg-img" />
+);
 
 const SHOTS = [
-  { key: "poster", node: <Poster priority /> },
-  {
-    key: "jacket",
-    node: (
-      <Image src="/itr-jacket.webp" alt="Invisible Thread clipped inside a jacket" width={1072} height={1008} unoptimized className="pg-cover" />
-    ),
-  },
-  {
-    key: "step2",
-    node: <Image src="/steps/step-2-bw.webp" alt="Drawing the thread off the reel" width={928} height={1126} unoptimized className="pg-contain" />,
-  },
-  {
-    key: "overview",
-    node: <Image src="/steps/step-1-bw.webp" alt="How Invisible Thread works" width={936} height={1136} unoptimized className="pg-contain" />,
-  },
+  { key: "front", node: SHOT("/product/reel-front.webp", "Invisible Thread reel, front view with clip") },
+  { key: "jacket", node: <Image src="/product/reel-jacket.webp" alt="Invisible Thread clipped inside a jacket, thread running down the lining" width={756} height={1008} unoptimized className="pg-img" /> },
+  { key: "size", node: SHOT("/product/reel-size.webp", "Invisible Thread reel, 6.5 cm / 2.56 in long") },
 ];
 
 export default function PdpGallery() {
