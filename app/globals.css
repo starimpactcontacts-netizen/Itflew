@@ -709,8 +709,9 @@ strong, b { font-weight: 400; letter-spacing: .04em; } /* Marcellus has one weig
 .sc-open:active { background: rgba(58, 58, 64, .65); }
 .sc-hide { background: #fff; border: 0; border-top: 1px solid #eee; padding: 10px; font: inherit; font-size: 13px; color: #888; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .sc-x {
-  position: absolute; top: 2px; left: -24px; width: 18px; height: 18px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
-  display: grid; place-items: center; color: #fff; background: rgba(58, 58, 64, .5);
-  -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
+  position: absolute; top: 17px; left: 7px; width: 18px; height: 18px; padding: 0; border: 0; background: none; cursor: pointer;
+  display: grid; place-items: center; color: rgba(255,255,255,.7); z-index: 1;
 }
-.sc-x::after { content: ""; position: absolute; inset: -10px; } /* bigger tap target */
+.sc-x::after { content: ""; position: absolute; inset: -6px -4px; }
+.sc-open { padding-top: 22px !important; }
+.sc-tab::after { content: ""; position: absolute; left: 9px; right: 5px; top: 39px; height: 1px; background: rgba(255,255,255,.25); pointer-events: none; }
