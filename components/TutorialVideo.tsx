@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-// Drop the real file at public/videos/tutorial.mp4 and it plays here.
+// Drop the real file at public/videos/tutorial-web.mp4 and it plays here.
 export default function TutorialVideo() {
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -14,7 +14,7 @@ export default function TutorialVideo() {
       <video
         ref={ref}
         className="tv-video"
-        src="/videos/tutorial.mp4"
+        src="/videos/tutorial-web.mp4"
         playsInline
         controls={playing}
         preload="metadata"

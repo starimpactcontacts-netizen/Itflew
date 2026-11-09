@@ -17,6 +17,8 @@ const SLIDES: (typeof SHOTS[number] | "video")[] = [SHOTS[0], "video", SHOTS[1],
 export default function PdpGallery() {
   const vid = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
+  const [paused, setPaused] = useState(false);
+  const userPaused = useRef(false);
   const rail = useRef<HTMLDivElement>(null);
   const [i, setI] = useState(0);
   const [open, setOpen] = useState(false);
@@ -41,11 +43,31 @@ export default function PdpGallery() {
       const k = SLIDES.indexOf("video");
       el.scrollTo({ left: k * el.clientWidth, behavior: "smooth" });
       setI(k);
+      userPaused.current = false;
       vid.current?.play().catch(() => {});
     };
     window.addEventListener("itflew:show-video", show);
     return () => window.removeEventListener("itflew:show-video", show);
   }, []);
+
+  useEffect(() => {
+    const v = vid.current;
+    if (!v) return;
+    if (SLIDES[i] !== "video") v.pause();
+    else if (!userPaused.current) v.play().catch(() => {});
+  }, [i]);
+
+  const toggle = () => {
+    const v = vid.current;
+    if (!v) return;
+    if (v.paused) {
+      userPaused.current = false;
+      v.play().catch(() => {});
+    } else {
+      userPaused.current = true;
+      v.pause();
+    }
+  };
 
   const go = (d: number) => {
     const el = rail.current;
@@ -62,16 +84,27 @@ export default function PdpGallery() {
             <div key="video" className="pg-slide pg-video">
               <video
                 ref={vid}
-                src="/videos/tutorial.mp4"
+                src="/videos/tutorial-web.mp4"
                 poster="/videos/tutorial-poster.webp"
                 muted={muted}
                 loop
                 playsInline
                 autoPlay
-                preload="metadata"
+                preload="auto"
                 className="pg-img"
+                onPlay={() => setPaused(false)}
+                onPause={() => setPaused(true)}
                 aria-label="Invisible Thread in action: the can rises into the hands"
               />
+              <button className={`pg-play${paused ? " is-paused" : ""}`} onClick={toggle} aria-label={paused ? "Play video" : "Pause video"}>
+                <span className="pg-play-icon" aria-hidden>
+                  {paused ? (
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg>
+                  )}
+                </span>
+              </button>
               <button className="pg-sound" onClick={() => setMuted((m) => !m)} aria-label={muted ? "Turn sound on" : "Turn sound off"}>
                 {muted ? (
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l4 6M21 9l-4 6" /></svg>
