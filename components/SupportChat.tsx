@@ -47,6 +47,9 @@ export default function SupportChat() {
     <>
       {!open && (
         <div className="sc-tab">
+          <button className="sc-x" onClick={dismiss} aria-label="Hide chat button">
+            <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
           <button className="sc-open" onClick={() => setOpen(true)} aria-label="Open support chat">
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
               <path d="M4 12a8 7 0 1 1 3.2 5.6L4 19l1-3.4A6.8 6.8 0 0 1 4 12z" />
