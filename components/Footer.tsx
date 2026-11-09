@@ -3,8 +3,8 @@ import WaitlistForm from "./WaitlistForm";
 
 const GROUPS: { title: string; links: [string, string][] }[] = [
   { title: "Shop", links: [["Invisible Thread", "/products/itr"], ["How it flies", "/#how"]] },
-  { title: "Customer Support", links: [["Track your order", "/track"], ["Shipping & returns", "#"], ["Contact us", "#"]] },
-  { title: "Legal & Privacy", links: [["Terms", "#"], ["Privacy", "#"]] },
+  { title: "Customer Support", links: [["Track your order", "/track"], ["Shipping & returns", "/shipping-returns"], ["Contact us", "/contact"], ["support@itflew.com", "mailto:support@itflew.com"]] },
+  { title: "Legal & Privacy", links: [["Terms of sale", "/terms"], ["Privacy policy", "/privacy"], ["contact@itflew.com", "mailto:contact@itflew.com"]] },
 ];
 
 export default function Footer() {

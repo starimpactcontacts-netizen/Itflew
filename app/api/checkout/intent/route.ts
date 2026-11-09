@@ -2,15 +2,18 @@ import { NextResponse } from "next/server";
 import { stripe, publishableKey } from "@/lib/stripe/server";
 import { ensureStripeSetup } from "@/lib/stripe/setup";
 import { priceFor } from "@/lib/pricing";
-import { createClient } from "@/lib/supabase/server";
+import { admin } from "@/lib/supabase/admin";
 
 const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 async function welcomeEligible(email: string | undefined) {
   if (!email || !EMAIL.test(email)) return false;
-  const supabase = await createClient();
-  const { data } = await supabase.rpc("welcome_discount_eligible", { p_email: email });
-  return data === true;
+  try {
+    const { data } = await admin().rpc("welcome_discount_eligible", { p_email: email });
+    return data === true;
+  } catch {
+    return false;
+  }
 }
 
 const orderNumber = () => "IF" + Math.floor(100000 + Math.random() * 900000);

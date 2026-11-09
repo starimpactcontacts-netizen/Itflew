@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
+import { admin } from "@/lib/supabase/admin";
 
 export type TrackedOrder = {
   order_number: string;
@@ -24,7 +24,12 @@ export async function trackOrder(_: TrackState, formData: FormData): Promise<Tra
     return { kind: "error", message: "Enter your order number and the email you ordered with." };
   }
 
-  const supabase = await createClient();
+  let supabase;
+  try {
+    supabase = admin();
+  } catch {
+    return { kind: "error", message: "Couldn't check right now. Try again in a minute." };
+  }
   const { data, error } = await supabase.rpc("track_order", { p_order_number: orderNumber, p_email: email });
   if (error) return { kind: "error", message: "Couldn't check right now. Try again in a minute." };
 

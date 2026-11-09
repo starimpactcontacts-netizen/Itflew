@@ -326,13 +326,20 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
             title="Need assistance?"
             icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><path d="M4 18h16M6 18a6 6 0 0 1 12 0M12 9V7" /></svg>}
           >
+            <p>Questions before you buy? Email <a href="mailto:support@itflew.com">support@itflew.com</a> or use the chat button.</p>
             <p>Already ordered? <Link href="/track">Track your order</Link> with your email and the order number from your confirmation.</p>
           </Acc>
           <Acc
             title="Free standard shipping"
             icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" /><circle cx="7" cy="17.5" r="1.6" /><circle cx="17" cy="17.5" r="1.6" /></svg>}
           >
-            <p>Every order ships free. You&apos;ll get a confirmation email with your order number as soon as you pay.</p>
+            <p>Every order ships free and leaves us within 1–3 business days. You&apos;ll get a confirmation email with your order number as soon as you pay.</p>
+          </Acc>
+          <Acc
+            title="Free returns within 30 days"
+            icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><rect x="4" y="5" width="16" height="15" rx="1" /><path d="M4 9h16M9 3v4M15 3v4" /></svg>}
+          >
+            <p>Return unused reels within 30 days for a full refund. <Link href="/shipping-returns">Shipping &amp; Returns</Link></p>
           </Acc>
         </div>
       </section>
