@@ -8,9 +8,9 @@ const SHOT = (src: string, alt: string) => (
 );
 
 const SHOTS = [
+  { key: "angle", node: SHOT("/product/reel-angle.webp", "Invisible Thread reel at an angle, clip underneath") },
   { key: "front", node: SHOT("/product/reel-front.webp", "Invisible Thread reel, front view with clip") },
   { key: "jacket", node: <Image src="/product/reel-jacket.webp" alt="Invisible Thread clipped inside a jacket, thread running down the lining" width={756} height={1008} unoptimized className="pg-img" /> },
-  { key: "size", node: SHOT("/product/reel-size.webp", "Invisible Thread reel, 6.5 cm / 2.56 in long") },
 ];
 
 export default function PdpGallery() {
