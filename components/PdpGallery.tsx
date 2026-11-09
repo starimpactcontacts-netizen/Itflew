@@ -57,6 +57,19 @@ export default function PdpGallery() {
     else if (!userPaused.current) v.play().catch(() => {});
   }, [i]);
 
+  // don't keep decoding the clip once the gallery is scrolled off screen
+  useEffect(() => {
+    const v = vid.current;
+    const box = rail.current;
+    if (!v || !box) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) v.pause();
+      else if (SLIDES[Math.round(box.scrollLeft / box.clientWidth)] === "video" && !userPaused.current) v.play().catch(() => {});
+    }, { threshold: 0.25 });
+    io.observe(box);
+    return () => io.disconnect();
+  }, []);
+
   const toggle = () => {
     const v = vid.current;
     if (!v) return;

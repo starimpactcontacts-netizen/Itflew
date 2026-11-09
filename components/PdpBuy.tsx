@@ -31,7 +31,6 @@ export default function PdpBuy() {
   const { add, setQty: setQtyCart } = useCart();
   const router = useRouter();
   const [qty, setQty] = useState(1);
-  const [more, setMore] = useState(false);
   const [pick, setPick] = useState(false);
   const [saved, setSaved] = useState(false);
   const [sticky, setSticky] = useState(false);
@@ -65,7 +64,7 @@ export default function PdpBuy() {
         <button className="dr-link" onClick={() => setPick(!pick)} aria-expanded={pick}>
           {qty === 1 ? "Select quantity" : `Quantity: ${qty}`}
         </button>
-        <button className="dr-link dr-muted" onClick={() => window.dispatchEvent(new Event("itflew:show-video"))}>
+        <button className="dr-link dr-muted" onClick={() => window.dispatchEvent(new Event("itflew:show-tutorial"))}>
           Watch tutorial
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden><path d="M9 5l7 7-7 7" /></svg>
         </button>
@@ -107,29 +106,20 @@ export default function PdpBuy() {
       </div>
 
       <div className="dr-desc">
-        <div className="dr-desc-head">
-          <h2>Description</h2>
-          <button className="dr-link dr-muted" onClick={() => setMore(!more)}>
-            {more ? "See less" : "See more"}
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden style={{ transform: more ? "rotate(-90deg)" : "none" }}><path d="M9 5l7 7-7 7" /></svg>
-          </button>
-        </div>
-        <p className={more ? "open" : ""}>
+        <h2>Description</h2>
+        <p className="open">
           {ITR.blurb}
           {MORE}
         </p>
-        {more && (
-          <ul className="dr-details">
-            {ITR.details.map((d) => <li key={d}>{d}</li>)}
-            <li>Length 6.5 cm / 2.56 in</li>
-          </ul>
-        )}
+        <ul className="dr-details">
+          {ITR.details.map((d) => <li key={d}>{d}</li>)}
+        </ul>
       </div>
 
       <ul className="dr-rows">
         <li>
-          <button className="dr-row" onClick={() => window.dispatchEvent(new Event("itflew:show-video"))}>
-            <span>How it works<small>Watch the 24-second demo</small></span>
+          <button className="dr-row" onClick={() => window.dispatchEvent(new Event("itflew:show-tutorial"))}>
+            <span>How it works<small>Video tutorial and the four steps</small></span>
             <Chev />
           </button>
         </li>
