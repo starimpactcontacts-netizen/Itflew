@@ -8,7 +8,7 @@ import Inspector from "./Inspector";
 const SHOTS = [
   { src: "/product/reel-angle-v2.webp", alt: "Invisible Thread reel at an angle, clip underneath", w: 1896, h: 2528, bg: "linear-gradient(90deg,#dddddd,#dddddd)" },
   { src: "/product/reel-front-v2.webp", alt: "Invisible Thread reel, front view with clip", w: 1896, h: 2528, bg: "linear-gradient(90deg,#e2e2e2 50%,#eceaea 50%)" },
-  { src: "/product/reel-jacket-hd.webp", alt: "Invisible Thread clipped inside a jacket, thread running down the lining", w: 1512, h: 2016, bg: "linear-gradient(90deg,#1f232e 50%,#332a2c 50%)" },
+  { src: "/product/reel-jacket-v2.webp", alt: "Invisible Thread clipped inside a jacket, thread running down the lining", w: 1792, h: 2390, bg: "linear-gradient(90deg,#1b1d2c 50%,#131217 50%)" },
 ];
 
 // the tutorial clip sits second in the gallery so it's seen right away
