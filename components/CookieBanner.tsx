@@ -24,14 +24,12 @@ export default function CookieBanner() {
       {choice === "all" && <Analytics />}
       {choice === null && (
         <div className="ck" role="dialog" aria-label="Cookie preferences">
-          <p className="ck-title">Cookies</p>
           <p className="ck-text">
-            We use cookies to make the site work and, with your permission, to understand how it&apos;s used so we can improve it.{" "}
-            <Link href="/privacy">Privacy policy</Link>
+            We use cookies to run the site and, if you allow, to see how it&apos;s used. <Link href="/privacy">Privacy</Link>
           </p>
           <div className="ck-btns">
-            <button className="ck-ghost" onClick={() => pick("necessary")}>Necessary only</button>
-            <button className="ck-main" onClick={() => pick("all")}>Accept all</button>
+            <button className="ck-ghost" onClick={() => pick("necessary")}>Decline</button>
+            <button className="ck-main" onClick={() => pick("all")}>Accept</button>
           </div>
         </div>
       )}
