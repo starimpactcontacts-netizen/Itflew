@@ -33,6 +33,20 @@ export default function PdpGallery() {
     return () => el.removeEventListener("scroll", on);
   }, []);
 
+  useEffect(() => {
+    const show = () => {
+      const el = rail.current;
+      if (!el) return;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      const k = SLIDES.indexOf("video");
+      el.scrollTo({ left: k * el.clientWidth, behavior: "smooth" });
+      setI(k);
+      vid.current?.play().catch(() => {});
+    };
+    window.addEventListener("itflew:show-video", show);
+    return () => window.removeEventListener("itflew:show-video", show);
+  }, []);
+
   const go = (d: number) => {
     const el = rail.current;
     if (!el) return;

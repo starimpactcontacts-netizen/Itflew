@@ -9,10 +9,12 @@ import { SUPPORT_EMAIL } from "@/lib/contact";
 const KEY = "itflew-chat-hidden";
 
 const QUICK: { label: string; reply: React.ReactNode }[] = [
-  { label: "Where's my order?", reply: <>Track it any time with your email and order number (it starts with IF). <Link href="/track">Track your order</Link></> },
-  { label: "Shipping", reply: <>Standard shipping is a flat $7 per order and takes 7–12 business days. We fulfil orders within 24–48 hours, and most big-city orders arrive within 5–7 days once dispatched. <Link href="/shipping-returns">Shipping &amp; Returns</Link></> },
-  { label: "How does it work?", reply: <>Clip the reel inside your collar or jacket, draw the thread, hook it, lift. <Link href="/products/itr#tutorial">Watch the tutorial</Link></> },
-  { label: "Returns", reply: <>Unused reels can be returned within 30 days. Details in <Link href="/shipping-returns">Shipping &amp; Returns</Link>.</> },
+  { label: "Is it really invisible?", reply: <>Yes. The thread is ultra-fine, so on camera and from a few feet away it simply disappears. Watch the demo on the <Link href="/products/itr?view=video">product page</Link> to see it for yourself.</> },
+  { label: "I'm a total beginner", reply: <>Perfect, it&apos;s made for you. Clip it on, draw the thread, hook your object and lift. Most people get their first levitation in a few minutes from the 24-second demo.</> },
+  { label: "What can I make fly?", reply: <>Light things: a can, a ring, a card, a bill, a pen. Lift it, float it, make it dance, then let the thread wind back into the reel so there&apos;s nothing left to find.</> },
+  { label: "Shipping & price", reply: <>Each reel is $19 and shipping is a flat $7 per order, however many you buy. Standard delivery takes 7–12 business days; we fulfil within 24–48 hours. <Link href="/shipping-returns">Details</Link></> },
+  { label: "Returns", reply: <>Unused reels can be returned within 30 days for a full refund. <Link href="/shipping-returns">How returns work</Link></> },
+  { label: "Where's my order?", reply: <>Use the person icon at the top with your email and order number (it starts with IF), or write to us below and we&apos;ll check for you.</> },
 ];
 
 export default function SupportChat() {
@@ -29,6 +31,11 @@ export default function SupportChat() {
   useEffect(() => {
     body.current?.scrollTo({ top: body.current.scrollHeight, behavior: "smooth" });
   }, [asked, state, open]);
+  useEffect(() => {
+    const show = () => { openedAt.current = Date.now(); setOpen(true); };
+    window.addEventListener("itflew:open-chat", show);
+    return () => window.removeEventListener("itflew:open-chat", show);
+  }, []);
   useEffect(() => {
     if (!open) return;
     const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -140,7 +147,7 @@ export default function SupportChat() {
               </button>
             </header>
             <div className="sc-body" ref={body}>
-              <p className="sc-msg them">Hello. How can we help?</p>
+              <p className="sc-msg them">Hello. Ask us anything about Invisible Thread, or pick a question below.</p>
               {asked.map((i, n) => (
                 <div key={n}>
                   <p className="sc-msg me">{QUICK[i].label}</p>

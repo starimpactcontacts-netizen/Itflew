@@ -9,6 +9,10 @@ import { ITR, formatPrice } from "@/lib/products";
 const MORE =
   " Clip it inside a collar or jacket, draw out the thread and hook it to a can, a ring, a card or a bill. Lift your hands and it rises. When you are done, the thread winds back into the reel and nothing is left to find.";
 
+const Chev = () => (
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden><path d="M9 5l7 7-7 7" /></svg>
+);
+
 function Row({ href, label, sub }: { href: string; label: string; sub?: string }) {
   return (
     <li>
@@ -61,10 +65,10 @@ export default function PdpBuy() {
         <button className="dr-link" onClick={() => setPick(!pick)} aria-expanded={pick}>
           {qty === 1 ? "Select quantity" : `Quantity: ${qty}`}
         </button>
-        <a href="#tutorial" className="dr-link dr-muted">
+        <button className="dr-link dr-muted" onClick={() => window.dispatchEvent(new Event("itflew:show-video"))}>
           Watch tutorial
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden><path d="M9 5l7 7-7 7" /></svg>
-        </a>
+        </button>
       </div>
       {pick && (
         <div className="dr-qty" role="radiogroup" aria-label="Quantity">
@@ -123,10 +127,19 @@ export default function PdpBuy() {
       </div>
 
       <ul className="dr-rows">
-        <Row href="#tutorial" label="How it works" sub="Watch the one-minute tutorial" />
-        <Row href="/track" label="Track your order" />
+        <li>
+          <button className="dr-row" onClick={() => window.dispatchEvent(new Event("itflew:show-video"))}>
+            <span>How it works<small>Watch the 24-second demo</small></span>
+            <Chev />
+          </button>
+        </li>
         <Row href="/shipping-returns" label="Delivery & Returns" sub="$7 shipping, 7–12 business days · 30-day returns" />
-        <Row href="/contact" label="Contact us" sub="support@itflew.com" />
+        <li>
+          <button className="dr-row" onClick={() => window.dispatchEvent(new Event("itflew:open-chat"))}>
+            <span>Questions? Chat with us<small>Real answers from the It Flew! team</small></span>
+            <Chev />
+          </button>
+        </li>
       </ul>
     </div>
   );

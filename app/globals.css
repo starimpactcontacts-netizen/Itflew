@@ -734,3 +734,5 @@ strong, b { font-weight: 400; letter-spacing: .04em; } /* Marcellus has one weig
 .slide { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; transition: opacity .15s; }
 .slide:active { opacity: .75; }
 .slide img { -webkit-user-drag: none; pointer-events: none; }
+
+button.dr-row { width: 100%; background: none; border: 0; text-align: left; font: inherit; cursor: pointer; }
