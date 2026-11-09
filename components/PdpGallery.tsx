@@ -2,20 +2,19 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import Inspector from "./Inspector";
 
-const SHOT = (src: string, alt: string) => (
-  <Image src={src} alt={alt} width={948} height={1264} unoptimized className="pg-img" />
-);
-
+// Product photos: 3:4, subject centred, 2x super-resolved (see public/product).
 const SHOTS = [
-  { key: "angle", node: SHOT("/product/reel-angle.webp", "Invisible Thread reel at an angle, clip underneath") },
-  { key: "front", node: SHOT("/product/reel-front.webp", "Invisible Thread reel, front view with clip") },
-  { key: "jacket", node: <Image src="/product/reel-jacket.webp" alt="Invisible Thread clipped inside a jacket, thread running down the lining" width={756} height={1008} unoptimized className="pg-img" /> },
+  { src: "/product/reel-angle-hd.webp", alt: "Invisible Thread reel at an angle, clip underneath", w: 1454, h: 1938 },
+  { src: "/product/reel-front-hd.webp", alt: "Invisible Thread reel, front view with clip", w: 2048, h: 2730 },
+  { src: "/product/reel-jacket-hd.webp", alt: "Invisible Thread clipped inside a jacket, thread running down the lining", w: 1512, h: 2016 },
 ];
 
 export default function PdpGallery() {
   const rail = useRef<HTMLDivElement>(null);
   const [i, setI] = useState(0);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const el = rail.current;
@@ -35,16 +34,25 @@ export default function PdpGallery() {
   return (
     <div className="pg">
       <div className="pg-rail" ref={rail}>
-        {SHOTS.map((s) => (
-          <div key={s.key} className="pg-slide">{s.node}</div>
+        {SHOTS.map((s, k) => (
+          <button key={s.src} className="pg-slide" onClick={() => setOpen(true)} aria-label={`Inspect image ${k + 1}`}>
+            <Image src={s.src} alt={s.alt} width={s.w} height={s.h} unoptimized priority={k === 0} className="pg-img" />
+          </button>
         ))}
       </div>
+      <button className="pg-zoom" aria-label="Inspect and zoom" onClick={() => setOpen(true)}>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.4">
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="M15.5 15.5L21 21M10.5 7.5v6M7.5 10.5h6" />
+        </svg>
+      </button>
       <button className="pg-next" aria-label="Next image" onClick={() => go(1)}>
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.3"><path d="M9 4l8 8-8 8" /></svg>
       </button>
       <div className="pg-bar" aria-hidden>
         <span style={{ width: `${100 / SHOTS.length}%`, left: `${(i * 100) / SHOTS.length}%` }} />
       </div>
+      {open && <Inspector images={SHOTS} start={i} onClose={() => setOpen(false)} />}
     </div>
   );
 }

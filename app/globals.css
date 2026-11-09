@@ -475,3 +475,21 @@ a:hover .poster-hand { translate: -50% -10px; }
   .pg-slide { background: #ecebe7; }
   .pg-slide .pg-img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: contain; }
 }
+
+/* gallery inspector */
+.pg-slide { border: 0; padding: 0; background: #ecebe7; cursor: zoom-in; }
+.pg-zoom { position: absolute; left: 16px; bottom: 26px; width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(255,255,255,.75); color: #000; display: grid; place-items: center; }
+.insp { position: fixed; inset: 0; z-index: 100; background: #fff; color: #000; display: flex; flex-direction: column; }
+.insp-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; font-family: var(--display); font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
+.insp-hint { color: #777; font-size: 12px; }
+.insp-x { background: none; border: 0; padding: 6px; display: grid; color: #000; }
+.insp-stage { flex: 1; position: relative; overflow: hidden; display: grid; place-items: center; background: #ecebe7; touch-action: none; cursor: zoom-in; }
+.insp-stage.zoomed { cursor: grab; }
+.insp-stage img { max-width: 100%; max-height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; transition: transform .2s ease; will-change: transform; }
+.insp-stage.zoomed img { transition: none; }
+.insp-bar { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 12px 16px 20px; }
+.insp-bar > button { background: none; border: 0; padding: 6px; color: #000; display: grid; }
+.insp-thumbs { display: flex; gap: 8px; }
+.insp-thumbs button { width: 52px; height: 68px; padding: 0; border: 1.5px solid transparent; background: #ecebe7; }
+.insp-thumbs button.on { border-color: #000; }
+.insp-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
