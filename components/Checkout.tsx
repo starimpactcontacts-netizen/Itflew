@@ -59,7 +59,13 @@ export default function Checkout() {
   useEffect(() => {
     if (qty < 1 || started.current) return;
     started.current = true;
-    callIntent({ qty }).then((i) => {
+    callIntent({ qty }).then(async (i) => {
+      if ((i as unknown as { hosted?: boolean }).hosted) {
+        const r = await fetch("/api/checkout/session", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ qty }) });
+        const d = (await r.json()) as { url?: string; error?: string };
+        if (d.url) return window.location.assign(d.url);
+        return setFailed(d.error ?? "Checkout is unavailable right now.");
+      }
       if (i.error || !i.clientSecret || !i.publishableKey) return setFailed(i.error ?? "Checkout is unavailable right now.");
       setIntent(i);
       setStripeP(loadStripe(i.publishableKey));

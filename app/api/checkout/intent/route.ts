@@ -19,6 +19,7 @@ const orderNumber = () => "IF" + Math.floor(100000 + Math.random() * 900000);
 export async function POST(req: Request) {
   try {
     void ensureStripeSetup();
+    if (!publishableKey()) return NextResponse.json({ hosted: true });
     const body = (await req.json().catch(() => ({}))) as { qty?: number; email?: string; id?: string };
     const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 254) : undefined;
     const welcome = await welcomeEligible(email);

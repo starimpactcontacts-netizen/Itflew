@@ -1,0 +1,39 @@
+import { NextResponse } from "next/server";
+import { stripe } from "@/lib/stripe/server";
+import { priceFor } from "@/lib/pricing";
+
+const SITE = "https://itflew.vercel.app";
+const COUNTRIES = ["US", "CA", "GB", "IE", "AU", "NZ", "SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "ES", "IT", "PT", "AT", "CH", "PL"] as const;
+
+// Stripe-hosted checkout (used until a publishable key is configured).
+export async function POST(req: Request) {
+  try {
+    const body = (await req.json().catch(() => ({}))) as { qty?: number };
+    const p = priceFor(Number(body.qty) || 1, false);
+    const orderNumber = "IF" + Math.floor(100000 + Math.random() * 900000);
+    const meta = { product: "invisible-thread", qty: String(p.qty), order_number: orderNumber };
+    const session = await stripe().checkout.sessions.create({
+      mode: "payment",
+      line_items: [
+        {
+          quantity: p.qty,
+          price_data: {
+            currency: "usd",
+            unit_amount: Math.round(p.subtotal / p.qty),
+            product_data: { name: "Invisible Thread", description: "Small reel, one thread, endless tricks", images: [`${SITE}/product/reel-angle-v2.webp`] },
+          },
+        },
+      ],
+      shipping_address_collection: { allowed_countries: [...COUNTRIES] },
+      allow_promotion_codes: true,
+      metadata: meta,
+      payment_intent_data: { metadata: meta, description: `Invisible Thread × ${p.qty}` },
+      success_url: `${SITE}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${SITE}/products/itr`,
+    });
+    return NextResponse.json({ url: session.url });
+  } catch (e) {
+    console.error("checkout session", e);
+    return NextResponse.json({ error: "Checkout is unavailable right now." }, { status: 500 });
+  }
+}

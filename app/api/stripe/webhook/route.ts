@@ -42,16 +42,26 @@ export async function POST(req: Request) {
       return NextResponse.json({ received: true, saved: false });
     }
     const db = createAdmin(SUPABASE_URL, serviceKey, { auth: { persistSession: false } });
+    // hosted checkout: email + shipping live on the Checkout Session
+    let email = pi.receipt_email ?? "";
+    let shipping: unknown = pi.shipping ?? null;
+    if (!email || !shipping) {
+      try {
+        const cs = (await stripe().checkout.sessions.list({ payment_intent: pi.id, limit: 1 })).data[0];
+        email ||= cs?.customer_details?.email ?? "";
+        shipping ??= cs?.collected_information?.shipping_details ?? null;
+      } catch {}
+    }
     const { error } = await db.from("orders").upsert(
       {
         order_number: pi.metadata.order_number ?? pi.id,
-        email: (pi.receipt_email ?? "").toLowerCase(),
+        email: email.toLowerCase(),
         status: "processing",
         quantity: Number(pi.metadata.qty) || 1,
         amount_total: pi.amount_received || pi.amount,
         currency: pi.currency,
         payment_intent: pi.id,
-        shipping: pi.shipping ?? null,
+        shipping,
       },
       { onConflict: "payment_intent" }
     );
