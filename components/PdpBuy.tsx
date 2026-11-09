@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "./CartProvider";
+import { useDelivery } from "./useDelivery";
 import { ITR, formatPrice } from "@/lib/products";
 
 const MORE =
@@ -35,6 +36,7 @@ export default function PdpBuy() {
   const [saved, setSaved] = useState(false);
   const [sticky, setSticky] = useState(false);
   const addRef = useRef<HTMLButtonElement>(null);
+  const delivery = useDelivery();
 
   useEffect(() => {
     try { setSaved(localStorage.getItem("itflew-wish-itr") === "1"); } catch {}
@@ -123,7 +125,7 @@ export default function PdpBuy() {
             <Chev />
           </button>
         </li>
-        <Row href="/shipping-returns" label="Delivery & Returns" sub="$7 shipping, 7–12 business days · 30-day returns" />
+        <Row href="/shipping-returns" label="Delivery & Returns" sub={delivery.by ? `Arrives${delivery.place ? ` in ${delivery.place}` : ""} by ${delivery.by} · $7 · 30-day returns` : "$7 shipping · 30-day returns"} />
         <li>
           <button className="dr-row" onClick={() => window.dispatchEvent(new Event("itflew:open-chat"))}>
             <span>Questions? Chat with us<small>Real answers from the It Flew! team</small></span>

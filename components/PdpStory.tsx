@@ -23,7 +23,7 @@ const FAQ = [
   ["Is it really invisible?", "Yes. The thread is ultra-fine, so on camera and from a few feet away it simply disappears. Watch the tutorial above and see for yourself."],
   ["I've never done magic. Can I do this?", "It's made for you. Clip it on, draw the thread, hook your object and lift. Most people land their first levitation within minutes using the tutorial."],
   ["What can I make fly?", "Light everyday things: a can, a ring, a card, a bill, a pen. Lift it, float it, make it dance, then let the thread wind back so there's nothing left to find."],
-  ["How long does delivery take?", "We dispatch within 24–48 hours. Standard delivery takes 7–12 business days, and most orders to major cities arrive within 5–7 days of dispatch. Shipping is a flat $7 per order."],
+  ["How long does delivery take?", "We dispatch within 24–48 hours. Delivery time depends on where you are: standard shipping takes 7–12 business days, and orders to major cities usually arrive within 5–7 days of dispatch. Your exact dates show in the bag before you enter any details. Shipping is a flat $7 per order."],
   ["What if it's not for me?", "Return unused reels within 30 days for a full refund. No forms, just email support@itflew.com."],
   ["Is checkout secure?", "Payments are processed by Stripe with bank-level encryption. We never see or store your card details. Apple Pay and all major cards are accepted."],
 ];

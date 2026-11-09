@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import DeliveryEstimate from "./DeliveryEstimate";
+import { useDelivery } from "./useDelivery";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { loadStripe, type Stripe as StripeJs, type StripeElements } from "@stripe/stripe-js";
 import {
@@ -121,6 +123,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
   const elements = useElements();
   const { qty, setQty } = useCart();
   const [step, setStep] = useState<"review" | "details">("review");
+  const delivery = useDelivery();
   const [editQty, setEditQty] = useState(false);
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
@@ -222,6 +225,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
         <section className="co-block">
           <h2 className="co-h2">Total</h2>
           {totals}
+          <DeliveryEstimate shipping={intent.shipping / 100} />
           <button className="co-primary" onClick={() => go("details")}>
             <span>Continue to checkout</span>
             <span>{money(intent.total)}</span>
@@ -289,7 +293,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
             <h2 className="co-h2">Delivery</h2>
             <div className="co-card">
               <AddressElement options={{ mode: "shipping", allowedCountries: COUNTRIES, fields: { phone: "never" } }} />
-              <p className="co-note">Standard shipping {money(intent.shipping)} · 7–12 business days</p>
+              <p className="co-note">Standard shipping{delivery.place ? ` to ${delivery.place}` : ""} {money(intent.shipping)} · arrives {delivery.range ?? "in 7–12 business days"}</p>
             </div>
           </section>
           <section className="co-block">
