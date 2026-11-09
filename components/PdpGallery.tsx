@@ -6,7 +6,7 @@ import Inspector from "./Inspector";
 
 // Product photos: 3:4, subject centred, 2x super-resolved (see public/product).
 const SHOTS = [
-  { src: "/product/reel-angle-hd.webp", alt: "Invisible Thread reel at an angle, clip underneath", w: 1454, h: 1938 },
+  { src: "/product/reel-angle-v2.webp", alt: "Invisible Thread reel at an angle, clip underneath", w: 1896, h: 2528 },
   { src: "/product/reel-front-hd.webp", alt: "Invisible Thread reel, front view with clip", w: 2048, h: 2730 },
   { src: "/product/reel-jacket-hd.webp", alt: "Invisible Thread clipped inside a jacket, thread running down the lining", w: 1512, h: 2016 },
 ];
