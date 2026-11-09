@@ -35,9 +35,9 @@ export default function PdpGallery() {
     <div className="pg">
       <div className="pg-rail" ref={rail}>
         {SHOTS.map((s, k) => (
-          <button key={s.src} className="pg-slide" onClick={() => setOpen(true)} aria-label={`Inspect image ${k + 1}`}>
+          <div key={s.src} className="pg-slide" role="button" tabIndex={0} onClick={() => setOpen(true)} onKeyDown={(e) => e.key === "Enter" && setOpen(true)} aria-label={`Inspect image ${k + 1}`}>
             <Image src={s.src} alt={s.alt} width={s.w} height={s.h} unoptimized priority={k === 0} className="pg-img" />
-          </button>
+          </div>
         ))}
       </div>
       <button className="pg-zoom" aria-label="Inspect and zoom" onClick={() => setOpen(true)}>
