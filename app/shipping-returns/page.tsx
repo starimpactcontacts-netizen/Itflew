@@ -9,7 +9,7 @@ export default function Shipping() {
   return (
     <LegalPage title="Shipping & Returns" updated="November 9, 2026">
       <h2>Shipping</h2>
-      <p><strong>Standard Shipping: 7–12 business days</strong>, free on every order.</p>
+      <p><strong>Standard Shipping: $7.00, 7–12 business days.</strong> One flat rate per order, however many reels you buy.</p>
       <p>Orders are fulfilled within 24–48 hours. Most orders to major metropolitan areas arrive within 5–7 days once dispatched. You&apos;ll get a confirmation email with your order number as soon as you pay.</p>
       <p>Once your order ships you can follow it on our <Link href="/track">Track your order</Link> page with your email and order number.</p>
       <h2>Returns</h2>

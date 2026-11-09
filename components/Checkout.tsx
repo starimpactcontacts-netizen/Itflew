@@ -178,7 +178,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
     <dl className="co-totals">
       <div><dt>Subtotal</dt><dd>{money(intent.subtotal)}</dd></div>
       {intent.discount > 0 && <div className="co-disc-row"><dt>Welcome offer (10%)</dt><dd>−{money(intent.discount)}</dd></div>}
-      <div><dt>Delivery</dt><dd>{intent.shipping ? money(intent.shipping) : "Free standard shipping"}</dd></div>
+      <div><dt>Delivery</dt><dd>{intent.shipping ? money(intent.shipping) : "Free"}</dd></div>
       {(intent.discount > 0 || intent.shipping > 0) && <div className="co-grand"><dt>Total</dt><dd>{money(intent.total)}</dd></div>}
     </dl>
   );
@@ -242,7 +242,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
                   emailRequired: true,
                   shippingAddressRequired: true,
                   allowedShippingCountries: COUNTRIES,
-                  shippingRates: [{ id: "free", displayName: "Free standard shipping (7–12 business days)", amount: 0, deliveryEstimate: { minimum: { unit: "business_day", value: 7 }, maximum: { unit: "business_day", value: 12 } } }],
+                  shippingRates: [{ id: "standard", displayName: "Standard shipping (7–12 business days)", amount: intent.shipping, deliveryEstimate: { minimum: { unit: "business_day", value: 7 }, maximum: { unit: "business_day", value: 12 } } }],
                 })
               }
               onConfirm={async (ev) => {
@@ -289,7 +289,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
             <h2 className="co-h2">Delivery</h2>
             <div className="co-card">
               <AddressElement options={{ mode: "shipping", allowedCountries: COUNTRIES, fields: { phone: "never" } }} />
-              <p className="co-note">Free standard shipping · 7–12 business days</p>
+              <p className="co-note">Standard shipping {money(intent.shipping)} · 7–12 business days</p>
             </div>
           </section>
           <section className="co-block">
@@ -330,10 +330,10 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
             <p>Already ordered? <Link href="/track">Track your order</Link> with your email and the order number from your confirmation.</p>
           </Acc>
           <Acc
-            title="Free standard shipping"
+            title="Standard shipping $7"
             icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" /><circle cx="7" cy="17.5" r="1.6" /><circle cx="17" cy="17.5" r="1.6" /></svg>}
           >
-            <p>Standard Shipping: 7–12 business days, free on every order. Orders are fulfilled within 24–48 hours, and most orders to major metropolitan areas arrive within 5–7 days once dispatched.</p>
+            <p>Standard Shipping: $7.00 flat per order, 7–12 business days. Orders are fulfilled within 24–48 hours, and most orders to major metropolitan areas arrive within 5–7 days once dispatched.</p>
           </Acc>
           <Acc
             title="Free returns within 30 days"

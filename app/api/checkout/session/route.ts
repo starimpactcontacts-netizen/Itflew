@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe/server";
-import { priceFor } from "@/lib/pricing";
+import { priceFor, SHIPPING_CENTS } from "@/lib/pricing";
 
 const SITE = "https://itflew.vercel.app";
 const COUNTRIES = ["US", "CA", "GB", "IE", "AU", "NZ", "SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "ES", "IT", "PT", "AT", "CH", "PL"] as const;
@@ -30,8 +30,8 @@ export async function POST(req: Request) {
         {
           shipping_rate_data: {
             type: "fixed_amount",
-            display_name: "Free standard shipping",
-            fixed_amount: { amount: 0, currency: "usd" },
+            display_name: "Standard shipping",
+            fixed_amount: { amount: SHIPPING_CENTS, currency: "usd" },
             delivery_estimate: { minimum: { unit: "business_day", value: 7 }, maximum: { unit: "business_day", value: 12 } },
           },
         },

@@ -10,7 +10,7 @@ export default function Terms() {
     <LegalPage title="Terms of Sale" updated="November 9, 2026">
       <p>These terms apply to purchases made on itflew.com. By placing an order you agree to them.</p>
       <h2>Orders and pricing</h2>
-      <p>Prices are shown in US dollars and include the item price; shipping is free unless stated otherwise at checkout. We may cancel an order if a product is unavailable or a pricing error occurs, in which case you&apos;ll be refunded in full.</p>
+      <p>Prices are shown in US dollars and include the item price. Standard shipping is a flat $7.00 per order and is shown at checkout before you pay. We may cancel an order if a product is unavailable or a pricing error occurs, in which case you&apos;ll be refunded in full.</p>
       <h2>Payment</h2>
       <p>Payments are processed securely by Stripe. Your order is confirmed once payment succeeds and you receive a confirmation email with your order number.</p>
       <h2>Shipping and returns</h2>
