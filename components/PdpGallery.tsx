@@ -25,6 +25,10 @@ export default function PdpGallery() {
     const el = rail.current;
     if (!el) return;
     const on = () => setI(Math.round(el.scrollLeft / el.clientWidth));
+    // deep link from the home page cards, e.g. ?view=jacket
+    const view = new URLSearchParams(window.location.search).get("view");
+    const target = view === "jacket" ? SLIDES.indexOf(SHOTS[2]) : view === "video" ? SLIDES.indexOf("video") : -1;
+    if (target > 0) requestAnimationFrame(() => { el.scrollTo({ left: target * el.clientWidth }); setI(target); });
     el.addEventListener("scroll", on, { passive: true });
     return () => el.removeEventListener("scroll", on);
   }, []);

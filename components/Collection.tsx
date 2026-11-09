@@ -23,7 +23,7 @@ const SLIDES: Slide[] = [
     key: "jacket",
     name: <>No One<br />Sees It</>,
     desc: "Hides inside your jacket.",
-    href: "/products/itr",
+    href: "/products/itr?view=jacket",
     media: (
       <Image
         className="cover jacket"
