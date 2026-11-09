@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { ITR, formatPrice } from "@/lib/products";
 import { useCart } from "./CartProvider";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CartDrawer() {
   const { qty, setQty, open, setOpen } = useCart();
@@ -51,9 +52,9 @@ export default function CartDrawer() {
               <span>Subtotal</span>
               <span>{formatPrice(ITR.price * qty)}</span>
             </div>
-            <button className="btn btn-red btn-block" disabled>
-              Checkout opening soon
-            </button>
+            <Link href="/checkout" className="btn btn-red btn-block" onClick={() => setOpen(false)}>
+              Checkout
+            </Link>
           </>
         )}
       </aside>

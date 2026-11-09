@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "./CartProvider";
 import { ITR, formatPrice } from "@/lib/products";
@@ -23,7 +24,8 @@ function Row({ href, label, sub }: { href: string; label: string; sub?: string }
 }
 
 export default function PdpBuy() {
-  const { add } = useCart();
+  const { add, setQty: setQtyCart } = useCart();
+  const router = useRouter();
   const [qty, setQty] = useState(1);
   const [more, setMore] = useState(false);
   const [pick, setPick] = useState(false);
@@ -88,7 +90,7 @@ export default function PdpBuy() {
         <span>{formatPrice(ITR.price * qty)}</span>
       </button>
       <div className="dr-row2">
-        <button className="dr-express" disabled title="Express payment opens with checkout">Express payment</button>
+        <button className="dr-express" onClick={() => { setQtyCart(qty); router.push("/checkout"); }}>Express payment</button>
         <button className={`dr-heart${saved ? " on" : ""}`} onClick={toggleSave} aria-pressed={saved} aria-label={saved ? "Remove from wishlist" : "Add to wishlist"}>
           <svg viewBox="0 0 24 24" width="24" height="24" fill={saved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5" aria-hidden><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg>
         </button>
