@@ -696,22 +696,32 @@ strong, b { font-weight: 400; letter-spacing: .04em; } /* Marcellus has one weig
 @media (min-width: 860px) { .ck { padding-inline: 56px; } .ck-text { font-size: 14px; } }
 
 
-/* SUPPORT TAB — iOS-style edge handle, flush to the screen edge with concave fillets */
-.sc-tab { position: fixed; right: 0; top: 58%; z-index: 45; }
+.sc-hide { background: #fff; border: 0; border-top: 1px solid #eee; padding: 10px; font: inherit; font-size: 13px; color: #888; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* SUPPORT TAB — draggable iOS-style edge handle */
+.sc-tab {
+  position: fixed; left: 0; top: 0; z-index: 45; width: 26px; height: 84px; touch-action: none; user-select: none; -webkit-user-select: none;
+  transition: transform .45s cubic-bezier(.22, 1.2, .36, 1); will-change: transform;
+}
+.sc-tab.dragging { transition: none; }
 .sc-open {
-  display: grid; place-items: center; width: 30px; height: 96px; padding: 0 0 0 4px; border: 0; cursor: pointer; color: #fff;
+  display: grid; place-items: center; width: 26px; height: 84px; padding: 20px 0 0; border: 0; cursor: pointer; color: #fff;
   background: rgba(58, 58, 64, .5);
   -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
-  clip-path: path("M30 0 C30 9 26 13 17 13 L15 13 C5 13 0 18 0 28 L0 68 C0 78 5 83 15 83 L17 83 C26 83 30 87 30 96 Z");
-  transition: width .2s ease, background .2s ease;
+  transition: background .2s ease, transform .2s ease;
 }
-.sc-open svg { margin-left: 2px; }
-.sc-open:active { background: rgba(58, 58, 64, .65); }
-.sc-hide { background: #fff; border: 0; border-top: 1px solid #eee; padding: 10px; font: inherit; font-size: 13px; color: #888; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.sc-right .sc-open { padding-left: 3px; clip-path: path("M26 0 C26 8 23 11 15 11 L13 11 C4 11 0 15 0 24 L0 60 C0 69 4 73 13 73 L15 73 C23 73 26 76 26 84 Z"); }
+.sc-left .sc-open { padding-right: 3px; clip-path: path("M0 0 C0 8 3 11 11 11 L13 11 C22 11 26 15 26 24 L26 60 C26 69 22 73 13 73 L11 73 C3 73 0 76 0 84 Z"); }
+.sc-open svg { width: 15px; height: 15px; }
+.dragging .sc-open { background: rgba(58, 58, 64, .65); }
 .sc-x {
-  position: absolute; top: 17px; left: 7px; width: 18px; height: 18px; padding: 0; border: 0; background: none; cursor: pointer;
+  position: absolute; top: 14px; width: 16px; height: 16px; padding: 0; border: 0; background: none; cursor: pointer;
   display: grid; place-items: center; color: rgba(255,255,255,.7); z-index: 1;
 }
+.sc-right .sc-x { left: 7px; }
+.sc-left .sc-x { left: 3px; }
+.sc-x svg { width: 7px; height: 7px; }
 .sc-x::after { content: ""; position: absolute; inset: -6px -4px; }
-.sc-open { padding-top: 22px !important; }
-.sc-tab::after { content: ""; position: absolute; left: 9px; right: 5px; top: 39px; height: 1px; background: rgba(255,255,255,.25); pointer-events: none; }
+.sc-tab::after { content: ""; position: absolute; top: 34px; width: 14px; height: 1px; background: rgba(255,255,255,.25); pointer-events: none; }
+.sc-right::after { left: 8px; }
+.sc-left::after { left: 4px; }

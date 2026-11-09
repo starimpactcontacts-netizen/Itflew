@@ -36,6 +36,68 @@ export default function SupportChat() {
     return () => window.removeEventListener("keydown", k);
   }, [open]);
 
+  // draggable edge tab: snaps to the nearest side, remembers where it was left
+  const W = 26, H = 84;
+  const [pos, setPos] = useState<{ side: "left" | "right"; y: number }>({ side: "left", y: 0.6 });
+  const [drag, setDrag] = useState<{ x: number; y: number } | null>(null);
+  const [vw, setVw] = useState(0);
+  const [vh, setVh] = useState(0);
+  const start = useRef<{ px: number; py: number; x: number; y: number; moved: boolean; hit: "x" | "open" } | null>(null);
+  const moved = useRef(false);
+  const openedAt = useRef(0);
+
+  useEffect(() => {
+    const on = () => { setVw(window.innerWidth); setVh(window.innerHeight); };
+    on();
+    window.addEventListener("resize", on);
+    try {
+      const saved = JSON.parse(localStorage.getItem("itflew-chat-pos") ?? "null");
+      if (saved && (saved.side === "left" || saved.side === "right") && typeof saved.y === "number") setPos(saved);
+    } catch {}
+    return () => window.removeEventListener("resize", on);
+  }, []);
+
+  const clampY = (y: number) => Math.min(Math.max(y, 72), Math.max(72, vh - H - 24));
+  const restX = pos.side === "left" ? 0 : vw - W;
+  const restY = clampY(pos.y * vh);
+  const tabX = drag ? drag.x : restX;
+  const tabY = drag ? drag.y : restY;
+
+  const onDown = (e: React.PointerEvent) => {
+    start.current = { px: e.clientX, py: e.clientY, x: restX, y: restY, moved: false, hit: (e.target as Element).closest(".sc-x") ? "x" : "open" };
+    moved.current = false;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
+  const onMove = (e: React.PointerEvent) => {
+    const st = start.current;
+    if (!st) return;
+    const dx = e.clientX - st.px, dy = e.clientY - st.py;
+    if (!st.moved && Math.hypot(dx, dy) < 6) return;
+    st.moved = true;
+    moved.current = true;
+    setDrag({ x: Math.min(Math.max(st.x + dx, 0), vw - W), y: clampY(st.y + dy) });
+  };
+  const onUp = () => {
+    const st = start.current;
+    start.current = null;
+    if (!st) return;
+    if (!st.moved || !drag) {
+      setDrag(null);
+      if (st.hit === "x") dismiss();
+      else {
+        openedAt.current = Date.now();
+        setOpen(true);
+      }
+      return;
+    }
+    const next = { side: (drag.x + W / 2 < vw / 2 ? "left" : "right") as "left" | "right", y: drag.y / vh };
+    setPos(next);
+    setDrag(null);
+    try { localStorage.setItem("itflew-chat-pos", JSON.stringify(next)); } catch {}
+  };
+  // pointer taps are handled in onUp; onClick only serves keyboard activation (detail === 0)
+  const guard = (fn: () => void) => (e: React.MouseEvent) => { if (e.detail === 0) fn(); };
+
   const dismiss = () => {
     setHidden(true);
     try { sessionStorage.setItem(KEY, "1"); } catch {}
@@ -46,11 +108,18 @@ export default function SupportChat() {
   return (
     <>
       {!open && (
-        <div className="sc-tab">
-          <button className="sc-x" onClick={dismiss} aria-label="Hide chat button">
+        <div
+          className={`sc-tab sc-${drag ? (drag.x + W / 2 < vw / 2 ? "left" : "right") : pos.side}${drag ? " dragging" : ""}`}
+          style={{ transform: `translate3d(${tabX}px, ${tabY}px, 0)`, visibility: vw ? "visible" : "hidden" }}
+          onPointerDown={onDown}
+          onPointerMove={onMove}
+          onPointerUp={onUp}
+          onPointerCancel={onUp}
+        >
+          <button className="sc-x" onClick={guard(dismiss)} aria-label="Hide chat button">
             <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
           </button>
-          <button className="sc-open" onClick={() => setOpen(true)} aria-label="Open support chat">
+          <button className="sc-open" onClick={guard(() => setOpen(true))} aria-label="Open support chat">
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
               <path d="M4 12a8 7 0 1 1 3.2 5.6L4 19l1-3.4A6.8 6.8 0 0 1 4 12z" />
             </svg>
@@ -59,7 +128,7 @@ export default function SupportChat() {
       )}
 
       {open && (
-        <div className="sc-wrap" onClick={() => setOpen(false)}>
+        <div className="sc-wrap" onClick={() => { if (Date.now() - openedAt.current > 450) setOpen(false); }}>
           <section className="sc-panel" role="dialog" aria-label="Support" onClick={(e) => e.stopPropagation()}>
             <header className="sc-head">
               <div>
