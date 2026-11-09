@@ -48,12 +48,9 @@ export default function SupportChat() {
       {!open && (
         <div className="sc-tab">
           <button className="sc-open" onClick={() => setOpen(true)} aria-label="Open support chat">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
               <path d="M4 12a8 7 0 1 1 3.2 5.6L4 19l1-3.4A6.8 6.8 0 0 1 4 12z" />
             </svg>
-          </button>
-          <button className="sc-close" onClick={dismiss} aria-label="Hide support button">
-            <svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" strokeWidth="3"><path d="M6 6l12 12M18 6L6 18" /></svg>
           </button>
         </div>
       )}
@@ -85,6 +82,7 @@ export default function SupportChat() {
               </div>
               {state?.ok && <p className="sc-msg them">{state.message}</p>}
             </div>
+            <button className="sc-hide" onClick={() => { dismiss(); setOpen(false); }}>Hide chat button</button>
             {state?.ok ? (
               <p className="sc-foot-note">Or email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p>
             ) : (
