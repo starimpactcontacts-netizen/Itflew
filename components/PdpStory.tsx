@@ -1,8 +1,7 @@
 import Link from "next/link";
 import TutorialVideo from "./TutorialVideo";
-import AddToCart from "./AddToCart";
 import { StepImage } from "./StepCard";
-import { ITR, formatPrice } from "@/lib/products";
+import { ITR } from "@/lib/products";
 
 const STEPS = [
   ["Clip", "Clip the reel inside your collar or jacket. The thread runs out unseen."],
@@ -77,7 +76,6 @@ export default function PdpStory() {
       </ul>
 
       <section id="tutorial" className="ps-tut">
-        <p className="ps-kicker">The tutorial</p>
         <h2 className="ps-h2">Learn it in a minute</h2>
         <p className="ps-lede">Four moves. No experience needed. Watch once, then try it yourself.</p>
         <TutorialVideo />
@@ -86,8 +84,7 @@ export default function PdpStory() {
             <li key={t}>
               <div className="ps-step-img"><StepImage i={i} /></div>
               <div className="ps-step-copy">
-                <span>Step {String(i + 1).padStart(2, "0")}</span>
-                <h3>{t}</h3>
+                <h3>{i + 1}. {t}</h3>
                 <p>{d}</p>
               </div>
             </li>
@@ -96,7 +93,6 @@ export default function PdpStory() {
       </section>
 
       <section className="ps-sec">
-        <p className="ps-kicker">The details</p>
         <h2 className="ps-h2">Small reel. Big moments.</h2>
         <dl className="ps-specs">
           {SPECS.map(([k, v]) => (
@@ -109,7 +105,6 @@ export default function PdpStory() {
       </section>
 
       <section className="ps-sec">
-        <p className="ps-kicker">Questions</p>
         <h2 className="ps-h2">Before you buy</h2>
         <div className="ps-faq">
           {FAQ.map(([q, a], i) => (
@@ -124,11 +119,6 @@ export default function PdpStory() {
         </p>
       </section>
 
-      <section className="ps-cta">
-        <h2>Make anything fly.</h2>
-        <p>{ITR.name} · {formatPrice(ITR.price)}</p>
-        <AddToCart label="Add to cart" />
-      </section>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
