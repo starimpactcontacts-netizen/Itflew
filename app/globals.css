@@ -204,18 +204,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .qty-lg button { width: 48px; height: 54px; font-size: 22px; }
 
 /* DRAWER */
-.drawer-wrap { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.55); display: flex; justify-content: flex-end; }
-.drawer {
-  width: min(100%, 420px); height: 100%; background: var(--ink); border-left: 1px solid #262626;
-  padding: 20px; overflow-y: auto; animation: slide .25s ease-out;
-}
-@keyframes slide { from { transform: translateX(100%); } }
-.drawer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.drawer-head h2 { font-family: var(--display); font-weight: 400; font-size: 28px; letter-spacing: .08em; text-transform: uppercase; margin: 0; }
-.line { display: grid; grid-template-columns: 80px 1fr auto; gap: 14px; align-items: start; padding-bottom: 20px; border-bottom: 1px solid #262626; }
-.line-img { aspect-ratio: 3 / 4; overflow: hidden; background: #ffffff; padding: 6px; }
-.line-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.total { display: flex; justify-content: space-between; font-family: var(--display); font-size: 20px; letter-spacing: .08em; text-transform: uppercase; margin: 20px 0; }
 
 .row .atc { margin-top: 0; }
 
@@ -616,3 +604,38 @@ strong, b { font-weight: 400; letter-spacing: .04em; } /* Marcellus has one weig
   border-bottom: 1.5px solid currentColor; transition: color .2s, border-color .2s;
 }
 .link-cta:hover { color: var(--red-bright); }
+
+/* BAG — Dior-style sheet */
+.bag-wrap { position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.4); display: flex; align-items: flex-end; animation: bag-fade .2s ease; }
+.bag { width: 100%; max-height: 70svh; overflow-y: auto; background: #fff; color: #222; border-radius: 16px 16px 0 0; padding: 10px 5vw calc(20px + env(safe-area-inset-bottom)); animation: bag-up .3s cubic-bezier(.2,.8,.2,1); }
+.bag-grip { display: block; width: 40px; height: 4px; border-radius: 2px; background: #d8d8d8; margin: 0 auto 10px; }
+.bag-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid #ececec; }
+.bag-head h2 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 26px; color: #222; }
+.bag-count { flex: 1; color: #888; font-size: 15px; }
+.bag-x { background: none; border: 0; color: #444; padding: 4px; display: grid; align-self: center; }
+.bag-item { display: grid; grid-template-columns: 72px 1fr; gap: 14px; padding: 14px 0; align-items: start; border-bottom: 1px solid #ececec; }
+.bag-img { background: #ececec; border-radius: 3px; overflow: hidden; }
+.bag-img img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+.bag-info { display: flex; flex-direction: column; min-width: 0; }
+.bag-name { margin: 0; font-size: 17px; }
+.bag-sub { margin: 2px 0 0; color: #888; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bag-row { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; font-size: 17px; }
+.bag-row .bag-remove { margin: 0; }
+.bag-ctrl { display: flex; align-items: center; gap: 14px; }
+.bag-qty { display: inline-flex; align-items: center; border: 1px solid #d6d6d6; border-radius: 6px; }
+.bag-qty button { width: 30px; height: 30px; background: none; border: 0; font-size: 18px; color: #222; }
+.bag-qty span { min-width: 22px; text-align: center; }
+.bag-remove { align-self: flex-start; margin-top: 10px; font-size: 15px; }
+.bag-foot { padding-top: 10px; }
+.bag-line { display: flex; justify-content: space-between; padding: 4px 0; font-size: 17px; }
+.bag-muted { color: #888; font-size: 15px; }
+.bag-foot .co-primary { margin-top: 12px; height: 56px; }
+.bag-empty { padding: 26px 0 8px; color: #777; }
+@keyframes bag-up { from { transform: translateY(100%); } }
+@keyframes bag-fade { from { background: rgba(0,0,0,0); } }
+@media (min-width: 860px) {
+  .bag-wrap { align-items: stretch; justify-content: flex-end; }
+  .bag { width: 440px; max-height: none; height: 100%; border-radius: 0; padding: 28px 32px; animation-name: bag-side; }
+  .bag-grip { display: none; }
+  @keyframes bag-side { from { transform: translateX(100%); } }
+}
