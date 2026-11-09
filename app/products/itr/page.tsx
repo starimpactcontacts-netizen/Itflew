@@ -23,22 +23,7 @@ export default function ProductPage() {
       <div className="pd-top">
         <PdpGallery />
         <div className="pd-info">
-          <h1 className="pd-title">{ITR.name}, small reel, one thread, endless tricks</h1>
           <PdpBuy />
-          <ul className="pd-links">
-            <li>
-              <Link href="/track">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.3"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" /><circle cx="7" cy="17.5" r="1.6" /><circle cx="17" cy="17.5" r="1.6" /></svg>
-                Track your order
-              </Link>
-            </li>
-            <li>
-              <a href="#tutorial">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.3"><rect x="3" y="5" width="18" height="14" rx="1" /><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" /></svg>
-                Watch the tutorial
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
 

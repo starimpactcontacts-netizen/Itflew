@@ -6,9 +6,9 @@ import Inspector from "./Inspector";
 
 // Product photos: 3:4, subject centred, 2x super-resolved (see public/product).
 const SHOTS = [
-  { src: "/product/reel-angle-v2.webp", alt: "Invisible Thread reel at an angle, clip underneath", w: 1896, h: 2528 },
-  { src: "/product/reel-front-hd.webp", alt: "Invisible Thread reel, front view with clip", w: 2048, h: 2730 },
-  { src: "/product/reel-jacket-hd.webp", alt: "Invisible Thread clipped inside a jacket, thread running down the lining", w: 1512, h: 2016 },
+  { src: "/product/reel-angle-v2.webp", alt: "Invisible Thread reel at an angle, clip underneath", w: 1896, h: 2528, bg: "linear-gradient(90deg,#dddddd,#dddddd)" },
+  { src: "/product/reel-front-v2.webp", alt: "Invisible Thread reel, front view with clip", w: 1896, h: 2528, bg: "linear-gradient(90deg,#e2e2e2 50%,#eceaea 50%)" },
+  { src: "/product/reel-jacket-hd.webp", alt: "Invisible Thread clipped inside a jacket, thread running down the lining", w: 1512, h: 2016, bg: "linear-gradient(90deg,#1f232e 50%,#332a2c 50%)" },
 ];
 
 export default function PdpGallery() {
@@ -35,11 +35,12 @@ export default function PdpGallery() {
     <div className="pg">
       <div className="pg-rail" ref={rail}>
         {SHOTS.map((s, k) => (
-          <div key={s.src} className="pg-slide" role="button" tabIndex={0} onClick={() => setOpen(true)} onKeyDown={(e) => e.key === "Enter" && setOpen(true)} aria-label={`Inspect image ${k + 1}`}>
+          <div key={s.src} className="pg-slide" style={{ background: s.bg }} role="button" tabIndex={0} onClick={() => setOpen(true)} onKeyDown={(e) => e.key === "Enter" && setOpen(true)} aria-label={`Inspect image ${k + 1}`}>
             <Image src={s.src} alt={s.alt} width={s.w} height={s.h} unoptimized priority={k === 0} className="pg-img" />
           </div>
         ))}
       </div>
+      <span className="pg-new">New</span>
       <button className="pg-zoom" aria-label="Inspect and zoom" onClick={() => setOpen(true)}>
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.4">
           <circle cx="10.5" cy="10.5" r="6.5" />
