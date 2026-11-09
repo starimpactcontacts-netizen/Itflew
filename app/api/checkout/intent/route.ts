@@ -44,6 +44,7 @@ export async function POST(req: Request) {
         automatic_payment_methods: { enabled: true },
         receipt_email: email && EMAIL.test(email) ? email : undefined,
         description: `Invisible Thread × ${p.qty}`,
+        statement_descriptor_suffix: "ITFLEW",
         metadata: { ...metadata, order_number: orderNumber() },
       });
     }

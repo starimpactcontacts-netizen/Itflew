@@ -27,7 +27,15 @@ export async function POST(req: Request) {
       shipping_address_collection: { allowed_countries: [...COUNTRIES] },
       allow_promotion_codes: true,
       metadata: meta,
-      payment_intent_data: { metadata: meta, description: `Invisible Thread × ${p.qty}` },
+      payment_intent_data: { metadata: meta, description: `Invisible Thread × ${p.qty}`, statement_descriptor_suffix: "ITFLEW" },
+      branding_settings: {
+        display_name: "IT FLEW!",
+        background_color: "#ffffff",
+        button_color: "#33353a",
+        border_style: "rounded",
+        logo: { type: "url", url: `${SITE}/wordmark-black.png` },
+        icon: { type: "url", url: `${SITE}/wordmark-black.png` },
+      },
       success_url: `${SITE}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${SITE}/products/itr`,
     });
