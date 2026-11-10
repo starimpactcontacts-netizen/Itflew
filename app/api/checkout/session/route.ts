@@ -3,7 +3,7 @@ import { stripe } from "@/lib/stripe/server";
 import { priceFor, SHIPPING_CENTS } from "@/lib/pricing";
 
 const SITE = "https://itflew.vercel.app";
-const COUNTRIES = ["US", "CA", "GB", "IE", "AU", "NZ", "SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "ES", "IT", "PT", "AT", "CH", "PL"] as const;
+import { SHIP_COUNTRIES } from "@/lib/countries";
 
 // Stripe-hosted checkout (used until a publishable key is configured).
 export async function POST(req: Request) {
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
           },
         },
       ],
-      shipping_address_collection: { allowed_countries: [...COUNTRIES] },
+      shipping_address_collection: { allowed_countries: [...SHIP_COUNTRIES] },
       shipping_options: [
         {
           shipping_rate_data: {

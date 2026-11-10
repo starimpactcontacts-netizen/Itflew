@@ -91,7 +91,6 @@ export default function Checkout() {
   );
 }
 
-const COUNTRIES = ["US", "CA", "GB", "IE", "AU", "NZ", "SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "ES", "IT", "PT", "AT", "CH", "PL"];
 
 function PayMarks() {
   return (
@@ -245,7 +244,6 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
                 resolve({
                   emailRequired: true,
                   shippingAddressRequired: true,
-                  allowedShippingCountries: COUNTRIES,
                   shippingRates: [{ id: "standard", displayName: "Standard shipping (7–12 business days)", amount: intent.shipping, deliveryEstimate: { minimum: { unit: "business_day", value: 7 }, maximum: { unit: "business_day", value: 12 } } }],
                 })
               }
@@ -292,7 +290,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
           <section className="co-block">
             <h2 className="co-h2">Delivery</h2>
             <div className="co-card">
-              <AddressElement options={{ mode: "shipping", allowedCountries: COUNTRIES, fields: { phone: "never" } }} />
+              <AddressElement options={{ mode: "shipping", fields: { phone: "never" } }} />
               <p className="co-note">Standard shipping{delivery.place ? ` to ${delivery.place}` : ""} {money(intent.shipping)} · arrives {delivery.range ?? "in 7–12 business days"}</p>
             </div>
           </section>

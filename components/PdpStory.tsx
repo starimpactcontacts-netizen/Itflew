@@ -2,6 +2,7 @@ import Link from "next/link";
 import TutorialVideo from "./TutorialVideo";
 import { StepImage } from "./StepCard";
 import { ITR } from "@/lib/products";
+import { SHIP_COUNTRIES } from "@/lib/countries";
 
 const STEPS = [
   ["Clip", "Clip the reel inside your collar or jacket. The thread runs out unseen."],
@@ -28,7 +29,7 @@ const FAQ = [
   ["Is checkout secure?", "Payments are processed by Stripe with bank-level encryption. We never see or store your card details. Apple Pay and all major cards are accepted."],
 ];
 
-const SHIP_TO = ["US", "CA", "GB", "IE", "AU", "NZ", "SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "ES", "IT", "PT", "AT", "CH", "PL"];
+const SHIP_TO = [...SHIP_COUNTRIES];
 
 const Icon = ({ d }: { d: string }) => (
   <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden><path d={d} /></svg>
