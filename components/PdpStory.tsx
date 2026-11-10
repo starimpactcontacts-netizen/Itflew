@@ -28,6 +28,8 @@ const FAQ = [
   ["Is checkout secure?", "Payments are processed by Stripe with bank-level encryption. We never see or store your card details. Apple Pay and all major cards are accepted."],
 ];
 
+const SHIP_TO = ["US", "CA", "GB", "IE", "AU", "NZ", "SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "ES", "IT", "PT", "AT", "CH", "PL"];
+
 const Icon = ({ d }: { d: string }) => (
   <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden><path d={d} /></svg>
 );
@@ -46,15 +48,44 @@ export default function PdpStory() {
       "@type": "Product",
       name: ITR.name,
       description: ITR.blurb,
+      sku: "invisible-thread",
+      category: "Magic tricks",
       brand: { "@type": "Brand", name: "It Flew!", sameAs: ["https://www.instagram.com/itflewmagic"] },
-      image: ["https://itflew.com/product/reel-angle-v2.webp", "https://itflew.com/product/reel-front-v2.webp"],
+      image: ["https://itflew.com/product/reel-angle-v2.webp", "https://itflew.com/product/reel-front-v2.webp", "https://itflew.com/product/reel-jacket-v2.webp"],
       offers: {
         "@type": "Offer",
         price: ITR.price.toFixed(2),
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
         url: "https://itflew.com/products/invisible-thread",
+        seller: { "@id": "https://itflew.com/#organization" },
+        shippingDetails: {
+          "@type": "OfferShippingDetails",
+          shippingRate: { "@type": "MonetaryAmount", value: "7.00", currency: "USD" },
+          shippingDestination: { "@type": "DefinedRegion", addressCountry: SHIP_TO },
+          deliveryTime: {
+            "@type": "ShippingDeliveryTime",
+            handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2, unitCode: "DAY" },
+            transitTime: { "@type": "QuantitativeValue", minValue: 5, maxValue: 10, unitCode: "DAY" },
+          },
+        },
+        hasMerchantReturnPolicy: {
+          "@type": "MerchantReturnPolicy",
+          applicableCountry: SHIP_TO,
+          returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+          merchantReturnDays: 30,
+          returnMethod: "https://schema.org/ReturnByMail",
+        },
       },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "It Flew!", item: "https://itflew.com" },
+        { "@type": "ListItem", position: 2, name: "Invisible Thread", item: "https://itflew.com/products/invisible-thread" },
+      ],
     },
     {
       "@context": "https://schema.org",

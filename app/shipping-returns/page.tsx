@@ -3,7 +3,7 @@ import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
 import { ORDERS_EMAIL } from "@/lib/contact";
 
-export const metadata: Metadata = { title: "Shipping & Returns | It Flew!" };
+export const metadata: Metadata = { title: "Shipping & Returns", description: "It Flew! shipping and returns: flat $7 standard shipping, dispatched within 24–48 hours, delivered in 7–12 business days, 30-day returns.", alternates: { canonical: "/shipping-returns" } };
 
 export default function Shipping() {
   return (

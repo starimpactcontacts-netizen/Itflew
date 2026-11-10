@@ -2,7 +2,7 @@ import Link from "next/link";
 import WaitlistForm from "./WaitlistForm";
 
 const GROUPS: { title: string; links: [string, string][] }[] = [
-  { title: "Shop", links: [["Invisible Thread", "/products/invisible-thread"], ["How it flies", "/#how"]] },
+  { title: "Shop", links: [["Invisible Thread", "/products/invisible-thread"], ["How it flies", "/#how"], ["About It Flew!", "/about"]] },
   { title: "Customer Support", links: [["Track your order", "/track"], ["Shipping & returns", "/shipping-returns"], ["Contact us", "/contact"], ["support@itflew.com", "mailto:support@itflew.com"]] },
   { title: "Legal & Privacy", links: [["Terms of sale", "/terms"], ["Privacy policy", "/privacy"], ["contact@itflew.com", "mailto:contact@itflew.com"]] },
 ];

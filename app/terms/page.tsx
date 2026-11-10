@@ -3,7 +3,7 @@ import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
 import { CONTACT_EMAIL } from "@/lib/contact";
 
-export const metadata: Metadata = { title: "Terms of Sale | It Flew!" };
+export const metadata: Metadata = { title: "Terms of Sale", description: "The terms that apply when you buy Invisible Thread from It Flew! at itflew.com.", alternates: { canonical: "/terms" } };
 
 export default function Terms() {
   return (

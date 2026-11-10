@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { PRIVACY_EMAIL } from "@/lib/contact";
 
-export const metadata: Metadata = { title: "Privacy Policy | It Flew!" };
+export const metadata: Metadata = { title: "Privacy Policy", description: "How It Flew! collects, uses and protects your data when you shop at itflew.com.", alternates: { canonical: "/privacy" } };
 
 export default function Privacy() {
   return (

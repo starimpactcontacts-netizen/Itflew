@@ -89,6 +89,7 @@ export default function Header() {
         <div className="menu">
           <Link href="/products/invisible-thread" onClick={() => setMenu(false)}>Shop Invisible Thread</Link>
           <Link href="/#how" onClick={() => setMenu(false)}>How it works</Link>
+          <Link href="/about" onClick={() => setMenu(false)}>About It Flew!</Link>
           <Link href="/#list" onClick={() => setMenu(false)}>Join the list</Link>
           <Link href="/track" onClick={() => setMenu(false)}>Track order</Link>
         </div>

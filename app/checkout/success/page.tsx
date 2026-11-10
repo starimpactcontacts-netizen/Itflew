@@ -4,7 +4,7 @@ import { stripe } from "@/lib/stripe/server";
 import ClearCart from "@/components/ClearCart";
 import { formatPrice } from "@/lib/products";
 
-export const metadata: Metadata = { title: "Order confirmed | It Flew!", robots: { index: false } };
+export const metadata: Metadata = { title: "Order confirmed", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 export default async function Success({ searchParams }: { searchParams: Promise<{ payment_intent?: string; session_id?: string }> }) {

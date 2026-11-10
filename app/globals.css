@@ -812,3 +812,50 @@ button.dr-row { width: 100%; background: none; border: 0; text-align: left; font
 .de-where { margin-top: 4px !important; font-size: 15px; color: #444; }
 .de-where strong { font-weight: 400; color: #000; border-bottom: 1px solid currentColor; }
 .de-note { margin-top: 6px !important; font-size: 13.5px; color: #777; line-height: 1.45; }
+
+/* ---------- About ---------- */
+.ab { background: #fff; color: #000; }
+.ab h2 { margin: 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 8.6vw, 52px); line-height: 1.02; -webkit-text-stroke: .025em currentColor; text-wrap: balance; }
+.ab-hero { background: #000; color: #fff; padding: 72px 5vw 64px; }
+.ab-hero h1 { margin: 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(46px, 13.5vw, 120px); line-height: .95; -webkit-text-stroke: .025em currentColor; text-wrap: balance; }
+.ab-hero p { margin: 24px 0 0; max-width: 620px; font-size: clamp(18px, 4.8vw, 22px); line-height: 1.5; color: #e6e6e6; }
+.ab-story { display: grid; }
+.ab-photo { background: #dddddd; }
+.ab-photo img { display: block; width: 100%; height: auto; }
+.ab-copy { padding: 56px 5vw; }
+.ab-copy p { margin: 20px 0 0; font-size: clamp(17px, 4.6vw, 19px); line-height: 1.6; color: #222; }
+.ab-why { padding: 64px 5vw; border-top: 1px solid #e4e4e4; }
+.ab-why ul { list-style: none; margin: 32px 0 0; padding: 0; }
+.ab-why li { display: grid; grid-template-columns: 44px 1fr; gap: 8px; padding: 24px 0; border-top: 1px solid #e4e4e4; }
+.ab-why li:last-child { border-bottom: 1px solid #e4e4e4; }
+.ab-why li > span { font-family: var(--display); font-size: 30px; line-height: 1; color: #000; }
+.ab-why h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(20px, 5.4vw, 24px); line-height: 1.2; }
+.ab-why p { margin: 8px 0 0; font-size: 17px; line-height: 1.55; color: #333; }
+.ab-direct { background: #000; color: #fff; padding: 64px 5vw; }
+.ab-lede { margin: 16px 0 0; max-width: 620px; font-size: clamp(17px, 4.6vw, 19px); line-height: 1.5; color: #d6d6d6; }
+.ab-table { margin-top: 32px; }
+.ab-tr { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; padding: 18px 0; border-top: 1px solid rgba(255,255,255,.22); font-size: 16px; line-height: 1.4; }
+.ab-tr [role="rowheader"] { grid-column: 1 / -1; font-family: var(--display); font-size: 19px; }
+.ab-tr [role="cell"]:last-child { color: #a8a8a8; }
+.ab-th { border-top: 0; padding-bottom: 6px; font-family: var(--display); font-size: 17px; }
+.ab-th span:first-child { display: none; }
+.ab-th span:last-child { color: #a8a8a8; }
+.ab-community { padding: 64px 5vw; text-align: center; }
+.ab-community p { margin: 16px auto 0; max-width: 520px; font-size: clamp(17px, 4.6vw, 19px); line-height: 1.5; color: #222; }
+.ab-community a { display: inline-block; margin-top: 22px; font-size: 18px; color: #000; border-bottom: 1.5px solid currentColor; padding-bottom: 3px; }
+.ab-end { padding: 64px 5vw 72px; text-align: center; border-top: 1px solid #e4e4e4; }
+.ab-buy { margin: 28px auto 0; max-width: 460px; height: 62px; display: flex; justify-content: space-between; align-items: center; padding: 0 26px; border-radius: 8px; background: #000; color: #fff; font-size: clamp(17px, 4.6vw, 19px); transition: background .2s; }
+.ab-buy:hover { background: #222; }
+.ab-end p { margin: 22px 0 0; font-size: 16px; color: #333; }
+.ab-end p a { color: #000; border-bottom: 1px solid currentColor; }
+@media (min-width: 900px) {
+  .ab-hero { padding: 120px 6vw 104px; }
+  .ab-story { grid-template-columns: 1fr 1fr; align-items: center; }
+  .ab-copy { padding: 72px 6vw; }
+  .ab-why, .ab-direct, .ab-community, .ab-end { padding-left: 6vw; padding-right: 6vw; padding-top: 96px; padding-bottom: 96px; }
+  .ab-why ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6vw; }
+  .ab-why li:nth-last-child(2) { border-bottom: 1px solid #e4e4e4; }
+  .ab-tr { grid-template-columns: 1fr 1.3fr 1.3fr; padding: 22px 0; font-size: 18px; }
+  .ab-tr [role="rowheader"] { grid-column: auto; }
+  .ab-th span:first-child { display: block; }
+}
