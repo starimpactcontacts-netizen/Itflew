@@ -340,8 +340,6 @@ a:hover .poster-hand { translate: -50% -10px; }
 .fs-msg.err { position: absolute; top: 100%; left: 0; color: #ff8a80; margin-top: 8px; }
 .fs-social { display: flex; justify-content: center; gap: 40px; margin-top: 40px; }
 .fs-social a { color: #fff; display: inline-flex; align-items: center; gap: 12px; }
-.fs-ig { display: flex; flex-direction: column; text-align: left; font-size: 17px; line-height: 1.2; }
-.fs-ig small { font-size: 14px; color: #bdbdbd; margin-top: 2px; }
 .fs-acc details { border-top: 1px solid #fff; }
 .fs-acc details:last-child { border-bottom: 1px solid #fff; }
 .fs-acc summary { list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 30px 5vw; cursor: pointer; }

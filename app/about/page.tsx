@@ -113,7 +113,7 @@ export default function About() {
       </section>
 
       <section className="ab-community">
-        <h2>Join 4,000 on Instagram</h2>
+        <h2>Follow It Flew!</h2>
         <p>See the reel in action, new tricks and what people are making fly at @itflewmagic.</p>
         <a href="https://www.instagram.com/itflewmagic" target="_blank" rel="noopener noreferrer">Follow @itflewmagic</a>
       </section>
