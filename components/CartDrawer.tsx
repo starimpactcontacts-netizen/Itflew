@@ -38,7 +38,7 @@ export default function CartDrawer() {
         {qty === 0 ? (
           <div className="bag-empty">
             <p>Your bag is empty.</p>
-            <Link href="/products/itr" className="co-primary" onClick={() => setOpen(false)}>
+            <Link href="/products/invisible-thread" className="co-primary" onClick={() => setOpen(false)}>
               <span>Shop Invisible Thread</span><span>›</span>
             </Link>
           </div>

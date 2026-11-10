@@ -16,14 +16,14 @@ const SLIDES: Slide[] = [
     name: <>Invisible<br />Thread</>,
     desc: "Make anything fly.",
     price: ITR.price,
-    href: "/products/itr",
+    href: "/products/invisible-thread",
     media: <Poster />,
   },
   {
     key: "jacket",
     name: <>No One<br />Sees It</>,
     desc: "Hides inside your jacket.",
-    href: "/products/itr?view=jacket",
+    href: "/products/invisible-thread?view=jacket",
     media: (
       <Image
         className="cover jacket"

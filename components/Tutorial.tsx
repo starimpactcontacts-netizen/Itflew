@@ -34,7 +34,7 @@ export default function Tutorial() {
         </p>
         <div className="tut-ctas">
           <AddToCart label="Add to cart" />
-          <Link href="/products/itr" className="tut-link">Details</Link>
+          <Link href="/products/invisible-thread" className="tut-link">Details</Link>
         </div>
       </div>
       <div

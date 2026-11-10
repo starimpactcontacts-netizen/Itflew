@@ -32,7 +32,7 @@ export default function Home() {
                 unoptimized
               />
             </h1>
-            <Link href="/products/itr" className="hero-link">
+            <Link href="/products/invisible-thread" className="hero-link">
               <span className="hero-link-text">Shop now</span>
             </Link>
           </div>

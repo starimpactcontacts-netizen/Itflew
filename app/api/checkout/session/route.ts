@@ -48,7 +48,7 @@ export async function POST(req: Request) {
         icon: { type: "url", url: `${SITE}/wordmark-black.png` },
       },
       success_url: `${SITE}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${SITE}/products/itr`,
+      cancel_url: `${SITE}/products/invisible-thread`,
     });
     return NextResponse.json({ url: session.url });
   } catch (e) {

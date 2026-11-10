@@ -53,7 +53,7 @@ export default function PdpStory() {
         price: ITR.price.toFixed(2),
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
-        url: "https://itflew.com/products/itr",
+        url: "https://itflew.com/products/invisible-thread",
       },
     },
     {

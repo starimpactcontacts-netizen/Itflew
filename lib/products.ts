@@ -8,7 +8,7 @@ export type Product = {
 };
 
 export const ITR: Product = {
-  slug: "itr",
+  slug: "invisible-thread",
   name: "Invisible Thread",
   short: "Small Invisible Thread Reel",
   price: 19,

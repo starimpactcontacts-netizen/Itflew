@@ -78,7 +78,7 @@ export default function Checkout() {
     return (
       <div className="co-empty">
         <p>Your bag is empty.</p>
-        <Link href="/products/itr" className="co-primary"><span>Shop Invisible Thread</span><span>›</span></Link>
+        <Link href="/products/invisible-thread" className="co-primary"><span>Shop Invisible Thread</span><span>›</span></Link>
       </div>
     );
   if (failed) return <p className="co-error" role="alert">{failed}</p>;
@@ -173,7 +173,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
     return (
       <div className="co-empty">
         <p>Your bag is empty.</p>
-        <Link href="/products/itr" className="co-primary"><span>Shop Invisible Thread</span><span>›</span></Link>
+        <Link href="/products/invisible-thread" className="co-primary"><span>Shop Invisible Thread</span><span>›</span></Link>
       </div>
     );
 

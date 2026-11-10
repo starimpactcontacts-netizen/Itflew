@@ -38,7 +38,7 @@ export default function Header() {
   if (path.startsWith("/checkout")) {
     return (
       <header className="header is-solid co-header">
-        <button className="co-back" onClick={() => (window.history.length > 1 ? router.back() : router.push("/products/itr"))}>
+        <button className="co-back" onClick={() => (window.history.length > 1 ? router.back() : router.push("/products/invisible-thread"))}>
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden><path d="M15 4l-8 8 8 8" /></svg>
           Back
         </button>
@@ -87,7 +87,7 @@ export default function Header() {
       {track && <TrackPanel onClose={() => setTrack(false)} />}
       {menu && (
         <div className="menu">
-          <Link href="/products/itr" onClick={() => setMenu(false)}>Shop Invisible Thread</Link>
+          <Link href="/products/invisible-thread" onClick={() => setMenu(false)}>Shop Invisible Thread</Link>
           <Link href="/#how" onClick={() => setMenu(false)}>How it works</Link>
           <Link href="/#list" onClick={() => setMenu(false)}>Join the list</Link>
           <Link href="/track" onClick={() => setMenu(false)}>Track order</Link>
