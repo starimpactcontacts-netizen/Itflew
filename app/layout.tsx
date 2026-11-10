@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: { card: "summary_large_image" },
+  verification: { other: { "facebook-domain-verification": "pph04l0f80x6vsldy5exyknnvwmleb" } },
 };
 
 export const viewport: Viewport = { themeColor: "#121214" };
