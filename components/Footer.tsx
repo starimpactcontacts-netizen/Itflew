@@ -15,11 +15,9 @@ export default function Footer() {
         <p className="fs-sub">Join the list for 10% off your first order, plus new drops and restocks first.</p>
         <WaitlistForm />
         <div className="fs-social">
-          <a href="#" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.2"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none" /></svg>
-          </a>
-          <a href="#" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" width="24" height="26" fill="currentColor"><path d="M16.5 2h-3.2v13.2a3 3 0 1 1-2.6-3V9a6.2 6.2 0 1 0 5.8 6.2V8.6a7.6 7.6 0 0 0 4.3 1.4V6.8a4.3 4.3 0 0 1-4.3-4.3z" /></svg>
+          <a href="https://www.instagram.com/itflewmagic" target="_blank" rel="noopener noreferrer" aria-label="It Flew! on Instagram (opens in a new tab)">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none" /></svg>
+            <span className="fs-ig">@itflewmagic<small>4K followers</small></span>
           </a>
         </div>
       </div>

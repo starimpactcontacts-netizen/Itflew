@@ -46,7 +46,7 @@ export default function PdpStory() {
       "@type": "Product",
       name: ITR.name,
       description: ITR.blurb,
-      brand: { "@type": "Brand", name: "It Flew!" },
+      brand: { "@type": "Brand", name: "It Flew!", sameAs: ["https://www.instagram.com/itflewmagic"] },
       image: ["https://itflew.com/product/reel-angle-v2.webp", "https://itflew.com/product/reel-front-v2.webp"],
       offers: {
         "@type": "Offer",
