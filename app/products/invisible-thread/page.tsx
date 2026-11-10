@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Invisible Thread | It Flew!",
     description: "A pocket-sized invisible thread reel. Clip it on, draw the thread and make anything fly.",
     url: "/products/invisible-thread",
-    images: [{ url: "/product/reel-angle-v2.webp", width: 1896, height: 2528, alt: "It Flew! Invisible Thread reel" }],
+    images: [{ url: "/product/invisible-thread-share.jpg", width: 1200, height: 1200, alt: "It Flew! Invisible Thread reel" }],
   },
 };
 
@@ -20,6 +20,14 @@ export const metadata: Metadata = {
 export default function ProductPage() {
   return (
     <main className="pd">
+      {/* product tags read by Instagram / Facebook product linking */}
+      <meta property="og:type" content="product" />
+      <meta property="product:brand" content="It Flew!" />
+      <meta property="product:availability" content="in stock" />
+      <meta property="product:condition" content="new" />
+      <meta property="product:price:amount" content={ITR.price.toFixed(2)} />
+      <meta property="product:price:currency" content="USD" />
+      <meta property="product:retailer_item_id" content="invisible-thread" />
       <div className="pd-top">
         <PdpGallery />
         <div className="pd-info">
