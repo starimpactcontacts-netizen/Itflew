@@ -78,7 +78,7 @@ export default function Checkout() {
     return (
       <div className="co-empty">
         <p>Your bag is empty.</p>
-        <Link href="/products/invisible-thread" className="co-primary"><span>Shop Invisible Thread</span><span>›</span></Link>
+        <Link href="/products/levitation-pod" className="co-primary"><span>Shop Levitation Pod</span><span>›</span></Link>
       </div>
     );
   if (failed) return <p className="co-error" role="alert">{failed}</p>;
@@ -172,7 +172,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
     return (
       <div className="co-empty">
         <p>Your bag is empty.</p>
-        <Link href="/products/invisible-thread" className="co-primary"><span>Shop Invisible Thread</span><span>›</span></Link>
+        <Link href="/products/levitation-pod" className="co-primary"><span>Shop Levitation Pod</span><span>›</span></Link>
       </div>
     );
 
@@ -196,11 +196,11 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
         <div className="co-item">
           <div className="co-item-img">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/product/reel-angle-v2.webp" alt="Invisible Thread reel" />
+            <img src="/product/reel-angle-v2.webp" alt="Levitation Pod" />
           </div>
           <div className="co-item-info">
-            <p className="co-item-name">Invisible Thread</p>
-            <p className="co-item-sub">Small reel, one thread, endless tricks</p>
+            <p className="co-item-name">Levitation Pod</p>
+            <p className="co-item-sub">Small pod, one thread, endless tricks</p>
             <p className="co-item-qty">
               Qty: {qty}{" "}
               <button className="co-u" onClick={() => setEditQty(!editQty)}>{editQty ? "done" : "edit"}</button>
@@ -341,7 +341,7 @@ function Form({ intent, setIntent }: { intent: Intent; setIntent: (i: Intent) =>
             title="Free returns within 30 days"
             icon={<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden><rect x="4" y="5" width="16" height="15" rx="1" /><path d="M4 9h16M9 3v4M15 3v4" /></svg>}
           >
-            <p>Return unused reels within 30 days for a full refund. <Link href="/shipping-returns">Shipping &amp; Returns</Link></p>
+            <p>Return unused pods within 30 days for a full refund. <Link href="/shipping-returns">Shipping &amp; Returns</Link></p>
           </Acc>
         </div>
       </section>

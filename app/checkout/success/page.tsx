@@ -31,7 +31,7 @@ export default async function Success({ searchParams }: { searchParams: Promise<
           <p className="co-label">Order {pi!.metadata.order_number}</p>
           <h1 className="co-title">It flew. Thank you.</h1>
           <p className="co-done-text">
-            We&apos;ve got your order for {pi!.metadata.qty} × Invisible Thread ({formatPrice(pi!.amount / 100)}).
+            We&apos;ve got your order for {pi!.metadata.qty} × Levitation Pod ({formatPrice(pi!.amount / 100)}).
             {email && <> A receipt is on its way to {email}.</>}
           </p>
           <Link href="/track" className="dr-add co-btn-link"><span>Track your order</span><span>›</span></Link>

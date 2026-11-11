@@ -57,7 +57,7 @@ export default function TutorialVideo() {
         preload="metadata"
         onPlay={() => setPaused(false)}
         onPause={() => setPaused(true)}
-        aria-label="Invisible Thread tutorial: the can rises into the hands"
+        aria-label="Levitation Pod tutorial: the can rises into the hands"
       />
       <button className={`pg-play${paused ? " is-paused" : ""}`} onClick={toggle} aria-label={paused ? "Play video" : "Pause video"}>
         <span className="pg-play-icon" aria-hidden>

@@ -9,11 +9,11 @@ import { SUPPORT_EMAIL } from "@/lib/contact";
 const KEY = "itflew-chat-hidden";
 
 const QUICK: { label: string; reply: React.ReactNode }[] = [
-  { label: "Is it really invisible?", reply: <>Yes. The thread is ultra-fine, so on camera and from a few feet away it simply disappears. Watch the demo on the <Link href="/products/invisible-thread?view=video">product page</Link> to see it for yourself.</> },
+  { label: "Is it really invisible?", reply: <>Yes. The thread is ultra-fine, so on camera and from a few feet away it simply disappears. Watch the demo on the <Link href="/products/levitation-pod?view=video">product page</Link> to see it for yourself.</> },
   { label: "I'm a total beginner", reply: <>Perfect, it&apos;s made for you. Clip it on, draw the thread, hook your object and lift. Most people get their first levitation in a few minutes from the 24-second demo.</> },
-  { label: "What can I make fly?", reply: <>Light things: a can, a ring, a card, a bill, a pen. Lift it, float it, make it dance, then let the thread wind back into the reel so there&apos;s nothing left to find.</> },
-  { label: "Shipping & price", reply: <>Each reel is $19 and shipping is a flat $7 per order, however many you buy. Standard delivery takes 7–12 business days; we fulfil within 24–48 hours. <Link href="/shipping-returns">Details</Link></> },
-  { label: "Returns", reply: <>Unused reels can be returned within 30 days for a full refund. <Link href="/shipping-returns">How returns work</Link></> },
+  { label: "What can I make fly?", reply: <>Light things: a can, a ring, a card, a bill, a pen. Lift it, float it, make it dance, then let the thread wind back into the pod so there&apos;s nothing left to find.</> },
+  { label: "Shipping & price", reply: <>Each pod is $19 and shipping is a flat $7 per order, however many you buy. Standard delivery takes 7–12 business days; we fulfil within 24–48 hours. <Link href="/shipping-returns">Details</Link></> },
+  { label: "Returns", reply: <>Unused pods can be returned within 30 days for a full refund. <Link href="/shipping-returns">How returns work</Link></> },
   { label: "Where's my order?", reply: <>Use the person icon at the top with your email and order number (it starts with IF), or write to us below and we&apos;ll check for you.</> },
 ];
 
@@ -147,7 +147,7 @@ export default function SupportChat() {
               </button>
             </header>
             <div className="sc-body" ref={body}>
-              <p className="sc-msg them">Hello. Ask us anything about Invisible Thread, or pick a question below.</p>
+              <p className="sc-msg them">Hello. Ask us anything about the Levitation Pod, or pick a question below.</p>
               {asked.map((i, n) => (
                 <div key={n}>
                   <p className="sc-msg me">{QUICK[i].label}</p>

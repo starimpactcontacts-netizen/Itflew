@@ -38,8 +38,8 @@ export default function CartDrawer() {
         {qty === 0 ? (
           <div className="bag-empty">
             <p>Your bag is empty.</p>
-            <Link href="/products/invisible-thread" className="co-primary" onClick={() => setOpen(false)}>
-              <span>Shop Invisible Thread</span><span>›</span>
+            <Link href="/products/levitation-pod" className="co-primary" onClick={() => setOpen(false)}>
+              <span>Shop Levitation Pod</span><span>›</span>
             </Link>
           </div>
         ) : (
@@ -47,11 +47,11 @@ export default function CartDrawer() {
             <div className="bag-item">
               <div className="bag-img">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/product/reel-angle-v2.webp" alt="Invisible Thread reel" />
+                <img src="/product/reel-angle-v2.webp" alt="Levitation Pod" />
               </div>
               <div className="bag-info">
                 <p className="bag-name">{ITR.name}</p>
-                <p className="bag-sub">Small reel, one thread, endless tricks</p>
+                <p className="bag-sub">Small pod, one thread, endless tricks</p>
                 <div className="bag-row">
                   <div className="bag-ctrl">
                     <div className="bag-qty" aria-label="Quantity">

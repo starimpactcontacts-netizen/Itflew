@@ -71,7 +71,7 @@ export default function TrackForm() {
       </label>
       {state?.kind === "error" && <p className="tk-err" role="alert">{state.message}</p>}
       <button className="tk-btn" disabled={!ready || pending}>{pending ? "Checking…" : "Continue"}</button>
-      <p className="tk-muted tk-help">Your order number starts with IF and is in your confirmation email. <Link href="/products/invisible-thread">Shop Invisible Thread</Link></p>
+      <p className="tk-muted tk-help">Your order number starts with IF and is in your confirmation email. <Link href="/products/levitation-pod">Shop Levitation Pod</Link></p>
     </form>
   );
 }

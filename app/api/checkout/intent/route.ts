@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 254) : undefined;
     const welcome = await welcomeEligible(email);
     const p = priceFor(Number(body.qty) || 1, welcome);
-    const metadata = { qty: String(p.qty), welcome: welcome ? "1" : "0", product: "invisible-thread" };
+    const metadata = { qty: String(p.qty), welcome: welcome ? "1" : "0", product: "levitation-pod" };
 
     let intent;
     if (body.id && /^pi_[A-Za-z0-9]+$/.test(body.id)) {
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
         automatic_payment_methods: { enabled: true },
         excluded_payment_method_types: ["paypal", "amazon_pay"],
         receipt_email: email && EMAIL.test(email) ? email : undefined,
-        description: `Invisible Thread × ${p.qty}`,
+        description: `Levitation Pod × ${p.qty}`,
         statement_descriptor_suffix: "ITFLEW",
         metadata: { ...metadata, order_number: orderNumber() },
       });

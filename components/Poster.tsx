@@ -3,7 +3,7 @@ import Image from "next/image";
 // Retro magic-poster sunburst behind the cut-out hand. Pure SVG so it stays crisp.
 const RAYS = 56;
 const CX = 300;
-const CY = 330; // burst centre sits just above the reel
+const CY = 330; // burst centre sits just above the pod
 const R = 1200;
 
 const COLORS = ["#b22423", "#ffffff", "#1b1f6b", "#ffffff"];
@@ -54,7 +54,7 @@ export default function Poster({ priority = false, className = "" }: { priority?
       <Image
         className="poster-hand"
         src="/itr-hand.webp"
-        alt="A red-gloved hand holding the Invisible Thread reel"
+        alt="A red-gloved hand holding the Levitation Pod"
         width={412}
         height={947}
         priority={priority}

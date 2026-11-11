@@ -18,7 +18,7 @@ const jsonLd = [
     alternateName: ["It Flew", "ItFlew", "itflew", "It Flew Magic"],
     url: SITE,
     logo: `${SITE}/wordmark-black.png`,
-    description: "It Flew! makes Invisible Thread, a pocket-sized invisible thread reel for magic levitations.",
+    description: "It Flew! makes the Levitation Pod, a pocket-sized magic pod that makes everyday objects float.",
     email: CONTACT_EMAIL,
     sameAs: ["https://www.instagram.com/itflewmagic"],
     contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: SUPPORT_EMAIL, availableLanguage: "English" },
@@ -43,7 +43,7 @@ export default function Home() {
           <div className="hero-art">
           <Image
             src="/hero-v4.webp"
-            alt="It Flew! An engraved hand levitating a can with Invisible Thread"
+            alt="It Flew! An engraved hand levitating a can with Levitation Pod"
             width={1042}
             height={1389}
             priority
@@ -55,14 +55,14 @@ export default function Home() {
             <h1 className="hero-mark">
               <Image
                 src="/it-wordmark.webp"
-                alt="It Flew! Invisible Thread"
+                alt="It Flew! Levitation Pod"
                 width={954}
                 height={972}
                 priority
                 unoptimized
               />
             </h1>
-            <Link href="/products/invisible-thread" className="hero-link">
+            <Link href="/products/levitation-pod" className="hero-link">
               <span className="hero-link-text">Shop now</span>
             </Link>
           </div>

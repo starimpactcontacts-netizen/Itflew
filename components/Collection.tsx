@@ -13,22 +13,22 @@ const SLIDES: Slide[] = [
   {
     key: "thread",
     tag: "New",
-    name: <>Invisible<br />Thread</>,
+    name: <>Levitation<br />Pod</>,
     desc: "Make anything fly.",
     price: ITR.price,
-    href: "/products/invisible-thread",
+    href: "/products/levitation-pod",
     media: <Poster />,
   },
   {
     key: "jacket",
     name: <>No One<br />Sees It</>,
     desc: "Hides inside your jacket.",
-    href: "/products/invisible-thread?view=jacket",
+    href: "/products/levitation-pod?view=jacket",
     media: (
       <Image
         className="cover jacket"
         src="/itr-jacket.webp"
-        alt="Invisible Thread clipped inside a jacket, its invisible thread running down the lining"
+        alt="Levitation Pod clipped inside a jacket, its invisible thread running down the lining"
         width={1072}
         height={1008}
         unoptimized

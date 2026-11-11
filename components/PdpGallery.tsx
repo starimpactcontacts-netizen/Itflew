@@ -6,9 +6,9 @@ import Inspector from "./Inspector";
 
 // Product photos: 3:4, subject centred, 2x super-resolved (see public/product).
 const SHOTS = [
-  { src: "/product/reel-angle-v2.webp", alt: "Invisible Thread reel at an angle, clip underneath", w: 1896, h: 2528, bg: "linear-gradient(90deg,#dddddd,#dddddd)" },
-  { src: "/product/reel-front-v2.webp", alt: "Invisible Thread reel, front view with clip", w: 1896, h: 2528, bg: "linear-gradient(90deg,#e2e2e2 50%,#eceaea 50%)" },
-  { src: "/product/reel-jacket-v2.webp", alt: "Invisible Thread clipped inside a jacket, thread running down the lining", w: 1792, h: 2390, bg: "linear-gradient(90deg,#1b1d2c 50%,#131217 50%)" },
+  { src: "/product/reel-angle-v2.webp", alt: "Levitation Pod at an angle, clip underneath", w: 1896, h: 2528, bg: "linear-gradient(90deg,#dddddd,#dddddd)" },
+  { src: "/product/reel-front-v2.webp", alt: "Levitation Pod, front view with clip", w: 1896, h: 2528, bg: "linear-gradient(90deg,#e2e2e2 50%,#eceaea 50%)" },
+  { src: "/product/reel-jacket-v2.webp", alt: "Levitation Pod clipped inside a jacket, thread running down the lining", w: 1792, h: 2390, bg: "linear-gradient(90deg,#1b1d2c 50%,#131217 50%)" },
 ];
 
 // the tutorial clip sits second in the gallery so it's seen right away
@@ -107,7 +107,7 @@ export default function PdpGallery() {
                 className="pg-img"
                 onPlay={() => setPaused(false)}
                 onPause={() => setPaused(true)}
-                aria-label="Invisible Thread in action: the can rises into the hands"
+                aria-label="Levitation Pod in action: the can rises into the hands"
               />
               <button className={`pg-play${paused ? " is-paused" : ""}`} onClick={toggle} aria-label={paused ? "Play video" : "Pause video"}>
                 <span className="pg-play-icon" aria-hidden>

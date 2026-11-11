@@ -5,19 +5,19 @@ import { ITR } from "@/lib/products";
 import { SHIP_COUNTRIES } from "@/lib/countries";
 
 const STEPS = [
-  ["Clip", "Clip the reel inside your collar or jacket. The thread runs out unseen."],
+  ["Clip", "Clip the pod inside your collar or jacket. The thread runs out unseen."],
   ["Draw", "Pinch the tip and draw a length of invisible thread off the spool."],
   ["Hook", "Secretly hook the thread to the can, then step back with open hands."],
   ["Lift", "Lift your hands slowly and the can rises straight to you. It flew."],
 ];
 
 const SPECS = [
-  ["Size", "6.5 cm / 2.56 in reel"],
+  ["Size", "6.5 cm / 2.56 in pod"],
   ["Thread", "Ultra-fine, invisible on camera and up close"],
-  ["Retraction", "Smooth and quiet, winds back into the reel"],
+  ["Retraction", "Smooth and quiet, winds back into the pod"],
   ["Wear", "Clips inside a collar, jacket or pocket"],
   ["Level", "Beginner friendly, pro approved"],
-  ["In the box", "1 × Invisible Thread reel"],
+  ["In the box", "1 × Levitation Pod"],
 ];
 
 const FAQ = [
@@ -25,7 +25,7 @@ const FAQ = [
   ["I've never done magic. Can I do this?", "It's made for you. Clip it on, draw the thread, hook your object and lift. Most people land their first levitation within minutes using the tutorial."],
   ["What can I make fly?", "Light everyday things: a can, a ring, a card, a bill, a pen. Lift it, float it, make it dance, then let the thread wind back so there's nothing left to find."],
   ["How long does delivery take?", "We dispatch within 24–48 hours. Delivery time depends on where you are: standard shipping takes 7–12 business days, and orders to major cities usually arrive within 5–7 days of dispatch. Your exact dates show in the bag before you enter any details. Shipping is a flat $7 per order."],
-  ["What if it's not for me?", "Return unused reels within 30 days for a full refund. No forms, just email support@itflew.com."],
+  ["What if it's not for me?", "Return unused pods within 30 days for a full refund. No forms, just email support@itflew.com."],
   ["Is checkout secure?", "Payments are processed by Stripe with bank-level encryption. We never see or store your card details. Apple Pay and all major cards are accepted."],
 ];
 
@@ -49,7 +49,7 @@ export default function PdpStory() {
       "@type": "Product",
       name: ITR.name,
       description: ITR.blurb,
-      sku: "invisible-thread",
+      sku: "levitation-pod",
       category: "Magic tricks",
       brand: { "@type": "Brand", name: "It Flew!", sameAs: ["https://www.instagram.com/itflewmagic"] },
       image: ["https://itflew.com/product/reel-angle-v2.webp", "https://itflew.com/product/reel-front-v2.webp", "https://itflew.com/product/reel-jacket-v2.webp"],
@@ -59,7 +59,7 @@ export default function PdpStory() {
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
         itemCondition: "https://schema.org/NewCondition",
-        url: "https://itflew.com/products/invisible-thread",
+        url: "https://itflew.com/products/levitation-pod",
         seller: { "@id": "https://itflew.com/#organization" },
         shippingDetails: {
           "@type": "OfferShippingDetails",
@@ -85,7 +85,7 @@ export default function PdpStory() {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "It Flew!", item: "https://itflew.com" },
-        { "@type": "ListItem", position: 2, name: "Invisible Thread", item: "https://itflew.com/products/invisible-thread" },
+        { "@type": "ListItem", position: 2, name: "Levitation Pod", item: "https://itflew.com/products/levitation-pod" },
       ],
     },
     {
@@ -125,7 +125,7 @@ export default function PdpStory() {
       </section>
 
       <section className="ps-sec">
-        <h2 className="ps-h2">Small reel. Big moments.</h2>
+        <h2 className="ps-h2">Small pod. Big moments.</h2>
         <dl className="ps-specs">
           {SPECS.map(([k, v]) => (
             <div key={k}>

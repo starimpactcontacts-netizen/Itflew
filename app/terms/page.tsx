@@ -3,7 +3,7 @@ import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
 import { CONTACT_EMAIL } from "@/lib/contact";
 
-export const metadata: Metadata = { title: "Terms of Sale", description: "The terms that apply when you buy Invisible Thread from It Flew! at itflew.com.", alternates: { canonical: "/terms" } };
+export const metadata: Metadata = { title: "Terms of Sale", description: "The terms that apply when you buy the Levitation Pod from It Flew! at itflew.com.", alternates: { canonical: "/terms" } };
 
 export default function Terms() {
   return (
@@ -16,7 +16,7 @@ export default function Terms() {
       <h2>Shipping and returns</h2>
       <p>See <Link href="/shipping-returns">Shipping &amp; Returns</Link>.</p>
       <h2>Using the product</h2>
-      <p>Invisible Thread is a magic prop intended for entertainment. Use it with care; the thread and needle tip are small and not suitable for young children.</p>
+      <p>The Levitation Pod is a magic prop intended for entertainment. Use it with care; the thread and needle tip are small and not suitable for young children.</p>
       <h2>Discounts</h2>
       <p>The 10% welcome offer applies once per customer to the first order placed with the email address used to join our list, and can&apos;t be combined with other offers.</p>
       <h2>Contact</h2>

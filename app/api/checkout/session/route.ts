@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     const body = (await req.json().catch(() => ({}))) as { qty?: number };
     const p = priceFor(Number(body.qty) || 1, false);
     const orderNumber = "IF" + Math.floor(100000 + Math.random() * 900000);
-    const meta = { product: "invisible-thread", qty: String(p.qty), order_number: orderNumber };
+    const meta = { product: "levitation-pod", qty: String(p.qty), order_number: orderNumber };
     const session = await stripe().checkout.sessions.create({
       mode: "payment",
       excluded_payment_method_types: ["paypal", "amazon_pay"],
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
           price_data: {
             currency: "usd",
             unit_amount: Math.round(p.subtotal / p.qty),
-            product_data: { name: "Invisible Thread", description: "Small reel, one thread, endless tricks", images: [`${SITE}/product/reel-angle-v2.webp`] },
+            product_data: { name: "Levitation Pod", description: "Small pod, one thread, endless tricks", images: [`${SITE}/product/reel-angle-v2.webp`] },
           },
         },
       ],
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       ],
       allow_promotion_codes: true,
       metadata: meta,
-      payment_intent_data: { metadata: meta, description: `Invisible Thread × ${p.qty}`, statement_descriptor_suffix: "ITFLEW" },
+      payment_intent_data: { metadata: meta, description: `Levitation Pod × ${p.qty}`, statement_descriptor_suffix: "ITFLEW" },
       branding_settings: {
         display_name: "IT FLEW!",
         background_color: "#ffffff",
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
         icon: { type: "url", url: `${SITE}/wordmark-black.png` },
       },
       success_url: `${SITE}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${SITE}/products/invisible-thread`,
+      cancel_url: `${SITE}/products/levitation-pod`,
     });
     return NextResponse.json({ url: session.url });
   } catch (e) {

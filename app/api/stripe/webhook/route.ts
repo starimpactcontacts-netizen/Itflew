@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     // always read the live PaymentIntent from Stripe
     const pi = await stripe().paymentIntents.retrieve((event.data.object as Stripe.PaymentIntent).id);
     // the Stripe account is shared with other stores: only record It Flew! orders
-    if (pi.metadata.product !== "invisible-thread") return NextResponse.json({ received: true, ignored: true });
+    if (pi.metadata.product !== "levitation-pod" && pi.metadata.product !== "invisible-thread") return NextResponse.json({ received: true, ignored: true });
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SECRET_KEY;
     if (!serviceKey) {
       console.error("webhook: SUPABASE_SERVICE_ROLE_KEY not set, order not saved", pi.id);

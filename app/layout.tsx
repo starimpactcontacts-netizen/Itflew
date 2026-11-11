@@ -15,14 +15,14 @@ import CookieBanner from "@/components/CookieBanner";
 const display = Marcellus({ weight: "400", subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: { default: "It Flew! | Invisible Thread Magic Reel", template: "%s | It Flew!" },
-  description: "It Flew! makes Invisible Thread: a pocket-sized invisible thread reel for magic levitations. Make anything fly. Ships within 48 hours, 30-day returns.",
+  title: { default: "It Flew! | Levitation Pod", template: "%s | It Flew!" },
+  description: "It Flew! makes the Levitation Pod: a pocket-sized magic pod that makes everyday objects float. Make anything fly. Ships within 48 hours, 30-day returns.",
   applicationName: "It Flew!",
-  keywords: ["It Flew", "itflew", "It Flew magic", "invisible thread", "invisible thread reel", "ITR magic", "levitation magic trick", "floating magic trick"],
+  keywords: ["It Flew", "itflew", "It Flew magic", "Levitation Pod", "levitation pod magic", "levitation magic trick", "make things float", "floating magic trick"],
   metadataBase: new URL("https://itflew.com"),
   openGraph: {
-    title: "It Flew! | Invisible Thread Magic Reel",
-    description: "Make anything fly. A pocket-sized invisible thread reel for levitations, animations and vanishes.",
+    title: "It Flew! | Levitation Pod",
+    description: "Make anything fly. A pocket-sized magic pod for levitations, animations and vanishes.",
     url: "https://itflew.com",
     siteName: "It Flew!",
     type: "website",

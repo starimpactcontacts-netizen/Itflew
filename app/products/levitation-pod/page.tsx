@@ -5,14 +5,14 @@ import PdpStory from "@/components/PdpStory";
 import { ITR } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Invisible Thread Reel for Magic Levitation",
-  description: "Invisible Thread by It Flew!: a pocket-sized invisible thread reel that makes cans, rings, cards and bills float. $19, video tutorial included, ships within 48 hours.",
-  alternates: { canonical: "/products/invisible-thread" },
+  title: "Levitation Pod: Make Anything Float",
+  description: "The Levitation Pod by It Flew!: a pocket-sized magic pod that makes cans, rings, cards and bills float. $19, video tutorial included, ships within 48 hours.",
+  alternates: { canonical: "/products/levitation-pod" },
   openGraph: {
-    title: "Invisible Thread | It Flew!",
-    description: "A pocket-sized invisible thread reel. Clip it on, draw the thread and make anything fly.",
-    url: "/products/invisible-thread",
-    images: [{ url: "/product/invisible-thread-share.jpg", width: 1200, height: 1200, alt: "It Flew! Invisible Thread reel" }],
+    title: "Levitation Pod | It Flew!",
+    description: "A pocket-sized magic pod. Clip it on, draw the thread and make anything fly.",
+    url: "/products/levitation-pod",
+    images: [{ url: "/product/levitation-pod-share.jpg", width: 1200, height: 1200, alt: "It Flew! Levitation Pod" }],
   },
 };
 
@@ -27,7 +27,7 @@ export default function ProductPage() {
       <meta property="product:condition" content="new" />
       <meta property="product:price:amount" content={ITR.price.toFixed(2)} />
       <meta property="product:price:currency" content="USD" />
-      <meta property="product:retailer_item_id" content="invisible-thread" />
+      <meta property="product:retailer_item_id" content="levitation-pod" />
       <div className="pd-top">
         <PdpGallery />
         <div className="pd-info">

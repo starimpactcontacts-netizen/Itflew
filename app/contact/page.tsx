@@ -3,7 +3,7 @@ import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
 import { CONTACT_EMAIL, ORDERS_EMAIL, SUPPORT_EMAIL } from "@/lib/contact";
 
-export const metadata: Metadata = { title: "Contact", description: "Contact It Flew! about your Invisible Thread order, delivery, returns or anything else. Chat with us or email support@itflew.com.", alternates: { canonical: "/contact" } };
+export const metadata: Metadata = { title: "Contact", description: "Contact It Flew! about your Levitation Pod order, delivery, returns or anything else. Chat with us or email support@itflew.com.", alternates: { canonical: "/contact" } };
 
 export default function Contact() {
   return (
