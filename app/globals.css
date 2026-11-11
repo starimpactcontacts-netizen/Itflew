@@ -857,3 +857,6 @@ button.dr-row { width: 100%; background: none; border: 0; text-align: left; font
   .ab-tr [role="rowheader"] { grid-column: auto; }
   .ab-th span:first-child { display: block; }
 }
+
+/* phone: POD reaches further left than the old wordmark, so SHOP NOW gets its own row under it */
+@media (max-width: 899px) { .hero-copy { padding-bottom: 12cqw; } }

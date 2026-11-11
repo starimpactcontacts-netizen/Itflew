@@ -57,7 +57,7 @@ export default function Home() {
                 src="/it-wordmark.webp"
                 alt="It Flew! Levitation Pod"
                 width={954}
-                height={972}
+                height={840}
                 priority
                 unoptimized
               />
