@@ -16,13 +16,13 @@ const display = Marcellus({ weight: "400", subsets: ["latin"], variable: "--font
 
 export const metadata: Metadata = {
   title: { default: "It Flew! | Levitation Pod", template: "%s | It Flew!" },
-  description: "It Flew! makes the Levitation Pod: a pocket-sized magic pod that makes everyday objects float. Make anything fly. Ships within 48 hours, 30-day returns.",
+  description: "It Flew! is a Stockholm, Sweden brand behind the Levitation Pod: the trick behind the viral telekinesis prank. Clip it to your jacket, attach the can and let it fly. No magic skills needed.",
   applicationName: "It Flew!",
-  keywords: ["It Flew", "itflew", "It Flew magic", "Levitation Pod", "levitation pod magic", "levitation magic trick", "make things float", "floating magic trick"],
+  keywords: ["It Flew", "itflew", "It Flew magic", "Levitation Pod", "levitation pod magic", "levitation magic trick", "make things float", "floating magic trick", "telekinesis prank", "telekinesis trick", "It Flew Stockholm", "magic for beginners"],
   metadataBase: new URL("https://itflew.com"),
   openGraph: {
     title: "It Flew! | Levitation Pod",
-    description: "Make anything fly. A pocket-sized magic pod for levitations, animations and vanishes.",
+    description: "The trick behind the viral telekinesis prank. Clip it to your jacket, attach the can, let it fly. Made in Stockholm for complete beginners.",
     url: "https://itflew.com",
     siteName: "It Flew!",
     type: "website",

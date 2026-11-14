@@ -4,7 +4,7 @@ import Collection from "@/components/Collection";
 import Tutorial from "@/components/Tutorial";
 import type { Metadata } from "next";
 import Snow from "@/components/Snow";
-import { CONTACT_EMAIL, SUPPORT_EMAIL } from "@/lib/contact";
+import { CONTACT_EMAIL, ORDERS_EMAIL, SUPPORT_EMAIL } from "@/lib/contact";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -18,10 +18,20 @@ const jsonLd = [
     alternateName: ["It Flew", "ItFlew", "itflew", "It Flew Magic"],
     url: SITE,
     logo: `${SITE}/wordmark-black.png`,
-    description: "It Flew! makes the Levitation Pod, a pocket-sized magic pod that makes everyday objects float.",
+    description:
+      "It Flew! is a magic brand based in Stockholm, Sweden. We make the Levitation Pod, the trick behind the viral telekinesis prank, so anyone can make things fly without learning magic.",
+    slogan: "Make anything fly.",
     email: CONTACT_EMAIL,
+    address: { "@type": "PostalAddress", addressLocality: "Stockholm", addressCountry: "SE" },
+    location: { "@type": "Place", name: "Stockholm, Sweden", address: { "@type": "PostalAddress", addressLocality: "Stockholm", addressCountry: "SE" } },
+    areaServed: "Worldwide",
+    knowsAbout: ["levitation magic", "telekinesis prank", "magic tricks for beginners"],
     sameAs: ["https://www.instagram.com/itflewmagic"],
-    contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: SUPPORT_EMAIL, availableLanguage: "English" },
+    contactPoint: [
+      { "@type": "ContactPoint", contactType: "customer support", email: SUPPORT_EMAIL, availableLanguage: ["English", "Swedish"], url: `${SITE}/contact` },
+      { "@type": "ContactPoint", contactType: "orders and returns", email: ORDERS_EMAIL, availableLanguage: ["English", "Swedish"] },
+      { "@type": "ContactPoint", contactType: "general enquiries", email: CONTACT_EMAIL, availableLanguage: ["English", "Swedish"] },
+    ],
   },
   {
     "@context": "https://schema.org",

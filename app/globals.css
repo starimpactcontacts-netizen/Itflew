@@ -860,3 +860,13 @@ button.dr-row { width: 100%; background: none; border: 0; text-align: left; font
 
 /* phone: POD reaches further left than the old wordmark, so SHOP NOW gets its own row under it */
 @media (max-width: 899px) { .hero-copy { padding-bottom: 12cqw; } }
+.fs-copy a { color: inherit; text-transform: none; letter-spacing: .02em; }
+.ab-who { padding: 64px 5vw; border-top: 1px solid #e4e4e4; }
+.ab-who dl { margin: 28px 0 0; max-width: 760px; }
+.ab-who dl div { display: grid; grid-template-columns: 40% 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid #e4e4e4; }
+.ab-who dl div:last-child { border-bottom: 1px solid #e4e4e4; }
+.ab-who dt { font-size: 17px; color: #000; }
+.ab-who dd { margin: 0; font-size: 17px; color: #333; }
+.ab-who a { color: #000; border-bottom: 1px solid currentColor; }
+.ab-who > p { margin: 22px 0 0; max-width: 760px; font-size: 16px; line-height: 1.55; color: #333; }
+@media (min-width: 900px) { .ab-who { padding: 96px 6vw; } .ab-who dl div { grid-template-columns: 220px 1fr; } }

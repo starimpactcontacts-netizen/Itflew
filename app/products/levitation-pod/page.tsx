@@ -6,11 +6,11 @@ import { ITR } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Levitation Pod: Make Anything Float",
-  description: "The Levitation Pod by It Flew!: a pocket-sized magic pod that makes cans, rings, cards and bills float. $19, video tutorial included, ships within 48 hours.",
+  description: "The Levitation Pod by It Flew! of Stockholm, Sweden: the trick behind the viral telekinesis prank. Clip it to your jacket, attach the can, let it fly. No magic skills needed. $19, tutorial included.",
   alternates: { canonical: "/products/levitation-pod" },
   openGraph: {
     title: "Levitation Pod | It Flew!",
-    description: "A pocket-sized magic pod. Clip it on, draw the thread and make anything fly.",
+    description: "The trick behind the viral telekinesis prank. Clip it on, attach the can, let it fly. No magic skills needed.",
     url: "/products/levitation-pod",
     images: [{ url: "/product/levitation-pod-share.jpg", width: 1200, height: 1200, alt: "It Flew! Levitation Pod" }],
   },

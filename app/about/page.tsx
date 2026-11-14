@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ITR, formatPrice } from "@/lib/products";
-import { SUPPORT_EMAIL } from "@/lib/contact";
+import { CONTACT_EMAIL, ORDERS_EMAIL, SUPPORT_EMAIL } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: { absolute: "About It Flew! | Makers of the Levitation Pod" },
   description:
-    "It Flew! is the magic brand behind the Levitation Pod, a pocket-sized pod that makes everyday objects float. Why buy direct: video tutorial, 48-hour dispatch, 30-day returns and real support.",
+    "It Flew! is a magic brand based in Stockholm, Sweden. We made the Levitation Pod, the trick behind the viral telekinesis prank, so anyone can make things fly without learning magic. Contact, returns and support inside.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About It Flew!",
-    description: "The magic brand behind the Levitation Pod. One pod, one thread, and the moment everyone says: it flew.",
+    description: "A Stockholm, Sweden magic brand. We made the Levitation Pod so anyone, even a total beginner, can make things fly.",
     url: "/about",
   },
 };
@@ -56,7 +56,7 @@ export default function About() {
       <section className="ab-hero">
         <h1>About It Flew!</h1>
         <p>
-          It Flew! is the magic brand behind the Levitation Pod: a pocket-sized pod that lets anyone make a can, a ring, a card or a bill rise into the air.
+          It Flew! is a magic brand based in Stockholm, Sweden. We make the Levitation Pod, the trick behind the viral telekinesis prank, so that anyone can make things fly.
         </p>
       </section>
 
@@ -65,15 +65,15 @@ export default function About() {
           <Image src="/product/reel-angle-v2.webp" alt="The It Flew! Levitation Pod" width={1896} height={2528} unoptimized />
         </div>
         <div className="ab-copy">
-          <h2>Two words, one reaction</h2>
+          <h2>Magic without the learning curve</h2>
           <p>
-            The best magic ends the same way. Someone stares at the thing hanging in the air, then at you, and says it out loud: it flew. That reaction is the whole point of what we make, so we made it our name.
+            Most magic asks you to learn sleights, practise for weeks and memorise routines. We wanted the opposite: a trick anyone can pull off the first time they try, even if they have never done magic in their life.
           </p>
           <p>
-            The Levitation Pod takes invisible thread, the classic levitation method working magicians have relied on for decades, and makes it simple. The pod clips inside your collar or jacket. You draw out a thread too fine to see, hook it to something light and lift your hands. When you are done, the thread winds back into the pod and nothing is left to find.
+            That is why we made the Levitation Pod. You do not have to be a magician. Clip the pod to your jacket, attach the thread to a can, and let it fly. That is the whole trick, and it is the same one behind the telekinesis prank videos everyone is sharing.
           </p>
           <p>
-            We built It Flew! so that a complete beginner can do this on day one. That is why every pod comes with a tutorial, and why the people who made it are the ones who answer when you write.
+            The best part is the reaction. Someone stares at the can moving on its own, then at you, and says it out loud: it flew. That moment is why we exist, so we made it our name.
           </p>
         </div>
       </section>
@@ -116,6 +116,21 @@ export default function About() {
         <h2>Follow It Flew!</h2>
         <p>See the pod in action, new tricks and what people are making fly at @itflewmagic.</p>
         <a href="https://www.instagram.com/itflewmagic" target="_blank" rel="noopener noreferrer">Follow @itflewmagic</a>
+      </section>
+
+      <section className="ab-who">
+        <h2>Who we are</h2>
+        <dl>
+          <div><dt>Company</dt><dd>It Flew!</dd></div>
+          <div><dt>Based in</dt><dd>Stockholm, Sweden</dd></div>
+          <div><dt>What we sell</dt><dd>One product: the Levitation Pod</dd></div>
+          <div><dt>Ships to</dt><dd>Worldwide, dispatched within 48 hours</dd></div>
+          <div><dt>Support</dt><dd><a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></dd></div>
+          <div><dt>Orders &amp; returns</dt><dd><a href={`mailto:${ORDERS_EMAIL}`}>{ORDERS_EMAIL}</a></dd></div>
+          <div><dt>Everything else</dt><dd><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></dd></div>
+          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/itflewmagic" target="_blank" rel="noopener noreferrer">@itflewmagic</a></dd></div>
+        </dl>
+        <p>Returns and delivery are explained in full on our <Link href="/shipping-returns">Shipping &amp; Returns</Link> page, and the terms of every sale are in our <Link href="/terms">Terms of Sale</Link>.</p>
       </section>
 
       <section className="ab-end">

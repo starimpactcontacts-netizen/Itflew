@@ -26,6 +26,8 @@ const FAQ = [
   ["What can I make fly?", "Light everyday things: a can, a ring, a card, a bill, a pen. Lift it, float it, make it dance, then let the thread wind back so there's nothing left to find."],
   ["How long does delivery take?", "We dispatch within 24–48 hours. Delivery time depends on where you are: standard shipping takes 7–12 business days, and orders to major cities usually arrive within 5–7 days of dispatch. Your exact dates show in the bag before you enter any details. Shipping is a flat $7 per order."],
   ["What if it's not for me?", "Return unused pods within 30 days for a full refund. No forms, just email support@itflew.com."],
+  ["Is this the telekinesis prank trick?", "Yes. The Levitation Pod is the trick behind the viral telekinesis prank videos: clip it to your jacket, attach it to a can and lift your hands. People see the can move toward you with nothing touching it."],
+  ["Who is behind It Flew!?", "It Flew! is a small magic brand based in Stockholm, Sweden. We sell one product, the Levitation Pod, and we answer every message ourselves. Reach us at support@itflew.com, orders@itflew.com or contact@itflew.com, or use the chat on any page."],
   ["Is checkout secure?", "Payments are processed by Stripe with bank-level encryption. We never see or store your card details. Apple Pay and all major cards are accepted."],
 ];
 

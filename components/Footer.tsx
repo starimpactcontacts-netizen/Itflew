@@ -35,7 +35,7 @@ export default function Footer() {
           </details>
         ))}
       </div>
-      <p className="fs-copy">© {new Date().getFullYear()} It Flew! All rights reserved.</p>
+      <p className="fs-copy">It Flew! · Stockholm, Sweden · <a href="mailto:contact@itflew.com">contact@itflew.com</a><br />© {new Date().getFullYear()} It Flew! All rights reserved.</p>
     </footer>
   );
 }
